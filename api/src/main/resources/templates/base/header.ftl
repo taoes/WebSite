@@ -1,18 +1,9 @@
-<div id="headerDiv">
-  <h1 id="title">码否</h1>
-  <ul id="headerCategory">
-    <li><a href="/">首页</a></li>
-    <li><a href="/page/blog">博客</a></li>
-    <li><a href="/page/doc">文档</a></li>
-    <li><a href="/page/question">问答</a></li>
-    <li><a href="/page/example">活动</a></li>
-    <li><a href="/page/example">招聘</a></li>
-    <li><a href="/page/app">移动端访问</a></li>
-  </ul>
-
-</div>
-
 <style>
+
+  body, html {
+    height: auto;
+  }
+
 
   #headerDiv {
     display: flex;
@@ -53,3 +44,22 @@
   }
 
 </style>
+
+
+<div id="headerDiv">
+  <h1 id="title">${title}</h1>
+  <ul id="headerCategory">
+    <li><a href="/">首页</a></li>
+    <li><a href="/page/blog">博客</a></li>
+    <li><a href="/page/doc">文档</a></li>
+    <li><a href="/page/question">问答</a></li>
+    <li><a href="/page/example">活动</a></li>
+    <li><a href="/page/example">招聘</a></li>
+    <li><a href="/page/app">移动端访问</a></li>
+  </ul>
+
+</div>
+
+
+
+

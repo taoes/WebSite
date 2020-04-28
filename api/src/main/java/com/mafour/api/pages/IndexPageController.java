@@ -16,7 +16,8 @@ public class IndexPageController {
     this.session = session;
   }
 
-  @GetMapping("/")
+  /** 系统主页 */
+  @GetMapping
   public String indexPage(Model model) {
     model.addAttribute("name", "张思睿");
     Integer count =
@@ -30,13 +31,9 @@ public class IndexPageController {
     return "index";
   }
 
+  /** 子模块页面 */
   @GetMapping("/page/{moduleName}")
   public String blogPage(@PathVariable("moduleName") String moduleName) {
-    return moduleName;
-  }
-
-  @GetMapping("/page/example")
-  public String examplePage(Model model) {
-    return "example";
+    return "page/" + moduleName;
   }
 }

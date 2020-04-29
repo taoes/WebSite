@@ -5,9 +5,9 @@
   <title>码否-专业的技术论坛社区</title>
 </head>
 <body>
-<#include "../base/header.ftl">
+<#include "base/header.ftl">
 
-    <h1>Blog</h1>
+<h1>Blog</h1>
 
 </body>
 </html>

@@ -13,5 +13,8 @@ repositories {
 }
 
 dependencies {
+    compile project(":service")
+    compile project(":dao")
+    compile project(":common")
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }

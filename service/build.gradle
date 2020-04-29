@@ -6,12 +6,13 @@ group 'com.mafour'
 version '1.0-SNAPSHOT'
 description "接口定义层"
 
-sourceCompatibility = 11
+sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
+    implementation project(":common")
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }

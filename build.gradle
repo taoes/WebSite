@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'idea'
 }
 
 group 'com.mafour'
@@ -12,6 +13,31 @@ repositories {
 }
 
 dependencies {
-    implementation project(":api")
     testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+
+subprojects {
+
+    apply plugin: "java"
+    apply plugin: "java-library"
+    apply plugin: "idea"
+    apply plugin: "maven"
+
+    tasks.create("Hello") {
+        doLast {
+            task ->
+                print "删除块第三次课 $task.project.name \n"
+
+        }
+    }
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+//
+    dependencies {
+        implementation 'org.projectlombok:lombok:1.18.10'
+        annotationProcessor 'org.projectlombok:lombok:1.18.10'
+    }
 }

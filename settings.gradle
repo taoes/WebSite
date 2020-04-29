@@ -3,4 +3,5 @@ include 'api'
 include 'common'
 include 'service'
 include 'application'
+include 'dao'
 

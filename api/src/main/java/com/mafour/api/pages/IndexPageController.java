@@ -1,39 +1,47 @@
 package com.mafour.api.pages;
 
-import java.util.Optional;
-import javax.servlet.http.HttpSession;
+import com.mafour.common.SystemConfigKey;
+import com.mafour.service.book.BookService;
+import com.mafour.service.book.bean.Book;
+import com.mafour.service.github.Github;
+import com.mafour.service.github.GithubService;
+import com.mafour.service.system.SystemService;
+import java.util.List;
+import java.util.Map;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
+@AllArgsConstructor
 public class IndexPageController {
 
-  private final HttpSession session;
+  private SystemService systemService;
 
-  public IndexPageController(HttpSession session) {
-    this.session = session;
-  }
+  private BookService bookService;
+
+  private GithubService githubService;
 
   /** 系统主页 */
   @GetMapping
-  public String indexPage(Model model) {
-    model.addAttribute("name", "张思睿");
-    Integer count =
-        Optional.ofNullable(session.getAttribute("count"))
-            .map(Object::toString)
-            .map(Integer::parseInt)
-            .orElse(0);
+  public java.lang.String indexPage(Model model) {
 
-    session.setAttribute("count", ++count);
-    session.setAttribute("name", "张思睿");
+    List<Book> bookList = bookService.findAllBook();
+    List<Github> githubList = githubService.findAll();
+
+    Map<String, String> configMap = systemService.getByKeys(SystemConfigKey.indexKey());
+
+    model.addAttribute("config", configMap);
+    model.addAttribute("bookList", bookList);
+    model.addAttribute("githubList", githubList);
     return "index";
   }
 
   /** 子模块页面 */
-  @GetMapping("/page/{moduleName}")
-  public String blogPage(@PathVariable("moduleName") String moduleName) {
+  @GetMapping("/page/{moduleName}/123")
+  public java.lang.String blogPage(@PathVariable("moduleName") java.lang.String moduleName) {
     return "page/" + moduleName;
   }
 }

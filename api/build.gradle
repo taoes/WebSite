@@ -45,6 +45,10 @@ dependencies {
     compile 'org.springframework.boot:spring-boot-starter-test'
 
     compile('org.springframework.boot:spring-boot-devtools')
+    compile project(":application")
 }
+
+
+
 
 

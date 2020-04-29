@@ -1,13 +1,14 @@
 package com.mafour.service.book.bean;
 
+import java.util.List;
 import lombok.Data;
 
 @Data
-public class BookToc {
+public class BookCategory {
 
   private String title;
 
-  private String slug;
+  private String type;
 
-  private int depth;
+  private List<BookCategory> subCategory;
 }

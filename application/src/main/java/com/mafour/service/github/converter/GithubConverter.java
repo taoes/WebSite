@@ -1,20 +1,20 @@
-package com.mafour.service.book.converter;
+package com.mafour.service.github.converter;
 
-import com.mafour.dao.BookDO;
+import com.mafour.dao.GithubDO;
 import com.mafour.service.AbstractConverter;
-import com.mafour.service.book.bean.Book;
+import com.mafour.service.github.Github;
 import org.springframework.stereotype.Component;
 
 @Component
-public class BookConverter extends AbstractConverter<Book, BookDO> {
+public class GithubConverter extends AbstractConverter<Github, GithubDO> {
 
   @Override
-  public Book converterFrom(BookDO d) {
-    return new Book().setCoverImgUrl(d.getCoverImgUrl()).setTitle(d.getTitle());
+  public Github converterFrom(GithubDO d) {
+    return new Github().setCoverImgUrl(d.getCoverImgUrl()).setTitle(d.getTitle());
   }
 
   @Override
-  public BookDO converterTo(Book book) {
+  public GithubDO converterTo(Github github) {
     return null;
   }
 }

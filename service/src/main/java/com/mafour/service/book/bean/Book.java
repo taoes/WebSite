@@ -1,13 +1,13 @@
-package com.mafour.service.book;
+package com.mafour.service.book.bean;
 
 import lombok.Builder;
 import lombok.Data;
 
 @Data
-@Builder
+
 public class Book {
 
   private String title;
 
-  private String url;
+  private String coverImgUrl;
 }

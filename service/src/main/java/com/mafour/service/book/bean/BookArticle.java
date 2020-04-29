@@ -1,14 +1,16 @@
 package com.mafour.service.book.bean;
 
-import java.util.List;
+import java.time.LocalDate;
 import lombok.Data;
 
 @Data
-public class BookCategory {
+public class BookArticle {
 
   private String title;
 
-  private String type;
+  private String content;
 
-  private List<BookCategory> subCategory;
+  private LocalDate createTime;
+
+  private LocalDate updateTime;
 }

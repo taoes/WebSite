@@ -64,3 +64,14 @@
     </div>
   </div>
 </nav>
+
+
+<div style="height: 50px"></div>
+
+<style>
+  .navbar {
+    position: fixed;
+    width: 100%;
+    z-index: 100;
+  }
+</style>

@@ -20,7 +20,8 @@
   <h1 style="margin-top: 20px" class="title is-2">${title}</h1>
   <div class="detailDiv">
     <div id="content">
-      <a class="button is-link is-outlined" href="https://www.yuque.com/zhoutao123/${bookName}/${slug}">语雀链接</a>
+      <a class="button is-link is-outlined"
+         href="https://www.yuque.com/zhoutao123/${bookName}/${slug}">语雀链接</a>
       <a class="button is-link is-outlined"
          href="https://www.yuque.com/zhoutao123/${bookName}/${slug}#lark-mini-editor">
             <span class="icon">
@@ -60,6 +61,11 @@
 
 </body>
 <style>
+
+  .lake-codeblock-content {
+    max-width: 100% !important;
+  }
+
   .contentDiv {
     width: 100%;
     min-height: 90%;

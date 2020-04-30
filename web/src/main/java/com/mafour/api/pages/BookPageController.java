@@ -74,7 +74,7 @@ public class BookPageController {
     String contentStr;
 
     if (StringUtils.hasText(host)) {
-      contentStr = data.getBody_html().replaceAll(PIC_PREFIX, "http://" + host + "/picture?param=");
+      contentStr = data.getBody_html().replaceAll(PIC_PREFIX, "https://" + host + "/picture?param=");
     } else {
       contentStr = Optional.ofNullable(yuqueDoc.getData().getBody_html()).orElse("暂无内容");
     }

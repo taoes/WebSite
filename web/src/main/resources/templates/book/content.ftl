@@ -6,7 +6,7 @@
   <script src="https://cdn.bootcdn.net/ajax/libs/marked/1.0.0/marked.min.js"></script>
   <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
 
-     <#include "base/key.ftl">
+    <#include "base/key.ftl">
 
   <style>
 
@@ -20,6 +20,18 @@
   <h1 style="margin-top: 20px" class="title is-2">${title}</h1>
   <div class="detailDiv">
     <div id="content">
+      <a class="button is-link is-outlined" href="https://www.yuque.com/zhoutao123/${bookName}/${slug}">语雀链接</a>
+      <a class="button is-link is-outlined"
+         href="https://www.yuque.com/zhoutao123/${bookName}/${slug}#lark-mini-editor">
+            <span class="icon">
+               <i class="fab fa-twitter"></i>
+             </span>
+        评论通道
+      </a>
+      <br>
+      <p style="color: lightslategrey;margin-top: 10px">如出现文章乱码或者图片无法访问，请访问语雀连接，谢谢!</p>
+      <hr>
+
         ${content}
     </div>
     <div id="side">

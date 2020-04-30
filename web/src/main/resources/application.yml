@@ -22,7 +22,7 @@ spring:
   datasource:
     password: Lyp82nlf
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://47.98.143.247:3306/web?allowMultiQueries=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8
+    url: jdbc:mysql://localhost:3306/web?allowMultiQueries=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8
     username: root
   devtools:
     restart:

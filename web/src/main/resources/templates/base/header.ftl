@@ -1,12 +1,11 @@
 <link href="https://cdn.bootcdn.net/ajax/libs/bulma/0.8.2/css/bulma.css" rel="stylesheet">
 
-
 <nav class="navbar" role="navigation" aria-label="main navigation">
 
   <div id="navbarBasicExample" class="navbar-menu">
 
     <a class="navbar-item" href="">
-      <img src="https://cdn.jsdelivr.net/gh/vmlite/s/bulma/images/bulma-logo.png" width="112"
+      <img src="/logo.png" width="112"
            height="28">
     </a>
 

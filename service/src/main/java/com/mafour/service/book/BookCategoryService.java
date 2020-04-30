@@ -1,12 +1,17 @@
 package com.mafour.service.book;
 
-import com.mafour.service.book.bean.Book;
 import com.mafour.service.book.bean.BookCategory;
-import java.util.List;
+import com.mafour.service.book.yuque.YuqueCategoryData;
+import java.util.Optional;
 
 public interface BookCategoryService {
 
-  /** 查询所有图书列表 */
-  List<BookCategory> findCategoryBy();
+  YuqueCategoryData findByBook(String yuqueName);
 
+  /**
+   * 查询目录信息
+   *
+   * @return
+   */
+  Optional<BookCategory> findById(Long categoryId);
 }

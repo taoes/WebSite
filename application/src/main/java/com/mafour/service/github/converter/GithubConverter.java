@@ -10,7 +10,7 @@ public class GithubConverter extends AbstractConverter<Github, GithubDO> {
 
   @Override
   public Github converterFrom(GithubDO d) {
-    return new Github().setCoverImgUrl(d.getCoverImgUrl()).setTitle(d.getTitle());
+    return new Github().setCoverImgUrl(d.getCoverImgUrl()).setTitle(d.getTitle()).setLinkUrl(d.getLinkUrl());
   }
 
   @Override

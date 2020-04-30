@@ -1,14 +1,17 @@
 package com.mafour.service.book.bean;
 
-import java.util.List;
 import lombok.Data;
 
 @Data
 public class BookCategory {
 
+  private Long id;
+
   private String title;
 
-  private String type;
+  private int depth;
 
-  private List<BookCategory> subCategory;
+  private int ordinal;
+
+  private boolean existContent;
 }

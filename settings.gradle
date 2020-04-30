@@ -1,5 +1,5 @@
 rootProject.name = 'MFour'
-include 'api'
+include 'web'
 include 'common'
 include 'service'
 include 'application'

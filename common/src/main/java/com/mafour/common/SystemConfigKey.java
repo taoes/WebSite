@@ -8,7 +8,8 @@ import lombok.AllArgsConstructor;
 public enum SystemConfigKey {
   INDEX_IMG("首页图片"),
   WEB_GRAY("网站全灰"),
-  WEB_RECORD("网站备案信息");
+  WEB_RECORD("网站备案信息"),
+  BAIDU_PUSH("开启百度推送");
 
   private java.lang.String desc;
 

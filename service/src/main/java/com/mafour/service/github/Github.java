@@ -8,4 +8,6 @@ public class Github {
   private String title;
 
   private String coverImgUrl;
+
+  private String linkUrl;
 }

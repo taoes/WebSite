@@ -83,7 +83,7 @@ public class BookPageController {
     // 查询系统配置
     Map<String, String> configMap = systemService.getByKeys(SystemConfigKey.indexKey());
 
-    Book book = bookService.findByName(bookName).get();
+    Long bookId = bookService.findByName(bookName).map(Book::getId).orElse(0L);
 
     List<Book> allBook = bookService.findAllBook();
 
@@ -91,8 +91,8 @@ public class BookPageController {
     model.addAttribute("config", configMap);
     model.addAttribute("slug", slug);
     model.addAttribute("title", data.getTitle());
-    model.addAttribute("bookName", book.getLinkUrl());
-    model.addAttribute("bookId", book.getId());
+    model.addAttribute("bookName", bookName);
+    model.addAttribute("bookId", bookId);
     model.addAttribute("bookList", allBook);
     return "book/content";
   }

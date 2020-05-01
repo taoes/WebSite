@@ -32,7 +32,12 @@
       </a>
 
       <a class="button is-link is-small"
-         href="${domain}/page/book/${bookId}">
+              <#if bookId != 0>
+                href="${domain}/page/book/${bookId}"
+              <#else>
+                href="${domain}/page/blog"
+              </#if>
+      >
         返回目录
       </a>
 

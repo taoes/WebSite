@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <title>${book.title}</title>
-  <#include "base/key.ftl">
+    <#include "base/key.ftl">
 
 </head>
 <body>
 <#include "./base/header.ftl">
 
 <div class="contentDiv">
-  <h1 style="margin-top: 20px" class="bookTitle title is-2">${book.title}</h1>
+  <h1 style="margin-top: 40px" class="bookTitle title is-2">${book.title}</h1>
   <span style="margin-left: 150px" class="title is-6">${book.subTitle}</span>
   <div id="categoryDiv">
       <#list categoryList.data as category>
@@ -94,6 +94,7 @@
     margin-left: 10px;
     font-weight: 900;
     cursor: pointer;
+    color: black;
   }
 
   .title1::before {
@@ -106,7 +107,7 @@
     margin-top: 20px;
     margin-bottom: 10px;
     cursor: pointer;
-    color: darkblue;
+    color: black;
   }
 
   .title1:hover, .title2:hover {
@@ -126,7 +127,7 @@
 
   function openBookContent(bookName, slug) {
     if (slug !== '#') {
-      window.open("${path}/page/book/" + bookName + "/category/" + slug, "_blank");
+      window.location.href = "${path}/page/book/" + bookName + "/category/" + slug;
     } else {
       console.debug("不包含文章信息，停止跳转")
     }

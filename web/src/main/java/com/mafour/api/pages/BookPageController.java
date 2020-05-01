@@ -74,7 +74,8 @@ public class BookPageController {
     String contentStr;
 
     if (StringUtils.hasText(host)) {
-      contentStr = data.getBody_html().replaceAll(PIC_PREFIX, "https://" + host + "/picture?param=");
+      contentStr =
+          data.getBody_html().replaceAll(PIC_PREFIX, "https://" + host + "/picture?param=");
     } else {
       contentStr = Optional.ofNullable(yuqueDoc.getData().getBody_html()).orElse("暂无内容");
     }
@@ -82,13 +83,16 @@ public class BookPageController {
     // 查询系统配置
     Map<String, String> configMap = systemService.getByKeys(SystemConfigKey.indexKey());
 
+    Book book = bookService.findByName(bookName).get();
+
     List<Book> allBook = bookService.findAllBook();
 
     model.addAttribute("content", contentStr);
     model.addAttribute("config", configMap);
     model.addAttribute("slug", slug);
     model.addAttribute("title", data.getTitle());
-    model.addAttribute("bookName", bookName);
+    model.addAttribute("bookName", book.getLinkUrl());
+    model.addAttribute("bookId", book.getId());
     model.addAttribute("bookList", allBook);
     return "book/content";
   }

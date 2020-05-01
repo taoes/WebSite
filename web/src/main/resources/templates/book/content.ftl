@@ -17,18 +17,30 @@
 
 
 <div class="contentDiv">
-  <h1 style="margin-top: 20px" class="title is-2">${title}</h1>
+  <h1 style="margin-top: 40px" class="title is-2">${title}</h1>
   <div class="detailDiv">
     <div id="content">
-      <a class="button is-link is-outlined"
-         href="https://www.yuque.com/zhoutao123/${bookName}/${slug}">语雀链接</a>
-      <a class="button is-link is-outlined"
+
+      <a class="button is-link is-small"
+         href="https://www.yuque.com/zhoutao123/${bookName}/${slug}">
+        语雀链接
+      </a>
+
+      <a class="button is-link is-small"
          href="https://www.yuque.com/zhoutao123/${bookName}/${slug}#lark-mini-editor">
-            <span class="icon">
-               <i class="fab fa-twitter"></i>
-             </span>
         评论通道
       </a>
+
+      <a class="button is-link is-small"
+         href="${domain}/page/book/${bookId}">
+        返回目录
+      </a>
+
+      <a class="button is-link is-small"
+         href="${domain}">
+        返回首页
+      </a>
+
       <br>
       <p style="color: lightslategrey;margin-top: 10px">如出现文章乱码或者图片无法访问，请访问语雀连接，谢谢!</p>
       <hr>
@@ -66,9 +78,16 @@
     max-width: 100% !important;
   }
 
+
+  /*  调整图片 变形的问题*/
+  .lake-drag-image {
+    width: 100% !important;
+    height: auto !important;
+  }
+
   .contentDiv {
     width: 100%;
-    min-height: 90%;
+    min-height: 1024px;
     background-color: #EFEFEF;
     padding-bottom: 20px;
     height: fit-content;
@@ -158,7 +177,7 @@
   }
 
   function toIndexPage() {
-    window.location.href = 'http://www.zhoutao123.com';
+    window.location.href = '${domain}';
   }
 
   /**

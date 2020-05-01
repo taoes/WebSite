@@ -28,8 +28,13 @@
       </a>
 
       <a class="navbar-item" href="${path}/page/code/123">
-        代码片段
+        代码
       </a>
+
+      <a class="navbar-item" href="${path}/page/link/123">
+        链接
+      </a>
+
 
       <a class="navbar-item" href="${path}/page/about.html">
         关于
@@ -37,20 +42,37 @@
 
       <div class="navbar-item has-dropdown is-hoverable">
         <a class="navbar-link">
-          更多
+          工具
         </a>
-
         <div class="navbar-dropdown">
-
-          <a class="navbar-item" href="${path}/page/link/123">
-            链接
+          <a class="navbar-item" href="${path}/page/tools/no.html">
+            Json格式化
           </a>
-          <hr class="navbar-divider">
-          <a class="navbar-item" href="${path}/page/support/123">
-            赞助
+          <a class="navbar-item" href="${path}/page/tools/no.html">
+            进制转换
+          </a>
+          <a class="navbar-item" href="${path}/page/tools/no.html">
+            时间戳
+          </a>
+          <a class="navbar-item" href="${path}/page/tools/no.html">
+            其他资源
           </a>
         </div>
       </div>
+
+
+<#--      <div class="navbar-item has-dropdown is-hoverable">-->
+        <#--        <a class="navbar-link">-->
+        <#--          更多-->
+        <#--        </a>-->
+
+        <#--        <div class="navbar-dropdown">-->
+        <#--          <hr class="navbar-divider">-->
+        <#--          <a class="navbar-item" href="${path}/page/support/123">-->
+        <#--            赞助-->
+        <#--          </a>-->
+        <#--        </div>-->
+        <#--      </div>-->
     </div>
 
     <div class="navbar-end">

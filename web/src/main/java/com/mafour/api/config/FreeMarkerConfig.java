@@ -15,6 +15,7 @@ public class FreeMarkerConfig {
   @PostConstruct
   public void setConfigure() throws Exception {
     configuration.setSharedVariable("base", "localhost:9999");
+    configuration.setSharedVariable("domain", "https://www.zhoutao123.com");
     configuration.setSharedVariable("title", "燕归来兮");
   }
 }

@@ -20,6 +20,7 @@ public enum SystemConfigKey {
     indexKey.add(INDEX_IMG);
     indexKey.add(WEB_GRAY);
     indexKey.add(WEB_RECORD);
+    indexKey.add(BAIDU_PUSH);
   }
 
   // 首页Key

@@ -1,9 +1,10 @@
 package com.mafour.service.book.yuque;
 
+import java.io.Serializable;
 import lombok.Data;
 
 @Data
-public class YuqueCategory {
+public class YuqueCategory implements Serializable {
 
   private String type;
   private String title;

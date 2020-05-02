@@ -1,21 +1,23 @@
 package com.mafour.service.book.yuque;
 
+import java.io.Serializable;
+
 @lombok.Data
-public class YuqueDoc {
+public class YuqueDoc  implements Serializable {
 
   private Abilities abilities;
 
   private Data data;
 
   @lombok.Data
-  static class Abilities {
+  static class Abilities implements Serializable {
     private boolean update;
 
     private boolean destroy;
   }
 
   @lombok.Data
-  public static class User {
+  public static class User implements Serializable {
     private int id;
 
     private String type;
@@ -44,7 +46,7 @@ public class YuqueDoc {
   }
 
   @lombok.Data
-  static class Book {
+  static class Book implements Serializable{
     private int id;
 
     private String type;
@@ -79,7 +81,7 @@ public class YuqueDoc {
   }
 
   @lombok.Data
-  static class Creator {
+  static class Creator implements Serializable {
     private int id;
 
     private String type;
@@ -108,7 +110,7 @@ public class YuqueDoc {
   }
 
   @lombok.Data
-  public static class Data {
+  public static class Data implements Serializable {
     private int id;
 
     private String slug;

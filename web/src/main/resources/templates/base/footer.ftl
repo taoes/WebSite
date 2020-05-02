@@ -23,8 +23,9 @@
 
 <script>
   let openBaiduPush = '${config["BAIDU_PUSH"]}';
-  if (openBaiduPush === 'true') {
-    console.debug("开始推送到百度")
+  let host = window.location.hostname;
+
+  if (openBaiduPush === 'true' && host.indexOf("localhost") !== -1) {
     var _hmt = _hmt || [];
     (function () {
       var hm = document.createElement("script");
@@ -45,5 +46,6 @@
     }
     var s = document.getElementsByTagName("script")[0];
     s.parentNode.insertBefore(bp, s);
+    console.log("主动提交完成")
   })();
 </script>

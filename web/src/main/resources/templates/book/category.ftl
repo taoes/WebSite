@@ -81,6 +81,8 @@
 
   .categoryItem {
     cursor: pointer;
+    font-weight: 900;
+    font-family:  Serif, serif;
   }
 
 
@@ -95,10 +97,12 @@
     font-weight: 900;
     cursor: pointer;
     color: black;
+    font-width: 900;
+    font-family:  Serif, serif;
   }
 
   .title1::before {
-    content: "✨ ";
+    content: "✏️ ";
   }
 
   .title2 {
@@ -108,6 +112,7 @@
     margin-bottom: 10px;
     cursor: pointer;
     color: black;
+    font-family: Serif, serif;
   }
 
   .title1:hover, .title2:hover {

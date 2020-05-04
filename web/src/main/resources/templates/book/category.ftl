@@ -28,7 +28,7 @@
           <#else>
             <p
                 class="categoryItem"
-                style="margin-left: 60px;"
+                style="margin-left: ${category.depth * 20}px;"
                 onclick="openBookContent('${book.linkUrl}','${category.slug}')">
                 ${category.title}
             </p>
@@ -68,7 +68,7 @@
 
   @media screen and (max-width: 1200px) {
     #categoryDiv {
-      width: 100%;
+      width: 95%;
       margin-top: 20px;
       margin-left: 10%;
       margin-right: 10%;
@@ -81,7 +81,7 @@
 
   .categoryItem {
     cursor: pointer;
-    font-weight: 900;
+    font-weight: bolder;
     font-family:  Serif, serif;
   }
 

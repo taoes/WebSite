@@ -132,6 +132,8 @@
     margin-top: 20px;
     font-width: 900;
     font-family: STFangsong, Serif, serif;
+    letter-spacing: 5px;
+    text-transform: uppercase;
   }
 
   .detailDiv {
@@ -195,7 +197,7 @@
       display: flex;
       flex-direction: column;
       display: -webkit-flex;
-      width: 100%;
+      width: 95%;
       min-height: 300px;
     }
   }

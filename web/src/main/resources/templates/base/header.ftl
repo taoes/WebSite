@@ -1,10 +1,10 @@
 <div>
-  <nav class="navbar" role="navigation" aria-label="main navigation">
+  <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
 
     <div id="navbarBasicExample" class="navbar-menu">
 
       <a class="navbar-item" href="">
-        <img src="/logo.png" width="112"
+        <img src="/logo-white.png" width="112"
              height="28">
       </a>
 
@@ -30,7 +30,7 @@
           代码
         </a>
 
-        <a class="navbar-item" href="${path}/page/link/123">
+        <a class="navbar-item" href="${path}/page/link.html">
           链接
         </a>
 

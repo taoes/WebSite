@@ -15,23 +15,33 @@
   <div id="categoryDiv">
       <#list categoryList.data as category>
           <#if category.depth == 1>
-            <p class="title1" onclick="openBookContent('${book.linkUrl}','${category.slug}')">
+            <a class="title1"
+                    <#if category.slug != '#'>
+                      href="/page/book/${book.linkUrl}/category/${category.slug}"
+                    </#if>
+            >
                 ${category.title}
-            </p>
+            </a>
           <#elseif category.depth == 2>
-            <p
+            <a
                 style="margin-left: 40px"
-                onclick="openBookContent('${book.linkUrl}','${category.slug}')"
+                    <#if category.slug != '#'>
+                      href="/page/book/${book.linkUrl}/category/${category.slug}"
+                    </#if>
                 class="title2">
                 ${category.title}
-            </p>
+            </a>
           <#else>
-            <p
+            <a
                 class="categoryItem"
                 style="margin-left: ${category.depth * 20}px;"
-                onclick="openBookContent('${book.linkUrl}','${category.slug}')">
+                    <#if category.slug != '#'>
+                      href="/page/book/${book.linkUrl}/category/${category.slug}"
+                    </#if>
+            >
+
                 ${category.title}
-            </p>
+            </a>
             <br>
 
           </#if>
@@ -80,14 +90,16 @@
   }
 
   .categoryItem {
+    color: black;
     cursor: pointer;
     font-weight: bolder;
-    font-family:  Serif, serif;
+    font-family: Serif, serif;
   }
 
 
   .categoryItem:hover {
-    color: red;
+    color: #0088EE;
+    font-weight: 900;
   }
 
   .title1 {
@@ -98,7 +110,7 @@
     cursor: pointer;
     color: black;
     font-width: 900;
-    font-family:  Serif, serif;
+    font-family: Serif, serif;
   }
 
   .title1::before {
@@ -116,7 +128,8 @@
   }
 
   .title1:hover, .title2:hover {
-    color: #08E;
+    color: #0088EE;
+    font-weight: 900;
   }
 
   /*  标题样式*/
@@ -126,16 +139,9 @@
     font-family: Serif, serif;
   }
 
-</style>
-
-<script>
-
-  function openBookContent(bookName, slug) {
-    if (slug !== '#') {
-      window.location.href = "${path}/page/book/" + bookName + "/category/" + slug;
-    } else {
-      console.debug("不包含文章信息，停止跳转")
-    }
+  a {
+    display: block;
   }
-</script>
+
+</style>
 </html>

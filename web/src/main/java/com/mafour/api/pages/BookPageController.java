@@ -7,6 +7,8 @@ import com.mafour.service.book.BookService;
 import com.mafour.service.book.bean.Book;
 import com.mafour.service.book.yuque.YuqueCategoryData;
 import com.mafour.service.book.yuque.YuqueDoc;
+import com.mafour.service.comment.Comment;
+import com.mafour.service.comment.CommentService;
 import com.mafour.service.system.SystemService;
 import java.util.List;
 import java.util.Map;
@@ -25,15 +27,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/page/book")
 public class BookPageController {
 
-  private BookService bookService;
+  private final BookService bookService;
 
-  private BookCategoryService categoryService;
+  private final BookCategoryService categoryService;
 
-  private BookContentService contentService;
+  private final BookContentService contentService;
 
-  private SystemService systemService;
+  private final SystemService systemService;
 
-  private final String PIC_PREFIX = "https://cdn.nlark.com/";
+  private final CommentService commentService;
+
+  private static final String PIC_PREFIX = "https://cdn.nlark.com/";
 
   @GetMapping("/{bookId}")
   public String toBlogPage(@PathVariable("bookId") Long bookId, Model model) {
@@ -69,7 +73,6 @@ public class BookPageController {
     // 尝试获取文章信息
     YuqueDoc yuqueDoc = contentService.findByCategoryId(bookName, slug);
     YuqueDoc.Data data = yuqueDoc.getData();
-
     String host = request.getHeader("Host");
     String contentStr;
 
@@ -82,10 +85,11 @@ public class BookPageController {
 
     // 查询系统配置
     Map<String, String> configMap = systemService.getByKeys(SystemConfigKey.indexKey());
-
     Long bookId = bookService.findByName(bookName).map(Book::getId).orElse(0L);
-
     List<Book> allBook = bookService.findAllBook();
+
+    // 获取评论信息
+    List<Comment> comments = commentService.all(bookName, slug);
 
     model.addAttribute("content", contentStr);
     model.addAttribute("config", configMap);
@@ -94,6 +98,7 @@ public class BookPageController {
     model.addAttribute("bookName", bookName);
     model.addAttribute("bookId", bookId);
     model.addAttribute("bookList", allBook);
+    model.addAttribute("comments", comments);
     return "book/content";
   }
 }

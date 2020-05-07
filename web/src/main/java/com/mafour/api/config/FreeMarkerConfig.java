@@ -17,5 +17,7 @@ public class FreeMarkerConfig {
     configuration.setSharedVariable("base", "localhost:9999");
     configuration.setSharedVariable("domain", "https://www.zhoutao123.com");
     configuration.setSharedVariable("title", "燕归来兮");
+    configuration.setSharedVariable("clientId", "4b3f1745967d3a9d09d0");
+    configuration.setSharedVariable("githubCallback", "https://www.zhoutao123.com/login/github");
   }
 }

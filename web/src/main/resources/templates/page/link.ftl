@@ -3,8 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <title>链接分享</title>
-  <link rel="stylesheet"
-        href="https://pic.zhoutao123.com/lib/font-awesome-4.7.0/css/font-awesome.min.css"/>
     <#include "base/key.ftl">
 
 </head>

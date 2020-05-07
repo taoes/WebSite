@@ -6,6 +6,7 @@ import com.mafour.exception.NotFoundException;
 import com.mafour.service.book.bean.BookContent;
 import com.mafour.service.book.converter.BookContentConverter;
 import com.mafour.service.book.yuque.YuqueDoc;
+import com.mafour.service.book.yuque.YuqueDoc.Data;
 import com.mafour.tunnel.BookContentTunnel;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
@@ -71,10 +72,11 @@ public class BookContentServiceImpl implements BookContentService {
     } else {
       log.info("get from web book = {} slug = {} is fail", bookName, slug);
       yuqueDoc = new YuqueDoc();
+      yuqueDoc.setData(new Data().setBody_html("<h1 style='margin:50px'>文章正在紧急准备中</h1>"));
     }
 
     // 保存缓存记录
-    bucket.set(yuqueDoc, 2, TimeUnit.HOURS);
+    bucket.set(yuqueDoc, 30, TimeUnit.DAYS);
     return yuqueDoc;
   }
 }

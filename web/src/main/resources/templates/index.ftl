@@ -3,8 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <title>${title}</title>
-  <link rel="stylesheet"
-        href="https://pic.zhoutao123.com/lib/font-awesome-4.7.0/css/font-awesome.min.css"/>
     <#include "base/key.ftl">
   <style>
   </style>
@@ -29,8 +27,9 @@
     <div class="list noteList">
         <#list bookList as book>
           <div class="bookDiv">
-            <img src="${book.coverImgUrl}" alt="${book.title}" class="cover"
-                 onclick="openBookPage(${book.id})">
+            <a href="/page/book/${book.id}" style="display: block">
+              <img src="${book.coverImgUrl}" alt="${book.title}" class="cover">
+            </a>
           </div>
         </#list>
     </div>
@@ -182,14 +181,14 @@
     }
 
     #githubDiv {
-      width: 80%;
+      width: 95%;
       height: fit-content;
       border-radius: 30px;
       margin-top: 30px;
       margin-bottom: 30px;
       display: flex;
       display: -webkit-flex;
-      justify-content: center;
+      justify-content: space-around;
       align-items: center;
       flex-direction: column;
     }
@@ -197,7 +196,7 @@
     .github {
       width: 100%;
       height: fit-content;
-      margin-top: 30px;
+      margin: 30px 22px;
       display: flex;
       flex-direction: row;
       display: -webkit-flex;

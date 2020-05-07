@@ -63,7 +63,7 @@ public class BookCategoryServiceImpl implements BookCategoryService {
     }
 
     // 保存缓存记录
-    bucket.set(categoryData, 24, TimeUnit.HOURS);
+    bucket.set(categoryData, 1, TimeUnit.DAYS);
     return categoryData;
   }
 

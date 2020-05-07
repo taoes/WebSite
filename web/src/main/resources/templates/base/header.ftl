@@ -1,9 +1,7 @@
-<div>
+<div id="pcMenu">
   <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
-
     <div id="navbarBasicExample" class="navbar-menu">
-
-      <a class="navbar-item" href="">
+      <a class="navbar-item" href="/">
         <img src="/logo-white.png" width="112"
              height="28">
       </a>
@@ -12,33 +10,24 @@
         <a class="navbar-item" href="${path}/">
           主页
         </a>
-
         <a class="navbar-item" href="${path}/page/doc/123">
           文档
         </a>
-
-
         <a class="navbar-item" href="https://www.yuque.com/zhoutao123" target="_blank">
           语雀
         </a>
-
         <a class="navbar-item" href="${path}/page/blog">
           博客
         </a>
-
         <a class="navbar-item" href="${path}/page/code/123">
           代码
         </a>
-
         <a class="navbar-item" href="${path}/page/link.html">
           链接
         </a>
-
-
         <a class="navbar-item" href="${path}/page/about.html">
           关于
         </a>
-
         <div class="navbar-item has-dropdown is-hoverable">
           <a class="navbar-link">
             工具
@@ -58,42 +47,165 @@
             </a>
           </div>
         </div>
-
-
-          <#--      <div class="navbar-item has-dropdown is-hoverable">-->
-          <#--        <a class="navbar-link">-->
-          <#--          更多-->
-          <#--        </a>-->
-
-          <#--        <div class="navbar-dropdown">-->
-          <#--          <hr class="navbar-divider">-->
-          <#--          <a class="navbar-item" href="${path}/page/support/123">-->
-          <#--            赞助-->
-          <#--          </a>-->
-          <#--        </div>-->
-          <#--      </div>-->
       </div>
 
-      <div class="navbar-end">
+      <div class="navbar-end" style="margin-right: 30px">
+          <#if name != null>
+            <span> 欢迎您,${name} </span>
+          </#if>
         <div class="navbar-item">
           <div class="buttons">
-            <a class="button is-primary">
-              <strong>登录系统</strong>
+              <#if name != null>
+                <a class="button is-link is-small"
+                   href="/login/github/exit">
+                  <i class="fa fa-user-circle-o"></i>
+                  <strong>&nbsp;&nbsp;退出 </strong>
+                </a>
+              <#else>
+                <a class="button is-link is-small"
+                   href="https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=${githubCallback}">
+                  <i class="fa fa-user-circle-o"></i>
+                  <strong>&nbsp;&nbsp;使用Github登录</strong>
+                </a>
+              </#if>
+            <a class="button is-link is-small" href="https://github.com/taoes">
+              <i class="fa fa-github-alt"></i>
+              <strong>&nbsp;&nbsp;Github</strong>
             </a>
           </div>
         </div>
       </div>
     </div>
   </nav>
-
-
   <div style="height: 50px"></div>
 </div>
 
+<div id="mobileMenu">
+  <div id="mobileMenuDiv">
+    <a class="navbar-item" href="/">
+      <img src="/logo-white.png" width="112"
+           height="28">
+    </a>
+
+    <div style="display:flex; margin-left: auto;margin-right:20px;align-items: center">
+      <button class="button is-link is-small" onclick="actionPupMenu()">
+        <i class="fa fa-bars fa-lg"></i>
+        <strong>&nbsp;菜单</strong>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div id="popMenu" style="display: none">
+  <a class="navbar-item" href="${path}/">
+    主页
+  </a>
+  <a class="navbar-item" href="${path}/page/doc/123">
+    文档
+  </a>
+  <a class="navbar-item" href="https://www.yuque.com/zhoutao123" target="_blank">
+    语雀
+  </a>
+  <a class="navbar-item" href="${path}/page/blog">
+    博客
+  </a>
+  <a class="navbar-item" href="${path}/page/code/123">
+    代码
+  </a>
+  <a class="navbar-item" href="${path}/page/link.html">
+    链接
+  </a>
+  <a class="navbar-item" href="${path}/page/about.html">
+    关于
+  </a>
+</div>
+
+
 <style>
-  .navbar {
-    position: fixed;
-    width: 100%;
-    z-index: 100;
+
+
+  <#--  手机界面配置-->
+  @media screen and (max-width: 1200px) {
+
+    #pcMenu {
+      display: none;
+    }
+
+    #mobileMenu {
+      display: block;
+      background-color: #4a4a4a;
+    }
+
+    #mobileMenuDiv {
+      display: flex;
+      display: -webkit-flex;
+    }
+
+    #popMenu {
+      height: fit-content;
+      display: block;
+      z-index: 1000;
+      position: absolute;
+      top: 50px;
+      width: 100%;
+      left: 1px;
+      background-color: white;
+      min-height: 300px;
+      box-shadow: 1px 1px 10px 1px #515a6e;
+    }
+  }
+
+
+  @media screen and (min-width: 1200px) {
+
+
+    #pcMenu {
+      display: block;
+    }
+
+    #mobileMenu {
+      display: none;
+    }
+
+    .navbar {
+      position: fixed;
+      width: 100%;
+      z-index: 100;
+    }
+  }
+
+  a.navbar-item:hover {
+    background-color: rgba(0, 0, 0, 0) !important;
+  }
+
+
+  .navbar-end {
+    align-items: center !important;
   }
 </style>
+
+
+<script>
+
+  for (let ele in document.getElementsByClassName('navbar-item')) {
+    ele.onclick = disablePopMenu();
+  }
+
+  document.body.onclick = disablePopMenu();
+  document.html.onclick = disablePopMenu();
+
+  function actionPupMenu() {
+    let ele = document.getElementById('popMenu');
+    if (getComputedStyle(ele, false)['display'] === 'none') {
+      ele.style.display = 'block';
+    } else {
+      ele.style.display = 'none';
+    }
+
+  }
+
+  function disablePopMenu() {
+    document.getElementById('popMenu').style.display = 'none';
+  }
+
+</script>

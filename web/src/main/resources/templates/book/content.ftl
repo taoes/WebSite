@@ -3,50 +3,93 @@
 <head>
   <meta charset="UTF-8">
   <title>${title}</title>
-  <script src="https://cdn.bootcdn.net/ajax/libs/marked/1.0.0/marked.min.js"></script>
   <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
     <#include "base/key.ftl">
 </head>
 <body>
 <#include "./base/header.ftl">
 
+
 <div class="contentDiv">
-  <h1 style="margin-top: 40px" class="title is-2">${title}</h1>
+  <h1 style="margin-top: 40px;font-size: 30px">${title}</h1>
   <div class="detailDiv">
     <div id="content">
-      <a class="button is-link is-small"
-         href="https://www.yuque.com/zhoutao123/${bookName}/${slug}">
-        语雀链接
-      </a>
-
-      <a class="button is-link is-small"
-         href="https://www.yuque.com/zhoutao123/${bookName}/${slug}#lark-mini-editor">
-        评论通道
-      </a>
-
-      <a class="button is-link is-small"
-              <#if bookId != 0>
-                href="${domain}/page/book/${bookId}"
-              <#else>
-                href="${domain}/page/blog"
-              </#if>>
-        返回目录
-      </a>
-
-      <a class="button is-link is-small"
-         href="${domain}">
-        返回首页
-      </a>
-
-      <a class="button is-link is-small"
-         onclick="cleanCache()">
-        清除缓存
-      </a>
-
-      <br>
-      <p style="color: lightslategrey;margin-top: 10px">如出现文章乱码或者图片无法访问，请访问语雀连接，谢谢!</p>
-      <hr>
+      <div>
+        <a class="button is-link is-small"
+           href="https://www.yuque.com/zhoutao123/${bookName}/${slug}">
+          语雀链接
+        </a>
+        <a class="button is-link is-small"
+           href="https://www.yuque.com/zhoutao123/${bookName}/${slug}#lark-mini-editor">
+          评论通道
+        </a>
+        <a class="button is-link is-small"
+                <#if bookId != 0>
+          href="/page/book/${bookId}"
+        <#else>
+          href="/page/blog"
+                </#if>>
+          返回目录
+        </a>
+        <a class="button is-link is-small"
+           href="/">
+          返回首页
+        </a>
+        <a class="button is-link is-small"
+           onclick="cleanCache()">
+          清除缓存
+        </a>
+        <br>
+        <p style="color: lightslategrey;margin-top: 10px">如出现文章乱码或者图片无法访问，请访问语雀连接，谢谢!</p>
+      </div>
         ${content}
+      <div style="height: 50px"></div>
+
+      <hr class="split-pane-divider">
+        <#if name != null>
+          <div id="comment">
+            <textarea class="textarea" placeholder="请输入您的评论内容" id="commentArea"></textarea>
+            <div class="buttons">
+              <button class="button is-link" onclick="submitComment()">提交</button>
+              <button class="button is-danger" onclick="reset()">重置</button>
+            </div>
+          </div>
+        <#else >
+          <div id="comment" style="justify-content: center;display: flex;">
+            <button class="button is-danger" onclick="openGithubLoginPage()">使用Github账户登录后评论
+            </button>
+          </div>
+        </#if>
+
+      <div style="height: 50px"></div>
+
+      <hr class="split-pane-divider">
+      <div id="commentList">
+          <#list  comments as comment>
+            <div>
+              <div class="commentTitle">
+                <img class="commentHeader"
+                     src="${comment.avatarUrl}"/>
+                <p style="font-style:italic;margin-left: 40px">
+                  <span style="color: #0088EE">${comment.name}</span>
+                  在
+                  <span
+                      style="color: #0088EE">${comment.createTime?string('yyyy-MM-dd hh:mm:ss')}</span>
+                  评论了本文章
+                </p>
+              </div>
+
+
+              <p class="commentContent">
+                  ${comment.content}
+              </p>
+              <hr class="split-pane-divider">
+            </div>
+          </#list>
+
+      </div>
+
+
     </div>
     <div id="side">
       <div class="card" style="width: 100%;height: fit-content">
@@ -62,9 +105,7 @@
               Github</p>
           </div>
         </div>
-
       </div>
-
 
       <div class="card" style="width: 100%;height: fit-content">
         <header class="card-header">
@@ -85,13 +126,35 @@
       </div>
     </div>
   </div>
-
 </div>
+
+
 <#include "base/footer.ftl">
-
-
 </body>
 <style>
+
+
+  <#--  评论-->
+  .commentTitle {
+    display: flex;
+    display: -webkit-flex;
+    width: 100%;
+    height: fit-content;
+    align-items: center;
+  }
+
+  /*评论内容*/
+  .commentContent {
+    margin-top: 20px;
+    margin-left: 100px;
+    margin-bottom: 20px;
+  }
+
+  .commentHeader {
+    background: url("https://pic.zhoutao123.com/picture/index/header.jpeg");
+    width: 50px;
+    height: 50px;
+  }
 
   .lake-codeblock-content {
     max-width: 100% !important;
@@ -236,14 +299,43 @@
     }
   }
 
-</style>
-<script>
-  function toBookIndexPage() {
 
+  /*  按钮样式*/
+  .button {
+    margin-top: 10px;
+    margin-bottom: 20px;
   }
 
+  /*  评论区样式*/
+
+  #commentArea {
+    width: 100%;
+    min-height: 180px;
+    margin-right: 50px;
+  }
+
+  #commentInfo {
+    display: flex;
+    display: -webkit-flex;
+    width: 100%;
+  }
+
+  .field {
+    flex-grow: 1;
+  }
+
+  /*  按钮组*/
+
+  .buttons {
+    display: flex;
+    display: -webkit-flex;
+    align-content: space-around;
+  }
+
+</style>
+<script>
   function toIndexPage() {
-    window.location.href = '${domain}';
+    window.location.href = '/';
   }
 
   /**
@@ -254,6 +346,11 @@
     window.open("/page/book/" + bookId)
   }
 
+  /** 打开Github登录页面*/
+  function openGithubLoginPage() {
+    window.location.href = "https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=${githubCallback}"
+  }
+
   /**
    * 清除缓存信息
    */
@@ -262,6 +359,40 @@
       alert("缓存清理完成");
       location.reload();
     });
+  }
+
+  //  新增评论
+
+  function submitComment() {
+    let name = '${name}'
+    let email = '${email}'
+    let url = '${blog}'
+    let avatar_url = '${avatar_url}'
+    let content = $("#commentArea").val();
+    let bookName = '${bookName}';
+    let slug = '${slug}';
+
+    let data = {
+      name,
+      email,
+      url,
+      content,
+      bookName,
+      slug,
+      avatarUrl: avatar_url
+    }
+
+    $.ajax({
+      contentType: 'application/json',
+      type: 'POST',
+      url: "/book/comment",
+      dataType: "json",
+      data: JSON.stringify(data),
+      success: function (message) {
+        window.location.reload()
+      }
+    });
+
   }
 </script>
 

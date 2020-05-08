@@ -49,28 +49,11 @@
         </div>
       </div>
 
-      <div class="navbar-end" style="margin-right: 30px">
-          <#if name != null>
-            <span> 欢迎您,${name} </span>
-          </#if>
         <div class="navbar-item">
           <div class="buttons">
-              <#if name != null>
-                <a class="button is-link is-small"
-                   href="/login/github/exit">
-                  <i class="fa fa-user-circle-o"></i>
-                  <strong>&nbsp;&nbsp;退出 </strong>
-                </a>
-              <#else>
-                <a class="button is-link is-small"
-                   href="https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=${githubCallback}">
-                  <i class="fa fa-user-circle-o"></i>
-                  <strong>&nbsp;&nbsp;使用Github登录</strong>
-                </a>
-              </#if>
             <a class="button is-link is-small" href="https://github.com/taoes">
               <i class="fa fa-github-alt"></i>
-              <strong>&nbsp;&nbsp;Github</strong>
+              <strong>&nbsp;&nbsp;访问我的 Github</strong>
             </a>
           </div>
         </div>

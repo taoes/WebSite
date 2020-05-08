@@ -11,14 +11,10 @@
 
 
 <div class="contentDiv">
-  <h1 style="margin-top: 40px;font-size: 30px">${title}</h1>
+  <h1 style="margin-top: 40px;font-size: 30px" class="title">${title}</h1>
   <div class="detailDiv">
     <div id="content">
       <div>
-        <a class="button is-link is-small"
-           href="https://www.yuque.com/zhoutao123/${bookName}/${slug}">
-          语雀链接
-        </a>
         <a class="button is-link is-small"
            href="https://www.yuque.com/zhoutao123/${bookName}/${slug}#lark-mini-editor">
           评论通道
@@ -46,20 +42,46 @@
       <div style="height: 50px"></div>
 
       <hr class="split-pane-divider">
-        <#if name != null>
-          <div id="comment">
-            <textarea class="textarea" placeholder="请输入您的评论内容" id="commentArea"></textarea>
-            <div class="buttons">
-              <button class="button is-link" onclick="submitComment()">提交</button>
-              <button class="button is-danger" onclick="reset()">重置</button>
+      <div id="comment">
+        <div id="commentInfo">
+          <div class="field">
+            <div class="control has-icons-left">
+              <span class="icon has-text-info">
+                <i class="fa fa-envira"></i>
+              </span>
+              <input class="input" id="nickname" type="email"
+                     placeholder="您的称呼">
             </div>
           </div>
-        <#else >
-          <div id="comment" style="justify-content: center;display: flex;">
-            <button class="button is-danger" onclick="openGithubLoginPage()">使用Github账户登录后评论
-            </button>
+          <div style="width: 4%"></div>
+          <div class="field">
+            <div class="control has-icons-left">
+              <span class="icon has-text-info">
+                <i class="fa fa-envelope"></i>
+              </span>
+              <input class="input" id="email" type="email"
+                     placeholder="您的邮箱">
+            </div>
           </div>
-        </#if>
+
+          <div style="width: 4%"></div>
+
+          <div class="field">
+            <div class="control has-icons-left">
+              <span class="icon has-text-info">
+                <i class="fa fa-chrome"></i>
+              </span>
+              <input class="input" id="website" type="text" placeholder="(可选)您的网址">
+
+            </div>
+          </div>
+        </div>
+        <textarea class="textarea" placeholder="请输入您的评论内容" id="commentArea"></textarea>
+        <div class="buttons">
+          <button class="button is-link" onclick="submitComment()">提交</button>
+          <button class="button is-danger" onclick="reset()">重置</button>
+        </div>
+      </div>
 
       <div style="height: 50px"></div>
 
@@ -69,7 +91,7 @@
             <div>
               <div class="commentTitle">
                 <img class="commentHeader"
-                     src="${comment.avatarUrl}"/>
+                     src="https://pic.zhoutao123.com/picture/index/header.jpeg"/>
                 <p style="font-style:italic;margin-left: 40px">
                   <span style="color: #0088EE">${comment.name}</span>
                   在
@@ -194,7 +216,7 @@
     font-weight: 900;
     margin-top: 20px;
     font-width: 900;
-    font-family: STFangsong, Serif, serif;
+    font-family: "STFangsong", "Microsoft Sans Serif", "DejaVu Serif", serif;
     letter-spacing: 5px;
     text-transform: uppercase;
   }
@@ -364,10 +386,9 @@
   //  新增评论
 
   function submitComment() {
-    let name = '${name}'
-    let email = '${email}'
-    let url = '${blog}'
-    let avatar_url = '${avatar_url}'
+    let name = $("#nickname").val();
+    let email = $("#email").val();
+    let url = $("#website").val();
     let content = $("#commentArea").val();
     let bookName = '${bookName}';
     let slug = '${slug}';
@@ -378,8 +399,7 @@
       url,
       content,
       bookName,
-      slug,
-      avatarUrl: avatar_url
+      slug
     }
 
     $.ajax({

@@ -1,6 +1,7 @@
 package com.mafour.api.pages;
 
 import com.mafour.common.SystemConfigKey;
+import com.mafour.exception.NotFoundException;
 import com.mafour.service.book.BookService;
 import com.mafour.service.book.bean.Book;
 import com.mafour.service.github.Github;
@@ -9,14 +10,10 @@ import com.mafour.service.system.SystemService;
 import java.util.List;
 import java.util.Map;
 import lombok.AllArgsConstructor;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @AllArgsConstructor
@@ -30,7 +27,10 @@ public class IndexPageController {
 
   /** 系统主页 */
   @GetMapping
-  public java.lang.String indexPage(Model model) {
+  public java.lang.String indexPage(Model model, String p) {
+    if (p != null) {
+      throw new NotFoundException();
+    }
 
     List<Book> bookList = bookService.findAllBook();
     List<Github> githubList = githubService.findAll();

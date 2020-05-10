@@ -38,7 +38,10 @@
         <br>
         <p style="color: lightslategrey;margin-top: 10px">如出现文章乱码或者图片无法访问，请访问语雀连接，谢谢!</p>
       </div>
-        ${content}
+
+      <div id="detail">
+          ${content}
+      </div>
       <div style="height: 50px"></div>
 
       <hr class="split-pane-divider">
@@ -96,7 +99,7 @@
                   <span style="color: #0088EE">${comment.name}</span>
                   在
                   <span
-                      style="color: #0088EE">${comment.createTime?string('yyyy-MM-dd hh:mm:ss')}</span>
+                      style="color: #0088EE">${comment.createTime?string('yyyy-MM-dd HH:mm:ss')}</span>
                   评论了本文章
                 </p>
               </div>
@@ -114,6 +117,50 @@
 
     </div>
     <div id="side">
+
+      <div class="card" style="width: 100%;height: fit-content">
+        <header class="card-header">
+          <p class="card-header-title">
+            目录索引
+          </p>
+        </header>
+        <div class="card-content">
+          <div class="content" id="menuContent"></div>
+        </div>
+      </div>
+
+
+      <div class="card" style="width: 100%;height: fit-content">
+        <header class="card-header">
+          <p class="card-header-title">
+            最近变更
+          </p>
+        </header>
+
+        <div class="card-content">
+          <div class="content">
+              <#list updateRecord as record>
+                <a href="/page/book/${record.bookSlug}/category/${record.slug}"
+                   style="cursor: pointer;font-size: 12px;color: #4a4a4a">
+                  <span
+                      style="font-weight: bold">✏️ ${record.updatedAt?string('MM-dd HH:mm:ss')}</span>
+                    <#if record.activeType == 'update'>
+                      <span style="color:#0088EE;">更新了</span>
+                    <#elseif  record.activeType == 'publish'>
+                      <span style="color:lightseagreen;">发布了</span>
+                    <#else >
+                      <span style="color:orangered">删除了</span>
+                    </#if>
+                  <span style="font-weight: 900;color: #4a4a4a">${record.bookName} </span>
+                  中的
+                  <span style="font-weight: 900;color: #4a4a4a">${record.slugName}</span>
+                </a>
+                <br>
+              </#list>
+          </div>
+        </div>
+      </div>
+
       <div class="card" style="width: 100%;height: fit-content">
         <header class="card-header">
           <p class="card-header-title">
@@ -140,12 +187,12 @@
           <div class="content">
               <#list bookList as book>
                 <p onclick="openNewBookPage(${book.id})"
-                   style="cursor: pointer;font-size: 12px">${book.title}</p>
+                   style="cursor: pointer;font-size: 12px">📔 ${book.title}</p>
               </#list>
           </div>
         </div>
-
       </div>
+
     </div>
   </div>
 </div>
@@ -217,14 +264,12 @@
     margin-top: 20px;
     font-width: 900;
     font-family: "STFangsong", "Microsoft Sans Serif", "DejaVu Serif", serif;
-    letter-spacing: 5px;
-    text-transform: uppercase;
   }
 
   .detailDiv {
     display: flex;
     display: -webkit-flex;
-    width: 80%;
+    width: 90%;
     min-height: 300px;
   }
 
@@ -316,7 +361,7 @@
     .detailDiv {
       display: flex;
       display: -webkit-flex;
-      width: 80%;
+      width: 90%;
       min-height: 300px;
     }
   }
@@ -356,6 +401,20 @@
 
 </style>
 <script>
+
+  <#--  查询文章标题-->
+  $(document).ready(function (e) {
+    $("div[data-lake-element='root']").children().each(function (index, element) {
+      var tagName = $(this).get(0).tagName;
+      if (tagName.substr(0, 1).toUpperCase() === "H") {
+        var contentH = $(this).html();//获取内容
+        var markid = "mark-" + tagName + "-" + index.toString();
+        $(this).attr("id", markid);
+        $("#menuContent").append("<a href='#" + markid + "' style='color:lightslategray;cursor: pointer;font-size: 12px'>" + contentH + "</a> </br>");
+      }
+    });
+  });
+
   function toIndexPage() {
     window.location.href = '/';
   }

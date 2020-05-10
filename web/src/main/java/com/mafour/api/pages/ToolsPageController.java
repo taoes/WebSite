@@ -14,4 +14,9 @@ public class ToolsPageController {
   public String toNoCompletePage() {
     return "tools/no";
   }
+
+  @GetMapping("/jsonFormat.html")
+  public String toJsonFormatPage() {
+    return "tools/json";
+  }
 }

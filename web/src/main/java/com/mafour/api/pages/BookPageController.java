@@ -1,6 +1,7 @@
 package com.mafour.api.pages;
 
 import com.mafour.common.SystemConfigKey;
+import com.mafour.dao.BookUpdateRecordDO;
 import com.mafour.service.book.BookCategoryService;
 import com.mafour.service.book.BookContentService;
 import com.mafour.service.book.BookService;
@@ -10,6 +11,7 @@ import com.mafour.service.book.yuque.YuqueDoc;
 import com.mafour.service.comment.Comment;
 import com.mafour.service.comment.CommentService;
 import com.mafour.service.system.SystemService;
+import com.mafour.tunnel.BookUpdateRecordTunnel;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -36,6 +38,8 @@ public class BookPageController {
   private final SystemService systemService;
 
   private final CommentService commentService;
+
+  private final BookUpdateRecordTunnel recordTunnel;
 
   private static final String PIC_PREFIX = "https://cdn.nlark.com/";
 
@@ -91,6 +95,9 @@ public class BookPageController {
     // 获取评论信息
     List<Comment> comments = commentService.all(bookName, slug);
 
+    // 获取最近的变动信息
+    List<BookUpdateRecordDO> changeList = recordTunnel.getLatestChangeList(10);
+
     model.addAttribute("content", contentStr);
     model.addAttribute("config", configMap);
     model.addAttribute("slug", slug);
@@ -99,6 +106,7 @@ public class BookPageController {
     model.addAttribute("bookId", bookId);
     model.addAttribute("bookList", allBook);
     model.addAttribute("comments", comments);
+    model.addAttribute("updateRecord", changeList);
     return "book/content";
   }
 }

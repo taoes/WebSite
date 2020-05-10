@@ -34,9 +34,6 @@
           </a>
           <div class="navbar-dropdown">
             <a class="navbar-item" href="${path}/page/tools/no.html">
-              Json格式化
-            </a>
-            <a class="navbar-item" href="${path}/page/tools/no.html">
               进制转换
             </a>
             <a class="navbar-item" href="${path}/page/tools/no.html">
@@ -49,16 +46,16 @@
         </div>
       </div>
 
-        <div class="navbar-item">
-          <div class="buttons">
-            <a class="button is-link is-small" href="https://github.com/taoes">
-              <i class="fa fa-github-alt"></i>
-              <strong>&nbsp;&nbsp;访问我的 Github</strong>
-            </a>
-          </div>
+      <div class="navbar-item">
+        <div class="buttons">
+          <a class="button is-link is-small" href="https://github.com/taoes">
+            <i class="fa fa-github-alt"></i>
+            <strong>&nbsp;&nbsp;访问我的 Github</strong>
+          </a>
         </div>
       </div>
     </div>
+
   </nav>
   <div style="height: 50px"></div>
 </div>
@@ -173,9 +170,6 @@
   for (let ele in document.getElementsByClassName('navbar-item')) {
     ele.onclick = disablePopMenu();
   }
-
-  document.body.onclick = disablePopMenu();
-  document.html.onclick = disablePopMenu();
 
   function actionPupMenu() {
     let ele = document.getElementById('popMenu');

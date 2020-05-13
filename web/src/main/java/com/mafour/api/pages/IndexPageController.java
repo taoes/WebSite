@@ -9,6 +9,7 @@ import com.mafour.service.github.GithubService;
 import com.mafour.service.system.SystemService;
 import java.util.List;
 import java.util.Map;
+import javax.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,16 +20,17 @@ import org.springframework.web.bind.annotation.PathVariable;
 @AllArgsConstructor
 public class IndexPageController {
 
-  private SystemService systemService;
+  private final SystemService systemService;
 
-  private BookService bookService;
+  private final BookService bookService;
 
-  private GithubService githubService;
+  private final GithubService githubService;
 
   /** 系统主页 */
   @GetMapping
-  public java.lang.String indexPage(Model model, String p) {
-    if (p != null) {
+  public java.lang.String indexPage(Model model, HttpServletRequest request) {
+    String queryString = request.getQueryString();
+    if (queryString != null && queryString.length() > 0) {
       throw new NotFoundException();
     }
 

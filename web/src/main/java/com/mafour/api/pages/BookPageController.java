@@ -102,6 +102,7 @@ public class BookPageController {
     model.addAttribute("config", configMap);
     model.addAttribute("slug", slug);
     model.addAttribute("title", data.getTitle());
+    model.addAttribute("desc", data.getDescription());
     model.addAttribute("bookName", bookName);
     model.addAttribute("bookId", bookId);
     model.addAttribute("bookList", allBook);

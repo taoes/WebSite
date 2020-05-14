@@ -2,7 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="description" content="${desc}" />
   <title>${book.title}</title>
+
     <#include "base/key.ftl">
 
 </head>

@@ -6,6 +6,7 @@ import com.mafour.service.book.BookCategoryService;
 import com.mafour.service.book.BookContentService;
 import com.mafour.service.book.BookService;
 import com.mafour.service.book.bean.Book;
+import com.mafour.service.book.yuque.YuqueCategory;
 import com.mafour.service.book.yuque.YuqueCategoryData;
 import com.mafour.service.book.yuque.YuqueDoc;
 import com.mafour.service.comment.Comment;
@@ -15,10 +16,13 @@ import com.mafour.tunnel.BookUpdateRecordTunnel;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 import javax.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
+import org.apache.logging.log4j.util.Strings;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -60,9 +64,20 @@ public class BookPageController {
     // 查询配置
     Map<String, String> configMap = systemService.getByKeys(SystemConfigKey.indexKey());
 
+    // 生成描述
+    String desc;
+    if (CollectionUtils.isEmpty(categories.getData())) {
+      desc = book.getTitle();
+    } else {
+      List<String> categoryTitles =
+          categories.getData().stream().map(YuqueCategory::getTitle).collect(Collectors.toList());
+      desc = Strings.join(categoryTitles, ',');
+    }
+
     model.addAttribute("categoryList", categories);
     model.addAttribute("config", configMap);
     model.addAttribute("book", book);
+    model.addAttribute("desc", desc);
 
     return "book/category";
   }

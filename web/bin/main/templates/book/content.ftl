@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>${title}</title>
-  <meta name="description" content="${desc}"/>
+  <meta name="description" content="${desc}" />
   <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
     <#include "base/key.ftl">
 </head>
@@ -95,7 +95,7 @@
             <div>
               <div class="commentTitle">
                 <img class="commentHeader"
-                     src="https://pic.zhoutao123.com/picture/index/header.jpeg" alt="无法加载图片"/>
+                     src="https://pic.zhoutao123.com/picture/index/header.jpeg"/>
                 <p style="font-style:italic;margin-left: 40px">
                   <span style="color: #0088EE">${comment.name}</span>
                   在
@@ -411,9 +411,7 @@
         var contentH = $(this).html();//获取内容
         var markid = "mark-" + tagName + "-" + index.toString();
         $(this).attr("id", markid);
-        $("#menuContent").append(
-            "<a href='#" + markid + "' style='color:black;cursor: pointer;font-size: 12px'>" + '📖 '
-            + contentH + "</a> </br>");
+        $("#menuContent").append("<a href='#" + markid + "' style='color:black;cursor: pointer;font-size: 12px'>" + '📖 ' + contentH + "</a> </br>");
       }
     });
   });

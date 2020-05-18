@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration>
+  <!--  导入基本的默认配置-->
+  <include resource="org/springframework/boot/logging/logback/base.xml"/>
+
+
+
+
+
+  <!--配置日志的环境变量-->
+  <property name="APP_NAME" value="TEST"/>
+  <property name="PATH" value="/tmp/log"/>
+  <property name="FILE_LOG" value="${PATH}/${APP_NAME}/log.log"/>
+
+
+  <!--  Appender 配置-->
+  <appender class="ch.qos.logback.core.rolling.RollingFileAppender" name="APP">
+    <!--配置日志目录-->
+    <file>${FILE_LOG}</file>
+
+    <!--配置日志文件的编码以及格式-->
+    <encoder>
+      <charset>utf8</charset>
+      <pattern><![CDATA[
+          %d{yyyy年MM月dd日 HH:mm:ss.SSS} 线程:[%thread] %X{TRACE_ID} %X{USER_ID} %-5level %logger.%M - %msg%n
+        ]]></pattern>
+    </encoder>
+
+    <!--   规则策略-->
+    <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+      <!--文件的保存位置信息-->
+      <fileNamePattern>${PATH}/${APP_NAME}/%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+      <!--文件的最大大小，保存历史文件的个数，总体文件大小限制-->
+      <maxFileSize>5MB</maxFileSize>
+      <maxHistory>100</maxHistory>
+      <totalSizeCap>20GB</totalSizeCap>
+    </rollingPolicy>
+  </appender>
+
+  <!--  通用等级，按照包名配置，输出的等级为ERROR-->
+  <logger name="com.mafour.api" level="INFO">
+    <appender-ref ref="APP"/>
+  </logger>
+</configuration>

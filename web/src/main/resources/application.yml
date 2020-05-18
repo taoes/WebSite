@@ -40,3 +40,6 @@ mybatis-plus:
       id-type: uuid
     worker-id: 1
 
+
+logging:
+  config: classpath:spring-logback.xml

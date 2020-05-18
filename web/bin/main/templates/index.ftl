@@ -145,7 +145,7 @@
 
     #indexImg {
       object-fit: cover;
-      object-position: right;
+      object-position: left;
       width: 100%;
       height: 300px
     }

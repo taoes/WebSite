@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="description" content="${desc}" />
-  <title>${book.title}</title>
+  <title>${book.title} | 燕归来兮</title>
 
     <#include "base/key.ftl">
 
@@ -41,11 +41,8 @@
                       href="/page/book/${book.linkUrl}/category/${category.slug}"
                     </#if>
             >
-
                 ${category.title}
             </a>
-            <br>
-
           </#if>
       </#list>
   </div>
@@ -92,10 +89,10 @@
   }
 
   .categoryItem {
+    display: block;
+    margin-top: 10px;
     color: black;
     cursor: pointer;
-    font-weight: bolder;
-    font-family: Serif, serif;
   }
 
 
@@ -106,31 +103,32 @@
 
   .title1 {
     font-size: 25px;
-    margin-top: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     margin-left: 10px;
     font-weight: 900;
     cursor: pointer;
     color: black;
     font-width: 900;
-    font-family: Serif, serif;
+    width: fit-content;
   }
 
   .title1::before {
-    content: "✏️ ";
+    content: "🌲 ";
   }
+
 
   .title2 {
     font-size: 18px;
     margin-left: 40px;
-    margin-top: 20px;
+    margin-top: 10px;
     margin-bottom: 10px;
     cursor: pointer;
     color: black;
-    font-family: Serif, serif;
+    width: fit-content;
   }
 
   .title1:hover, .title2:hover {
-    color: #0088EE;
     font-weight: 900;
   }
 
@@ -138,7 +136,6 @@
   .bookTitle {
     font-weight: 900;
     margin-top: 20px;
-    font-family: Serif, serif;
   }
 
   a {

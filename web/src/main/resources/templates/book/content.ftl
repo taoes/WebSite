@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>${title}</title>
+  <title>${title} | 燕归来兮</title>
   <meta name="description" content="${desc}"/>
   <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
     <#include "base/key.ftl">
@@ -16,11 +16,11 @@
   <div class="detailDiv">
     <div id="content">
       <div>
-        <a class="button is-link is-small"
+        <a class="button  is-small"
            href="https://www.yuque.com/zhoutao123/${bookName}/${slug}#lark-mini-editor">
           评论通道
         </a>
-        <a class="button is-link is-small"
+        <a class="button  is-small"
                 <#if bookId != 0>
           href="/page/book/${bookId}"
         <#else>
@@ -28,16 +28,15 @@
                 </#if>>
           返回目录
         </a>
-        <a class="button is-link is-small"
+        <a class="button  is-small"
            href="/">
           返回首页
         </a>
-        <a class="button is-link is-small"
+        <a class="button  is-small"
            onclick="cleanCache()">
           清除缓存
         </a>
-        <br>
-        <p style="color: lightslategrey;margin-top: 10px">如出现文章乱码或者图片无法访问，请访问语雀连接，谢谢!</p>
+        <hr class="split-pane-divider">
       </div>
 
       <div id="detail">
@@ -93,22 +92,39 @@
       <div id="commentList">
           <#list  comments as comment>
             <div>
-              <div class="commentTitle">
-                <img class="commentHeader"
-                     src="https://pic.zhoutao123.com/picture/index/header.jpeg" alt="无法加载图片"/>
-                <p style="font-style:italic;margin-left: 40px">
-                  <span style="color: #0088EE">${comment.name}</span>
-                  在
-                  <span
-                      style="color: #0088EE">${comment.createTime?string('yyyy-MM-dd HH:mm:ss')}</span>
-                  评论了本文章
-                </p>
-              </div>
-
-
-              <p class="commentContent">
-                  ${comment.content}
-              </p>
+              <article class="media">
+                <figure class="media-left">
+                  <p class="image is-64x64">
+                    <img src="https://pic.zhoutao123.com/picture/index/header.jpeg" alt="头像加载失败">
+                  </p>
+                </figure>
+                <div class="media-content">
+                  <div class="content">
+                    <p>
+                      <strong>
+                        <a href="${comment.url}">
+                            ${comment.name}
+                        </a>
+                      </strong><small>${comment.createTime?string('yyyy-MM-dd HH:mm:ss')}</small>
+                      <br>
+                        ${comment.content}
+                    </p>
+                  </div>
+                  <nav class="level is-mobile">
+                    <div class="level-left">
+                      <a class="level-item">
+                        <span class="icon is-small"><i class="fa fa-reply"></i></span>
+                      </a>
+                      <a class="level-item">
+                        <span class="icon is-small"><i class="fa fa-retweet"></i></span>
+                      </a>
+                      <a class="level-item">
+                        <span class="icon is-small"><i class="fa fa-heart"></i></span>
+                      </a>
+                    </div>
+                  </nav>
+                </div>
+              </article>
               <hr class="split-pane-divider">
             </div>
           </#list>
@@ -264,7 +280,6 @@
     font-weight: 900;
     margin-top: 20px;
     font-width: 900;
-    font-family: "STFangsong", "Microsoft Sans Serif", "DejaVu Serif", serif;
   }
 
   .detailDiv {
@@ -406,14 +421,20 @@
   <#--  查询文章标题-->
   $(document).ready(function (e) {
     $("div[data-lake-element='root']").children().each(function (index, element) {
-      var tagName = $(this).get(0).tagName;
+      let thisObj = $(this);
+      let tagName = thisObj.get(0).tagName;
       if (tagName.substr(0, 1).toUpperCase() === "H") {
-        var contentH = $(this).html();//获取内容
-        var markid = "mark-" + tagName + "-" + index.toString();
-        $(this).attr("id", markid);
+        let contentH = thisObj.html();//获取内容
+        let markid = "mark-" + tagName + "-" + index.toString();
+        thisObj.attr("id", markid);
+        if (contentH == null || contentH.trim().length === 0 || contentH.startsWith('<br>')) {
+          return
+        }
         $("#menuContent").append(
-            "<a href='#" + markid + "' style='color:black;cursor: pointer;font-size: 12px'>" + '📖 '
+            "<a href='#" + markid + "' style='color:black;cursor: pointer;font-size: 12px'>"
+            + '🌲 '
             + contentH + "</a> </br>");
+
       }
     });
   });

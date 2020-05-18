@@ -22,7 +22,7 @@
       <span class="icon has-text-info">
         <i class="fa fa-envira"></i>
     </span>
-      读书笔记
+      我的读书笔记
     </h1>
     <div class="list noteList">
         <#list bookList as book>
@@ -43,7 +43,7 @@
       <span class="icon has-text-info">
         <i class="fa fa-envira"></i>
       </span>
-      我的Github
+      我的开源作品
     </H1>
 
     <div class="list github">
@@ -73,16 +73,14 @@
     width: 100%;
   }
 
-  .title {
-    font-family: Serif, serif;
-  }
 
+  /*宽频设置*/
   @media screen and (min-width: 1200px) {
 
     #indexImg {
       object-fit: cover;
       width: 100%;
-      height: 300px
+      height: 290px
     }
 
 
@@ -141,11 +139,12 @@
     }
   }
 
+  /*窄屏设置*/
   @media screen and (max-width: 1200px) {
 
     #indexImg {
       object-fit: cover;
-      object-position: right;
+      object-position: left;
       width: 100%;
       height: 300px
     }
@@ -209,10 +208,20 @@
   .cover {
     box-shadow: 1px 1px 10px 1px #515a6e;
     width: 100%;
+    transition: all 0.4s;
+  }
+
+  .cover:hover {
+    box-shadow: 1px 1px 10px 1px #0088EE;
+    transform: scale(1.08);
   }
 
   .has-text-info {
     color: #0088EE !important;
+  }
+
+  .title {
+    color: darkslategrey;
   }
 
 

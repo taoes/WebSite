@@ -9,7 +9,7 @@
 <body>
 <#include "base/header.ftl">
 
-<h1>我的沃恩当</h1>
+
 
 </body>
 </html>

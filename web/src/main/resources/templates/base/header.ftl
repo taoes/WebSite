@@ -10,7 +10,7 @@
         <a class="navbar-item" href="${path}/">
           主页
         </a>
-        <a class="navbar-item" href="${path}/page/doc/123">
+        <a class="navbar-item hide" href="${path}/page/doc/123">
           文档
         </a>
         <a class="navbar-item" href="https://www.yuque.com/zhoutao123" target="_blank">
@@ -19,10 +19,10 @@
         <a class="navbar-item" href="${path}/page/blog">
           博客
         </a>
-        <a class="navbar-item" href="${path}/page/code/123">
+        <a class="navbar-item hide" href="${path}/page/code/123">
           代码
         </a>
-        <a class="navbar-item" href="${path}/page/link.html">
+        <a class="navbar-item hide" href="${path}/page/link.html">
           链接
         </a>
         <a class="navbar-item" href="${path}/page/about.html">
@@ -80,7 +80,7 @@
   <a class="navbar-item" href="${path}/">
     主页
   </a>
-  <a class="navbar-item" href="${path}/page/doc/123">
+  <a class="navbar-item hide" href="${path}/page/doc/123">
     文档
   </a>
   <a class="navbar-item" href="https://www.yuque.com/zhoutao123" target="_blank">
@@ -89,10 +89,10 @@
   <a class="navbar-item" href="${path}/page/blog">
     博客
   </a>
-  <a class="navbar-item" href="${path}/page/code/123">
+  <a class="navbar-item hide" href="${path}/page/code/123">
     代码
   </a>
-  <a class="navbar-item" href="${path}/page/link.html">
+  <a class="navbar-item hide" href="${path}/page/link.html">
     链接
   </a>
   <a class="navbar-item" href="${path}/page/about.html">
@@ -103,6 +103,10 @@
 
 <style>
 
+
+  .hide{
+    display: none;
+  }
 
   <#--  手机界面配置-->
   @media screen and (max-width: 1200px) {

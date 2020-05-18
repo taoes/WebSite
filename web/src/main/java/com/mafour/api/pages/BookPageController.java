@@ -2,6 +2,7 @@ package com.mafour.api.pages;
 
 import com.mafour.common.SystemConfigKey;
 import com.mafour.dao.BookUpdateRecordDO;
+import com.mafour.service.SeoService;
 import com.mafour.service.book.BookCategoryService;
 import com.mafour.service.book.BookContentService;
 import com.mafour.service.book.BookService;
@@ -13,12 +14,18 @@ import com.mafour.service.comment.Comment;
 import com.mafour.service.comment.CommentService;
 import com.mafour.service.system.SystemService;
 import com.mafour.tunnel.BookUpdateRecordTunnel;
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import javax.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,6 +35,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+@Slf4j
 @AllArgsConstructor
 @Controller
 @RequestMapping("/page/book")
@@ -45,10 +53,12 @@ public class BookPageController {
 
   private final BookUpdateRecordTunnel recordTunnel;
 
+  private final SeoService seoService;
+
   private static final String PIC_PREFIX = "https://cdn.nlark.com/";
 
   @GetMapping("/{bookId}")
-  public String toBlogPage(@PathVariable("bookId") Long bookId, Model model) {
+  public String toBlogPage(@PathVariable("bookId") Long bookId, Model model) throws IOException {
 
     // 查询书籍信息
     Optional<Book> bookOptional = bookService.find(bookId);
@@ -79,6 +89,8 @@ public class BookPageController {
     model.addAttribute("book", book);
     model.addAttribute("desc", desc);
 
+    seoService.push(bookId.toString());
+
     return "book/category";
   }
 
@@ -87,7 +99,8 @@ public class BookPageController {
       @PathVariable("bookName") String bookName,
       @PathVariable("slug") String slug,
       HttpServletRequest request,
-      Model model) {
+      Model model)
+      throws IOException {
 
     // 尝试获取文章信息
     YuqueDoc yuqueDoc = contentService.findByCategoryId(bookName, slug);
@@ -123,6 +136,8 @@ public class BookPageController {
     model.addAttribute("bookList", allBook);
     model.addAttribute("comments", comments);
     model.addAttribute("updateRecord", changeList);
+
+    seoService.push(bookName,slug);
     return "book/content";
   }
 }

@@ -3,10 +3,17 @@ package com.mafour.api.controller.book;
 import com.mafour.api.controller.req.Book;
 import com.mafour.api.controller.req.BookUpdate;
 import com.mafour.dao.BookUpdateRecordDO;
+import com.mafour.service.SeoService;
 import com.mafour.tunnel.BookUpdateRecordTunnel;
+import java.io.IOException;
 import java.util.Date;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 import org.redisson.api.RedissonClient;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @Slf4j
 @RestController
+@AllArgsConstructor
 @RequestMapping("/book")
 public class BookController {
 
@@ -22,13 +30,12 @@ public class BookController {
 
   private final RedissonClient redissonClient;
 
-  public BookController(BookUpdateRecordTunnel tunnel, RedissonClient redissonClient) {
-    this.tunnel = tunnel;
-    this.redissonClient = redissonClient;
-  }
+  private final SeoService seoService;
+
+
 
   @PostMapping("/update")
-  public String updateRecord(@RequestBody BookRecord record) {
+  public String updateRecord(@RequestBody BookRecord record) throws IOException {
     log.info("save book record is start ....");
     BookUpdate data = record.getData();
     String slug = data.getSlug();
@@ -55,6 +62,8 @@ public class BookController {
     String slugCache = String.format("CATEGORY:%s:CONTENT:%s", bookSlug, slug);
     redissonClient.getBucket(slugCache).delete();
     log.info("cache :{} & {} clean is ok ...", categoryCache, slugCache);
+
+    seoService.push(bookSlug,slug);
 
     return "OK";
   }

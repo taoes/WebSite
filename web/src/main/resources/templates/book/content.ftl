@@ -220,28 +220,6 @@
 <style>
 
 
-  <#--  评论-->
-  .commentTitle {
-    display: flex;
-    display: -webkit-flex;
-    width: 100%;
-    height: fit-content;
-    align-items: center;
-  }
-
-  /*评论内容*/
-  .commentContent {
-    margin-top: 20px;
-    margin-left: 100px;
-    margin-bottom: 20px;
-  }
-
-  .commentHeader {
-    background: url("https://pic.zhoutao123.com/picture/index/header.jpeg");
-    width: 50px;
-    height: 50px;
-  }
-
   .lake-codeblock-content {
     max-width: 100% !important;
   }

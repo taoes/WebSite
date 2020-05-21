@@ -3,7 +3,7 @@ package com.mafour.service.book.yuque;
 import java.io.Serializable;
 
 @lombok.Data
-public class YuqueDoc  implements Serializable {
+public class YuqueDoc implements Serializable {
 
   private Abilities abilities;
 
@@ -46,7 +46,7 @@ public class YuqueDoc  implements Serializable {
   }
 
   @lombok.Data
-  static class Book implements Serializable{
+  static class Book implements Serializable {
     private int id;
 
     private String type;

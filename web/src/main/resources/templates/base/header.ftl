@@ -64,7 +64,7 @@
   <div id="mobileMenuDiv">
     <a class="navbar-item" href="/">
       <img src="/logo-white.png" width="112"
-           height="28">
+           height="28" alt="图片加载中..">
     </a>
 
     <div style="display:flex; margin-left: auto;margin-right:20px;align-items: center">
@@ -103,8 +103,7 @@
 
 <style>
 
-
-  .hide{
+  .hide {
     display: none;
   }
 

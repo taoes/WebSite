@@ -7,6 +7,6 @@ public interface BookContentService {
 
   BookContent findByCategoryId(Long categoryId);
 
+  /** 查询文档信息 */
   YuqueDoc findByCategoryId(String bookName, String slug);
-
 }

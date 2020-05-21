@@ -9,8 +9,8 @@
 
   <!--配置日志的环境变量-->
   <property name="APP_NAME" value="TEST"/>
-  <property name="PATH" value="/tmp/log"/>
-  <property name="FILE_LOG" value="${PATH}/${APP_NAME}/log.log"/>
+  <property name="PATH" value="log"/>
+  <property name="FILE_LOG" value="${HOME}/${PATH}/${APP_NAME}/log.log"/>
 
 
   <!--  Appender 配置-->

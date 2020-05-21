@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/book/cache")
 public class BookCacheController {
 
-  private RedissonClient redissonClient;
+  private final RedissonClient redissonClient;
 
   public BookCacheController(RedissonClient redissonClient) {
     this.redissonClient = redissonClient;

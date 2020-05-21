@@ -1,4 +1,4 @@
-package com.mafour.api.controller.book;
+package com.mafour.api.controller.book.req;
 
 import lombok.Data;
 

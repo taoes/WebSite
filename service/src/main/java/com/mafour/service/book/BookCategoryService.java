@@ -8,10 +8,6 @@ public interface BookCategoryService {
 
   YuqueCategoryData findByBook(String yuqueName);
 
-  /**
-   * 查询目录信息
-   *
-   * @return
-   */
+  /** 查询目录信息 */
   Optional<BookCategory> findById(Long categoryId);
 }

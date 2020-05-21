@@ -13,12 +13,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class LinkPageController {
 
-  private final HttpSession session;
-
-  public LinkPageController(HttpSession session) {
-    this.session = session;
-  }
-
   @GetMapping("/page/link.html")
   public String aboutPage(Model model) {
     Map<String, List<Link>> linkMap = new HashMap<>(0);

@@ -59,13 +59,14 @@ public class BookPageController {
 
   @GetMapping("/{bookId}")
   public String toBlogPage(@PathVariable("bookId") Long bookId, Model model) throws IOException {
-
     // 查询书籍信息
     Optional<Book> bookOptional = bookService.find(bookId);
     if (!bookOptional.isPresent()) {
       model.addAttribute("msg", "图书信息不存在");
       return "base/404";
     }
+
+    seoService.push(bookId.toString());
 
     // 查询目录
     Book book = bookOptional.get();
@@ -88,8 +89,6 @@ public class BookPageController {
     model.addAttribute("config", configMap);
     model.addAttribute("book", book);
     model.addAttribute("desc", desc);
-
-    seoService.push(bookId.toString());
 
     return "book/category";
   }
@@ -137,7 +136,7 @@ public class BookPageController {
     model.addAttribute("comments", comments);
     model.addAttribute("updateRecord", changeList);
 
-    seoService.push(bookName,slug);
+    seoService.push(bookName, slug);
     return "book/content";
   }
 }

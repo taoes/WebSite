@@ -28,10 +28,10 @@ public class IndexPageController {
 
   /** 系统主页 */
   @GetMapping
-  public java.lang.String indexPage(Model model, HttpServletRequest request) {
+  public String indexPage(Model model, HttpServletRequest request) {
     String queryString = request.getQueryString();
     if (queryString != null && queryString.length() > 0) {
-      throw new NotFoundException("页面资源不存在，"+ request.getRequestURL());
+      throw new NotFoundException("页面资源不存在，" + request.getRequestURL());
     }
 
     List<Book> bookList = bookService.findAllBook();

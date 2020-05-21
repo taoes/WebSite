@@ -15,11 +15,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 @AllArgsConstructor
 public class BlogPageController {
 
-  private SystemService systemService;
+  private final SystemService systemService;
 
-  private BookCategoryService categoryService;
+  private final BookCategoryService categoryService;
 
-  /** 子模块页面 */
   @GetMapping("/page/blog")
   public String blogPage(Model model) {
 

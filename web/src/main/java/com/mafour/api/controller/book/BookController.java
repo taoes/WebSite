@@ -1,7 +1,7 @@
 package com.mafour.api.controller.book;
 
-import com.mafour.api.controller.req.Book;
-import com.mafour.api.controller.req.BookUpdate;
+import com.mafour.api.controller.book.req.Book;
+import com.mafour.api.controller.book.req.BookUpdate;
 import com.mafour.dao.BookUpdateRecordDO;
 import com.mafour.service.SeoService;
 import com.mafour.tunnel.BookUpdateRecordTunnel;
@@ -10,10 +10,6 @@ import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
-import okhttp3.MediaType;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
 import org.redisson.api.RedissonClient;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -31,8 +27,6 @@ public class BookController {
   private final RedissonClient redissonClient;
 
   private final SeoService seoService;
-
-
 
   @PostMapping("/update")
   public String updateRecord(@RequestBody BookRecord record) throws IOException {
@@ -63,8 +57,8 @@ public class BookController {
     redissonClient.getBucket(slugCache).delete();
     log.info("cache :{} & {} clean is ok ...", categoryCache, slugCache);
 
-    seoService.push(bookSlug,slug);
-
+    // 推送到SEO
+    seoService.push(bookSlug, slug);
     return "OK";
   }
 

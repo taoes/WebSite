@@ -14,6 +14,7 @@ public class AboutPageController {
     this.session = session;
   }
 
+  //  跳转到关于页面
   @GetMapping("/page/about.html")
   public String aboutPage(Model model) {
     return "page/about";

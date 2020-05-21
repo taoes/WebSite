@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 public class YingPictureConverter extends AbstractConverter<YingPicture, YingPictureDO> {
 
   @Override
+
   public YingPicture converterFrom(YingPictureDO d) {
     return new YingPicture()
         .setId(d.getId())

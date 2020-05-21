@@ -7,11 +7,13 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.List;
 import javax.servlet.http.HttpServletResponse;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+@Slf4j
 @RestController
 @RequestMapping("/picture")
 public class PictureController {
@@ -35,8 +37,8 @@ public class PictureController {
         contentTypeStr = contentType.get(0);
       }
 
-      byte data[] = readInputStream(inStream);
-      inStream.read(data);
+      byte[] data = readInputStream(inStream);
+      int read = inStream.read(data);
       inStream.close();
       response.setContentType(contentTypeStr); // 设置返回的文件类型
       OutputStream os = response.getOutputStream();
@@ -44,7 +46,7 @@ public class PictureController {
       os.flush();
       os.close();
     } catch (Exception e) {
-      e.printStackTrace();
+      log.info("获取图片文件信息失败:{}", e.getMessage());
     }
   }
 

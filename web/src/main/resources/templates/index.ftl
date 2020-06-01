@@ -71,6 +71,7 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
+    background-color: #EFEFEF;
   }
 
 
@@ -80,7 +81,7 @@
     #indexImg {
       object-fit: cover;
       width: 100%;
-      height: 290px
+      height: 450px
     }
 
 

@@ -158,9 +158,8 @@
           <div class="content">
               <#list updateRecord as record>
                 <a href="/page/book/${record.bookSlug}/category/${record.slug}"
-                   style="cursor: pointer;font-size: 12px;color: #4a4a4a">
-                  <span
-                      style="font-weight: bold">✏️ ${record.updatedAt?string('MM-dd HH:mm:ss')}</span>
+                   style="cursor: pointer;font-size: 12px;color: #4a4a4a;white-space: normal">
+                  <span style="font-weight: bold">✏️ ${record.updatedAt?string('MM-dd')}</span>
                     <#if record.activeType == 'update'>
                       <span style="color:#0088EE;">更新了</span>
                     <#elseif  record.activeType == 'publish'>
@@ -168,8 +167,7 @@
                     <#else >
                       <span style="color:orangered">删除了</span>
                     </#if>
-                  <span style="font-weight: 900;color: #4a4a4a">${record.bookName} </span>
-                  中的
+                    <#--                  <span style="font-weight: 900;color: #4a4a4a">${record.bookName} </span>中的-->
                   <span style="font-weight: 900;color: #4a4a4a">${record.slugName}</span>
                 </a>
                 <br>
@@ -187,7 +185,8 @@
 
         <div class="card-content">
           <div class="content">
-            <p onclick="openNewBookPage(${book.id})" style="cursor: pointer;font-size: 12px">
+            <p onclick="openNewBookPage(${book.id})"
+               style="cursor: pointer;font-size: 12px;font-weight: 700">
               Github</p>
           </div>
         </div>
@@ -204,7 +203,7 @@
           <div class="content">
               <#list bookList as book>
                 <p onclick="openNewBookPage(${book.id})"
-                   style="cursor: pointer;font-size: 12px">📔 ${book.title}</p>
+                   style="cursor: pointer;font-size: 12px;font-weight: 700">📔 ${book.title}</p>
               </#list>
           </div>
         </div>
@@ -229,6 +228,7 @@
   .lake-drag-image {
     max-width: 95% !important;
     height: auto !important;
+    margin: auto;
   }
 
   .contentDiv {

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="description" content="${desc}" />
+  <meta name="description" content="${desc}"/>
   <title>${book.title} | 燕归来兮</title>
 
     <#include "base/key.ftl">
@@ -96,11 +96,6 @@
   }
 
 
-  .categoryItem:hover {
-    color: #0088EE;
-    font-weight: 900;
-  }
-
   .title1 {
     font-size: 25px;
     margin-top: 10px;
@@ -111,10 +106,6 @@
     color: black;
     font-width: 900;
     width: fit-content;
-  }
-
-  .title1::before {
-    content: "🌲 ";
   }
 
 
@@ -128,9 +119,6 @@
     width: fit-content;
   }
 
-  .title1:hover, .title2:hover {
-    font-weight: 900;
-  }
 
   /*  标题样式*/
   .bookTitle {

@@ -11,8 +11,6 @@ public class RequestHandleInterception implements HandlerInterceptor {
   @Override
   public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
       throws Exception {
-    String referer = request.getHeader("Referer");
-    log.info("接收到新的请求: {}", referer);
     return true;
   }
 }

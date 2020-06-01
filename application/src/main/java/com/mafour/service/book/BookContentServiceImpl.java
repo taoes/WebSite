@@ -17,6 +17,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import org.redisson.api.RBucket;
+import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
 import org.springframework.stereotype.Service;
 
@@ -25,13 +26,13 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class BookContentServiceImpl implements BookContentService {
 
-  private BookContentTunnel contentTunnel;
+  private final BookContentTunnel contentTunnel;
 
-  private BookContentConverter converter;
+  private final BookContentConverter converter;
 
-  private RedissonClient redissonClient;
+  private final RedissonClient redissonClient;
 
-  final OkHttpClient client = new OkHttpClient();
+  private final OkHttpClient client = new OkHttpClient();
 
   @Override
   public BookContent findByCategoryId(Long categoryId) {
@@ -45,38 +46,53 @@ public class BookContentServiceImpl implements BookContentService {
   @SneakyThrows
   @Override
   public YuqueDoc findByCategoryId(String bookName, String slug) {
-    log.info("find book :{} slug ：{} info from cache", bookName, slug);
-
+    log.info("查找缓存 【book={} slug={}】", bookName, slug);
     String cacheKey = "CATEGORY:" + bookName + ":CONTENT:" + slug;
     RBucket<YuqueDoc> bucket = redissonClient.getBucket(cacheKey);
     if (bucket.isExists()) {
-      log.info("find cache,skip http request");
+      log.info("发现缓存，跳过请求语雀API,key={}", cacheKey);
       return bucket.get();
     }
 
-    log.info(" not find cache,start http request...");
-    Request request =
-        new Request.Builder()
-            .url("https://www.yuque.com/api/v2/repos/zhoutao123/" + bookName + "/docs/" + slug)
-            .addHeader("X-Auth-Token", "vdeXXCOyctZhx9CqPIMUMCTPwb6voFM4OcxVYssX")
-            .addHeader("User-Agent", "www.zhoutao123.com")
-            .addHeader("Content-Type", "application/json")
-            .build();
+    String lockKey = "LOCK:" + cacheKey;
+    RLock lock = redissonClient.getLock(lockKey);
+    try {
+      lock.lock(10, TimeUnit.SECONDS);
+      log.info("获取锁【{}】 完成", lockKey);
+      // 再次检查cache是否存在
+      bucket = redissonClient.getBucket(cacheKey);
+      if (bucket.isExists()) {
+        log.info("进入锁之后发现缓存，跳过请求语雀API,key={} 并尝试释放锁", cacheKey);
+        return bucket.get();
+      }
 
-    Response execute = client.newCall(request).execute();
-    YuqueDoc yuqueDoc = null;
-    if (execute.isSuccessful()) {
-      String string = Optional.ofNullable(execute.body().string()).orElse("{}");
-      log.info("get from web  book = {} slug = {} is complete", bookName, slug);
-      yuqueDoc = JSON.parseObject(string, YuqueDoc.class);
-    } else {
-      log.info("get from web book = {} slug = {} is fail", bookName, slug);
-      yuqueDoc = new YuqueDoc();
-      yuqueDoc.setData(new Data().setBody_html("<h1 style='margin:50px'>文章正在紧急准备中</h1>"));
+      log.info("未返现缓存，开始请求语雀API");
+      Request request =
+          new Request.Builder()
+              .url("https://www.yuque.com/api/v2/repos/zhoutao123/" + bookName + "/docs/" + slug)
+              .addHeader("X-Auth-Token", "vdeXXCOyctZhx9CqPIMUMCTPwb6voFM4OcxVYssX")
+              .addHeader("User-Agent", "www.zhoutao123.com")
+              .addHeader("Content-Type", "application/json")
+              .build();
+
+      Response execute = client.newCall(request).execute();
+      if (execute.isSuccessful()) {
+        String string = Optional.ofNullable(execute.body().string()).orElse("{}");
+        log.info("获取文章数据【book={} slug = {}】 完成", bookName, slug);
+        YuqueDoc yuqueDoc = JSON.parseObject(string, YuqueDoc.class);
+        bucket.set(yuqueDoc, 30, TimeUnit.DAYS);
+        return yuqueDoc;
+      } else {
+        log.info("获取文章数据【book={} slug={}】 失败", bookName, slug);
+        YuqueDoc yuqueDoc = new YuqueDoc();
+        yuqueDoc.setData(new Data().setBody_html("<h1 style='margin:50px'>文章正在紧急准备中</h1>"));
+        return yuqueDoc;
+      }
+    } finally {
+      if (lock.isLocked()) {
+        lock.unlock();
+      }
+      log.info("释放锁:【{}】完成", lockKey);
     }
-
-    // 保存缓存记录
-    bucket.set(yuqueDoc, 30, TimeUnit.DAYS);
-    return yuqueDoc;
   }
 }

@@ -159,13 +159,13 @@
               <#list updateRecord as record>
                 <a href="/page/book/${record.bookSlug}/category/${record.slug}"
                    style="cursor: pointer;font-size: 12px;color: #4a4a4a;white-space: normal">
-                  <span style="font-weight: bold">✏️ ${record.updatedAt?string('MM-dd')}</span>
+                  <span style="font-weight: bold">✏️ ${record.updatedAt?string('MM-dd HH:mm')}</span>
                     <#if record.activeType == 'update'>
-                      <span style="color:#0088EE;">更新了</span>
+                      <span style="color:#0088EE;">更新</span>
                     <#elseif  record.activeType == 'publish'>
-                      <span style="color:lightseagreen;">发布了</span>
+                      <span style="color:lightseagreen;">发布</span>
                     <#else >
-                      <span style="color:orangered">删除了</span>
+                      <span style="color:orangered">删除</span>
                     </#if>
                     <#--                  <span style="font-weight: 900;color: #4a4a4a">${record.bookName} </span>中的-->
                   <span style="font-weight: 900;color: #4a4a4a">${record.slugName}</span>
@@ -221,6 +221,10 @@
 
   .lake-codeblock-content {
     max-width: 100% !important;
+  }
+
+  .lake-table {
+    width: 100% !important;
   }
 
 

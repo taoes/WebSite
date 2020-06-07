@@ -10,7 +10,7 @@
     display: flex;
     display: -webkit-flex;
     flex-direction: row;
-    background-color: #515a6e;
+    background-color: #000000;
     justify-content: center;
     align-items: center;
     margin-top: 40px;

@@ -50,7 +50,7 @@
         <div class="buttons">
           <a class="button is-link is-small" href="https://github.com/taoes">
             <i class="fa fa-github-alt"></i>
-            <strong>&nbsp;&nbsp;访问我的 Github</strong>
+            <strong>&nbsp;&nbsp;Github</strong>
           </a>
         </div>
       </div>
@@ -105,6 +105,9 @@
 
   .hide {
     display: none;
+  }
+  .navbar.is-dark {
+    background-color: black;
   }
 
   <#--  手机界面配置-->

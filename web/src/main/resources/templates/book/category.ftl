@@ -103,9 +103,11 @@
     margin-left: 10px;
     font-weight: 900;
     cursor: pointer;
-    color: black;
     font-width: 900;
     width: fit-content;
+    line-height: 1.5;
+    font-family: Serif, serif;
+    color: black;
   }
 
 
@@ -115,15 +117,21 @@
     margin-top: 10px;
     margin-bottom: 10px;
     cursor: pointer;
-    color: black;
     width: fit-content;
+    line-height: 1.5;
+    font-family: Serif, serif;
+    color: black;
+    font-weight: 700;
   }
 
 
   /*  标题样式*/
   .bookTitle {
-    font-weight: 900;
     margin-top: 20px;
+    line-height: 1.5;
+    font-weight: 900;
+    font-family: Serif, serif;
+    color: black;
   }
 
   a {

@@ -29,6 +29,7 @@
           <div class="bookDiv">
             <a href="/page/book/${book.id}" style="display: block">
               <img src="${book.coverImgUrl}" alt="${book.title}" class="cover">
+              <h1 class="title" style="font-size: 18px;margin-top: 10px;text-align: center">${book.title}</h1>
             </a>
           </div>
         </#list>
@@ -51,6 +52,7 @@
           <div class="bookDiv">
             <img src="${github.coverImgUrl}" alt="${github.title}" class="cover"
                  onclick="openGithubPage('${github.linkUrl}')">
+            <h1 class="title" style="font-size: 18px;margin-top: 10px;text-align: center">${github.title}</h1>
           </div>
         </#list>
     </div>
@@ -218,11 +220,13 @@
   }
 
   .has-text-info {
-    color: #0088EE !important;
+    color: darkblue !important;
   }
 
   .title {
-    color: darkslategrey;
+    color: black;
+    font-weight: 900;
+    font-family: Serif, serif;
   }
 
 

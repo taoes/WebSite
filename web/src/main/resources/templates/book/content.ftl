@@ -5,6 +5,7 @@
   <title>${title} | 燕归来兮</title>
   <meta name="description" content="${desc}"/>
   <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
+  <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
     <#include "base/key.ftl">
 </head>
 <body>
@@ -16,11 +17,11 @@
   <div class="detailDiv">
     <div id="content">
       <div>
-        <a class="button  is-small"
+        <a class="button  is-small is-primary"
            href="https://www.yuque.com/zhoutao123/${bookName}/${slug}#lark-mini-editor">
           评论通道
         </a>
-        <a class="button  is-small"
+        <a class="button  is-small is-primary"
                 <#if bookId != 0>
           href="/page/book/${bookId}"
         <#else>
@@ -28,11 +29,11 @@
                 </#if>>
           返回目录
         </a>
-        <a class="button  is-small"
+        <a class="button  is-small is-success"
            href="/">
           返回首页
         </a>
-        <a class="button  is-small"
+        <a class="button  is-small is-danger"
            onclick="cleanCache()">
           清除缓存
         </a>
@@ -159,7 +160,8 @@
               <#list updateRecord as record>
                 <a href="/page/book/${record.bookSlug}/category/${record.slug}"
                    style="cursor: pointer;font-size: 12px;color: #4a4a4a;white-space: normal">
-                  <span style="font-weight: bold">✏️ ${record.updatedAt?string('MM-dd HH:mm')}</span>
+                  <span
+                      style="font-weight: bold">✏️ ${record.updatedAt?string('MM-dd HH:mm')}</span>
                     <#if record.activeType == 'update'>
                       <span style="color:#0088EE;">更新</span>
                     <#elseif  record.activeType == 'publish'>
@@ -218,6 +220,10 @@
 </body>
 <style>
 
+  body{
+  background-color: rgba(0,0,0,0.75)
+  }
+
 
   .lake-codeblock-content {
     max-width: 100% !important;
@@ -262,6 +268,9 @@
     font-weight: 900;
     margin-top: 20px;
     font-width: 900;
+    line-height: 1.5;
+    font-weight: 900;
+    font-family: Serif, 'Noto Serif SC', "Linux Biolinum", 'Noto Serif SC', sans-serif;
   }
 
   .detailDiv {

@@ -106,8 +106,15 @@
   .hide {
     display: none;
   }
+
   .navbar.is-dark {
     background-color: black;
+  }
+
+  @font-face {
+    font-family: 'CustomerFont';
+    src: url("https://pic.zhoutao123.com/font/SourceHanSerifSC-Bold.woff2");
+
   }
 
   <#--  手机界面配置-->
@@ -119,7 +126,7 @@
 
     #mobileMenu {
       display: block;
-      background-color: #4a4a4a;
+      background-color: #000000;
     }
 
     #mobileMenuDiv {
@@ -135,8 +142,7 @@
       top: 50px;
       width: 100%;
       left: 1px;
-      background-color: white;
-      min-height: 300px;
+      background-color: #EFEFEF;
       box-shadow: 1px 1px 10px 1px #515a6e;
     }
   }

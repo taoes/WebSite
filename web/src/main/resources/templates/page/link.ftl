@@ -56,7 +56,6 @@
     padding-bottom: 40px;
     border-radius: 10px;
     justify-content: space-around;
-    box-shadow: 1px 1px 10px 1px #515a6e;
   }
 
 

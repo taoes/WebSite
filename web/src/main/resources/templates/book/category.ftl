@@ -36,7 +36,7 @@
           <#else>
             <a
                 class="categoryItem"
-                style="margin-left: ${category.depth * 20}px;"
+                style="margin-left: ${category.depth * 20}px;font-family: CustomerFont,Serif,serif;font-weight: bold"
                     <#if category.slug != '#'>
                       href="/page/book/${book.linkUrl}/category/${category.slug}"
                     </#if>
@@ -53,7 +53,7 @@
 <style>
   .contentDiv {
     width: 100%;
-    background-color: #EFEFEF;
+    background-color: #FFFFFF;
     min-height: 1000px;
     height: fit-content;
     display: flex;
@@ -84,7 +84,6 @@
       border-radius: 10px;
       background-color: #FFFFFF;
       padding: 20px;
-      box-shadow: 1px 1px 10px 1px #515a6e;
     }
   }
 
@@ -106,7 +105,7 @@
     font-width: 900;
     width: fit-content;
     line-height: 1.5;
-    font-family: Serif, serif;
+    font-family: CustomerFont, Serif, serif;
     color: black;
   }
 
@@ -119,7 +118,7 @@
     cursor: pointer;
     width: fit-content;
     line-height: 1.5;
-    font-family: Serif, serif;
+    font-family: CustomerFont, Serif, serif;
     color: black;
     font-weight: 700;
   }
@@ -130,7 +129,7 @@
     margin-top: 20px;
     line-height: 1.5;
     font-weight: 900;
-    font-family: Serif, serif;
+    font-family: CustomerFont, Serif, serif;
     color: black;
   }
 

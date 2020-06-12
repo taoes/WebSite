@@ -17,11 +17,11 @@
   <div class="detailDiv">
     <div id="content">
       <div>
-        <a class="button  is-small is-primary"
+        <a class="button  is-small is-link is-outlined"
            href="https://www.yuque.com/zhoutao123/${bookName}/${slug}#lark-mini-editor">
           评论通道
         </a>
-        <a class="button  is-small is-primary"
+        <a class="button  is-small  is-link is-outlined"
                 <#if bookId != 0>
           href="/page/book/${bookId}"
         <#else>
@@ -29,15 +29,20 @@
                 </#if>>
           返回目录
         </a>
-        <a class="button  is-small is-success"
+        <a class="button  is-small  is-link is-outlined"
            href="/">
           返回首页
         </a>
-        <a class="button  is-small is-danger"
+        <a class="button  is-small  is-link is-outlined"
            onclick="cleanCache()">
           清除缓存
         </a>
-        <hr class="split-pane-divider">
+
+        <hr class="divider">
+        <div class="card-content">
+          <div class="content" id="menuContent"></div>
+        </div>
+        <hr class="divider">
       </div>
 
       <div id="detail">
@@ -136,17 +141,6 @@
     </div>
     <div id="side">
 
-      <div class="card" style="width: 100%;height: fit-content">
-        <header class="card-header">
-          <p class="card-header-title">
-            目录索引
-          </p>
-        </header>
-        <div class="card-content">
-          <div class="content" id="menuContent"></div>
-        </div>
-      </div>
-
 
       <div class="card" style="width: 100%;height: fit-content">
         <header class="card-header">
@@ -220,8 +214,8 @@
 </body>
 <style>
 
-  body{
-  background-color: rgba(0,0,0,0.75)
+  body {
+    background-color: rgba(0, 0, 0, 0.75)
   }
 
 
@@ -244,7 +238,7 @@
   .contentDiv {
     width: 100%;
     min-height: 1024px;
-    background-color: #EFEFEF;
+    background-color: #FFFFFF;
     padding-bottom: 20px;
     height: fit-content;
     display: flex;
@@ -259,8 +253,14 @@
     padding: 20px;
     flex-grow: 1;
     border-radius: 10px;
-    box-shadow: 1px 1px 10px 1px lightgrey;
     background-color: #FFFFFF;
+  }
+
+  .divider {
+    height: 1px;
+    margin: 0px;
+    background-color: lightgray;
+    font-family: CustomerFont, Serif, serif;
   }
 
 
@@ -291,10 +291,9 @@
     #content {
       width: 100%;
       margin-top: 20px;
-      padding: 20px;
+      padding: 10px;
       flex-grow: 1;
       border-radius: 10px;
-      box-shadow: 1px 1px 10px 1px lightgrey;
       background-color: #FFFFFF;
     }
 
@@ -318,10 +317,9 @@
     #content {
       width: 100%;
       margin-top: 20px;
-      padding: 20px;
+      padding: 10px;
       flex-grow: 1;
       border-radius: 10px;
-      box-shadow: 1px 1px 10px 1px lightgrey;
       background-color: #FFFFFF;
     }
 
@@ -347,7 +345,6 @@
       padding: 20px;
       flex-grow: 1;
       border-radius: 10px;
-      box-shadow: 1px 1px 10px 1px lightgrey;
       background-color: #FFFFFF;
     }
 
@@ -362,7 +359,6 @@
       margin: 20px 20px 20px 30px;
       background-color: #FFFFFF;
       border-radius: 10px;
-      box-shadow: 1px 1px 10px 1px lightgrey;
     }
 
     .detailDiv {
@@ -422,7 +418,8 @@
           return
         }
         $("#menuContent").append(
-            "<a href='#" + markid + "' style='color:black;cursor: pointer;font-size: 12px'>"
+            "<a href='#" + markid
+            + "' style='color:black;cursor: pointer;font-size: 16px;font-family: CustomerFont,Serif,serif'>"
             + '🌲 '
             + contentH + "</a> </br>");
 

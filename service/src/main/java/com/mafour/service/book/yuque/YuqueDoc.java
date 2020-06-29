@@ -1,6 +1,8 @@
 package com.mafour.service.book.yuque;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
+import lombok.Getter;
 
 @lombok.Data
 public class YuqueDoc implements Serializable {
@@ -8,6 +10,8 @@ public class YuqueDoc implements Serializable {
   private Abilities abilities;
 
   private Data data;
+
+  private Integer count;
 
   @lombok.Data
   static class Abilities implements Serializable {
@@ -46,7 +50,7 @@ public class YuqueDoc implements Serializable {
   }
 
   @lombok.Data
-  static class Book implements Serializable {
+  public static class Book implements Serializable {
     private int id;
 
     private String type;
@@ -119,6 +123,7 @@ public class YuqueDoc implements Serializable {
 
     private int book_id;
 
+    @Getter
     private Book book;
 
     private int user_id;
@@ -149,9 +154,9 @@ public class YuqueDoc implements Serializable {
 
     private String deleted_at;
 
-    private String created_at;
+    private LocalDateTime created_at;
 
-    private String updated_at;
+    private LocalDateTime updated_at;
 
     private String published_at;
 

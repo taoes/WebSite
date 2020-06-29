@@ -1,5 +1,6 @@
-package com.mafour.service;
+package com.mafour.service.seo;
 
+import com.mafour.service.SeoService;
 import java.io.IOException;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.MediaType;
@@ -13,14 +14,15 @@ import org.springframework.stereotype.Service;
 @Service
 public class SeoServiceImpl implements SeoService {
 
+  private static final String WEB_PREFIX = "https://www.zhoutao123.com/page/book/";
+
   private static final OkHttpClient client = new OkHttpClient();
 
   @Async
   @Override
   public void push(String bookName, String slugName) throws IOException {
-
     // 推送数据到百度
-    String url = "https://www.zhoutao123.com/page/book/" + bookName + "/category/" + slugName;
+    String url = WEB_PREFIX + bookName + "/category/" + slugName;
     pushToBaidu(url);
   }
 
@@ -28,7 +30,7 @@ public class SeoServiceImpl implements SeoService {
   @Override
   public void push(String bookId) throws IOException {
     // 推送数据到百度
-    String url = "https://www.zhoutao123.com/page/book/" + bookId;
+    String url = WEB_PREFIX + bookId;
     pushToBaidu(url);
   }
 
@@ -42,11 +44,11 @@ public class SeoServiceImpl implements SeoService {
                 "http://data.zz.baidu.com/urls?site=https://www.zhoutao123.com&token=32trKBucZgw6WyK1")
             .post(body)
             .build();
-    Response response = client.newCall(request1).execute();
-    if (response.isSuccessful()) {
-      log.info("推送:{} 到Baidu的请求结果:{}", url, response.body().string());
-    } else {
-      log.info("推送:{} 请求失败", url);
+    try (Response response = client.newCall(request1).execute()) {
+      if (!response.isSuccessful()) {
+        assert response.body() != null;
+        log.info("推送:{} 请求失败", url);
+      }
     }
   }
 }

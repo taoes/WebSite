@@ -13,9 +13,9 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class BookServiceImpl implements BookService {
 
-  private BookTunnel bookTunnel;
+  private final BookTunnel bookTunnel;
 
-  private BookConverter bookConverter;
+  private final BookConverter bookConverter;
 
   @Override
   public List<Book> findAllBook() {

@@ -1,31 +1,31 @@
 package com.mafour.tunnel;
 
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.mafour.dao.book.BookContentDO;
+import com.mafour.dao.book.BookArticleDO;
 import com.mafour.mapper.BookContentMapper;
-import java.util.Set;
-import java.util.stream.Collectors;
 import org.springframework.stereotype.Component;
 
 @Component
-public class BookContentTunnel extends ServiceImpl<BookContentMapper, BookContentDO> {
+public class BookContentTunnel extends ServiceImpl<BookContentMapper, BookArticleDO> {
 
-  public Set<Long> findByCategoryId(Long bookId, Set<Long> categoryId) {
-    LambdaQueryWrapper<BookContentDO> wrapper =
-        new LambdaQueryWrapper<BookContentDO>()
-            .select(BookContentDO::getCategoryId)
-            .eq(BookContentDO::getBookId, bookId)
-            .in(BookContentDO::getCategoryId, categoryId);
-    return list(wrapper).stream().map(BookContentDO::getCategoryId).collect(Collectors.toSet());
+  public void saveOrUpdated(BookArticleDO articleDO) {
+    BookArticleDO bookArticleDO = findBySlug(articleDO.getSlug());
+    if (bookArticleDO != null) {
+      articleDO.setId(bookArticleDO.getId());
+      this.updateById(articleDO);
+      return;
+    }
+    save(articleDO);
   }
 
-  public BookContentDO getByCategoryId(Long categoryId) {
-    LambdaQueryWrapper<BookContentDO> wrapper =
-        new LambdaQueryWrapper<BookContentDO>()
-            .eq(BookContentDO::getCategoryId, categoryId)
-            .orderByDesc(BookContentDO::getId)
+  public BookArticleDO findBySlug(String slug) {
+    Wrapper<BookArticleDO> wrapper =
+        new LambdaQueryWrapper<BookArticleDO>()
+            .eq(BookArticleDO::getSlug, slug)
+            .orderByDesc(BookArticleDO::getId)
             .last("LIMIT 1");
-    return super.getOne(wrapper);
+    return this.getOne(wrapper);
   }
 }

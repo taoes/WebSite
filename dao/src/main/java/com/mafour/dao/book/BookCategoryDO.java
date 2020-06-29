@@ -10,13 +10,25 @@ import lombok.Data;
 public class BookCategoryDO {
 
   @TableId(type = IdType.UUID)
-  private Long id;
+  private long id;
 
   private String title;
 
-  private Long bookId;
+  private String bookName;
+
+  private int bookId;
+
+  private String type;
+
+  private int level;
+
+  private String url;
+
+  private String uuid;
 
   private int depth;
 
-  private int ordinal;
+  private String slug;
+
+  private int sequence;
 }

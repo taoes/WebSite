@@ -2,222 +2,34 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>${title} | 燕归来兮</title>
+  <title>${title} | ${bookNameOfCN} | 燕归来兮</title>
   <meta name="description" content="${desc}"/>
   <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
-  <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
-    <#include "base/key.ftl">
+    <#include "./base/key.ftl">
 </head>
-<body>
-<#include "./base/header.ftl">
-
-
-<div class="contentDiv">
-  <h1 style="margin-top: 40px;font-size: 30px" class="title">${title}</h1>
-  <div class="detailDiv">
-    <div id="content">
-      <div>
-        <a class="button  is-small is-link is-outlined"
-           href="https://www.yuque.com/zhoutao123/${bookName}/${slug}#lark-mini-editor">
-          评论通道
-        </a>
-        <a class="button  is-small  is-link is-outlined"
-                <#if bookId != 0>
-          href="/page/book/${bookId}"
-        <#else>
-          href="/page/blog"
-                </#if>>
-          返回目录
-        </a>
-        <a class="button  is-small  is-link is-outlined"
-           href="/">
-          返回首页
-        </a>
-        <a class="button  is-small  is-link is-outlined"
-           onclick="cleanCache()">
-          清除缓存
-        </a>
-
-        <hr class="divider">
-        <div class="card-content">
-          <div class="content" id="menuContent"></div>
-        </div>
-        <hr class="divider">
-      </div>
-
-      <div id="detail">
-          ${content}
-      </div>
-      <div style="height: 50px"></div>
-
-      <hr class="split-pane-divider">
-      <div id="comment">
-        <div id="commentInfo">
-          <div class="field">
-            <div class="control has-icons-left">
-              <span class="icon has-text-info">
-                <i class="fa fa-envira"></i>
-              </span>
-              <input class="input" id="nickname" type="email"
-                     placeholder="您的称呼">
-            </div>
-          </div>
-          <div style="width: 4%"></div>
-          <div class="field">
-            <div class="control has-icons-left">
-              <span class="icon has-text-info">
-                <i class="fa fa-envelope"></i>
-              </span>
-              <input class="input" id="email" type="email"
-                     placeholder="您的邮箱">
-            </div>
-          </div>
-
-          <div style="width: 4%"></div>
-
-          <div class="field">
-            <div class="control has-icons-left">
-              <span class="icon has-text-info">
-                <i class="fa fa-chrome"></i>
-              </span>
-              <input class="input" id="website" type="text" placeholder="(可选)您的网址">
-
-            </div>
-          </div>
-        </div>
-        <textarea class="textarea" placeholder="请输入您的评论内容" id="commentArea"></textarea>
-        <div class="buttons">
-          <button class="button is-link" onclick="submitComment()">提交</button>
-          <button class="button is-danger" onclick="reset()">重置</button>
-        </div>
-      </div>
-
-      <div style="height: 50px"></div>
-
-      <hr class="split-pane-divider">
-      <div id="commentList">
-          <#list  comments as comment>
-            <div>
-              <article class="media">
-                <figure class="media-left">
-                  <p class="image is-64x64">
-                    <img src="https://pic.zhoutao123.com/picture/index/header.jpeg" alt="头像加载失败">
-                  </p>
-                </figure>
-                <div class="media-content">
-                  <div class="content">
-                    <p>
-                      <strong>
-                        <a href="${comment.url}">
-                            ${comment.name}
-                        </a>
-                      </strong><small>${comment.createTime?string('yyyy-MM-dd HH:mm:ss')}</small>
-                      <br>
-                        ${comment.content}
-                    </p>
-                  </div>
-                  <nav class="level is-mobile">
-                    <div class="level-left">
-                      <a class="level-item">
-                        <span class="icon is-small"><i class="fa fa-reply"></i></span>
-                      </a>
-                      <a class="level-item">
-                        <span class="icon is-small"><i class="fa fa-retweet"></i></span>
-                      </a>
-                      <a class="level-item">
-                        <span class="icon is-small"><i class="fa fa-heart"></i></span>
-                      </a>
-                    </div>
-                  </nav>
-                </div>
-              </article>
-              <hr class="split-pane-divider">
-            </div>
-          </#list>
-
-      </div>
-
-
-    </div>
-    <div id="side">
-
-
-      <div class="card" style="width: 100%;height: fit-content">
-        <header class="card-header">
-          <p class="card-header-title">
-            最近变更
-          </p>
-        </header>
-
-        <div class="card-content">
-          <div class="content">
-              <#list updateRecord as record>
-                <a href="/page/book/${record.bookSlug}/category/${record.slug}"
-                   style="cursor: pointer;font-size: 12px;color: #4a4a4a;white-space: normal">
-                  <span
-                      style="font-weight: bold">✏️ ${record.updatedAt?string('MM-dd HH:mm')}</span>
-                    <#if record.activeType == 'update'>
-                      <span style="color:#0088EE;">更新</span>
-                    <#elseif  record.activeType == 'publish'>
-                      <span style="color:lightseagreen;">发布</span>
-                    <#else >
-                      <span style="color:orangered">删除</span>
-                    </#if>
-                    <#--                  <span style="font-weight: 900;color: #4a4a4a">${record.bookName} </span>中的-->
-                  <span style="font-weight: 900;color: #4a4a4a">${record.slugName}</span>
-                </a>
-                <br>
-              </#list>
-          </div>
-        </div>
-      </div>
-
-      <div class="card" style="width: 100%;height: fit-content">
-        <header class="card-header">
-          <p class="card-header-title">
-            其他站点
-          </p>
-        </header>
-
-        <div class="card-content">
-          <div class="content">
-            <p onclick="openNewBookPage(${book.id})"
-               style="cursor: pointer;font-size: 12px;font-weight: 700">
-              Github</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="card" style="width: 100%;height: fit-content">
-        <header class="card-header">
-          <p class="card-header-title">
-            热门推荐
-          </p>
-        </header>
-
-        <div class="card-content">
-          <div class="content">
-              <#list bookList as book>
-                <p onclick="openNewBookPage(${book.id})"
-                   style="cursor: pointer;font-size: 12px;font-weight: 700">📔 ${book.title}</p>
-              </#list>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</div>
-
-
-<#include "base/footer.ftl">
-</body>
 <style>
 
   body {
     background-color: rgba(0, 0, 0, 0.75)
   }
 
+
+  #indexBackDiv {
+    height: 340px;
+    background: url(${config['CONTENT_IMG']}) no-repeat 0 63%;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .title {
+    font-weight: 900;
+    font-width: 900;
+    font-size: 50px;
+    color: #fff;
+    text-align: center;
+  }
 
   .lake-codeblock-content {
     max-width: 100% !important;
@@ -258,19 +70,17 @@
 
   .divider {
     height: 1px;
-    margin: 0px;
+    margin: 0;
     background-color: lightgray;
-    font-family: CustomerFont, Serif, serif;
   }
 
 
   .title {
     font-weight: 900;
-    margin-top: 20px;
     font-width: 900;
     line-height: 1.5;
-    font-weight: 900;
-    font-family: Serif, 'Noto Serif SC', "Linux Biolinum", 'Noto Serif SC', sans-serif;
+    margin-top: 40px;
+    font-size: 30px;
   }
 
   .detailDiv {
@@ -372,7 +182,7 @@
 
   /*  按钮样式*/
   .button {
-    margin-top: 10px;
+    margin-top: 19px;
     margin-bottom: 20px;
   }
 
@@ -402,7 +212,168 @@
     align-content: space-around;
   }
 
+
+  #tagList {
+    display: flex;
+    flex-direction: row;
+  }
+
+
+  .tag {
+    margin-left: 30px;
+  }
+
+
+  .tags:last-child {
+    margin-bottom: 1rem;
+  }
+
+  .listTag {
+    cursor: pointer;
+    font-size: 13px;
+    text-decoration: none !important;
+    color: lightslategray !important;
+  }
 </style>
+<body>
+<#include "./base/header.ftl">
+
+<div id="indexBackDiv">
+  <h1 class="title">${title}</h1>
+</div>
+
+<div class="contentDiv">
+
+  <div class="detailDiv">
+    <div id="content">
+      <div>
+        <div id="tagList" class="field is-grouped is-grouped-multiline">
+          <div class="tags has-addons">
+            <span class="tag">语雀文档</span>
+            <a class="tag is-link"
+               href="https://www.yuque.com/zhoutao123/${bookName}/${slug}">访问</a>
+          </div>
+
+
+          <div class="tags has-addons">
+            <span class="tag">返回目录</span>
+            <a class="tag is-link" <#if bookId != 0>href="/page/book/${bookId}"
+               <#else>href="/page/blog"</#if> >访问</a>
+          </div>
+
+          <div class="tags has-addons">
+            <span class="tag">访问次数</span>
+            <a class="tag is-success" href="#">${count}</a>
+          </div>
+        </div>
+
+        <hr class="divider">
+        <div class="notification is-link is-light">
+          <div class="content" id="menuContent"></div>
+        </div>
+        <hr class="divider">
+      </div>
+
+      <div id="detail">
+          ${content}
+      </div>
+      <div style="height: 50px"></div>
+
+      <hr class="split-pane-divider">
+      <div id="comment">
+        <div id="commentInfo">
+          <div class="field">
+            <div class="control has-icons-left">
+              <span class="icon has-text-info">
+                <i class="fa fa-envira"></i>
+              </span>
+              <input class="input" id="nickname" type="email"
+                     placeholder="您的称呼">
+            </div>
+          </div>
+          <div style="width: 4%"></div>
+          <div class="field">
+            <div class="control has-icons-left">
+              <span class="icon has-text-info">
+                <i class="fa fa-envelope"></i>
+              </span>
+              <input class="input" id="email" type="email"
+                     placeholder="您的邮箱">
+            </div>
+          </div>
+
+          <div style="width: 4%"></div>
+
+          <div class="field">
+            <div class="control has-icons-left">
+              <span class="icon has-text-info">
+                <i class="fa fa-chrome"></i>
+              </span>
+              <input class="input" id="website" type="text" placeholder="(可选)您的网址">
+
+            </div>
+          </div>
+        </div>
+        <textarea class="textarea" placeholder="请输入您的评论内容" id="commentArea"></textarea>
+        <div class="buttons">
+          <button class="button is-link" onclick="submitComment()">提交</button>
+          <button class="button is-danger" onclick="reset()">重置</button>
+        </div>
+      </div>
+
+      <div style="height: 50px"></div>
+
+      <hr class="split-pane-divider">
+      <div id="commentList">
+          <#list  comments as comment>
+            <div>
+              <article class="media">
+                <figure class="media-left">
+                  <p class="image is-64x64">
+                    <img src="https://pic.zhoutao123.com/picture/index/header.jpeg" alt="头像加载失败">
+                  </p>
+                </figure>
+                <div class="media-content">
+                  <div class="content">
+                    <p>
+                      <strong>
+                        <a href="${comment.url}">
+                            ${comment.name}
+                        </a>
+                      </strong><small>${comment.createTime?string('yyyy-MM-dd HH:mm:ss')}</small>
+                      <br>
+                        ${comment.content}
+                    </p>
+                  </div>
+                  <nav class="level is-mobile">
+                    <div class="level-left">
+                      <a class="level-item">
+                        <span class="icon is-small"><i class="fa fa-reply"></i></span>
+                      </a>
+                      <a class="level-item">
+                        <span class="icon is-small"><i class="fa fa-retweet"></i></span>
+                      </a>
+                      <a class="level-item">
+                        <span class="icon is-small"><i class="fa fa-heart"></i></span>
+                      </a>
+                    </div>
+                  </nav>
+                </div>
+              </article>
+              <hr class="split-pane-divider">
+            </div>
+          </#list>
+
+      </div>
+
+
+    </div>
+  </div>
+</div>
+
+
+<#include "base/footer.ftl">
+</body>
 <script>
 
   <#--  查询文章标题-->
@@ -411,17 +382,16 @@
       let thisObj = $(this);
       let tagName = thisObj.get(0).tagName;
       if (tagName.substr(0, 1).toUpperCase() === "H") {
-        let contentH = thisObj.html();//获取内容
-        let markid = "mark-" + tagName + "-" + index.toString();
-        thisObj.attr("id", markid);
+        let contentH = thisObj.html();
+        let markId = "mark-" + tagName + "-" + index.toString();
+        thisObj.attr("id", markId);
         if (contentH == null || contentH.trim().length === 0 || contentH.startsWith('<br>')) {
           return
         }
-        $("#menuContent").append(
-            "<a href='#" + markid
-            + "' style='color:black;cursor: pointer;font-size: 16px;font-family: CustomerFont,Serif,serif'>"
-            + '🌲 '
-            + contentH + "</a> </br>");
+        let data = "<a  class='listTag' href='#" + markId
+            + "''> 🎉  " + contentH
+            + "</a> </br>";
+        $("#menuContent").append(data);
 
       }
     });
@@ -449,7 +419,7 @@
    */
   function cleanCache() {
     $.get("/book/cache?cacheKey=CATEGORY:${bookName}:CONTENT:${slug}", function (data, status) {
-      alert("缓存清理完成");
+      console.debug("文章刷新完成")
       location.reload();
     });
   }

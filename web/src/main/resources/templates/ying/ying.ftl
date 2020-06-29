@@ -1,27 +1,26 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>燕归来兮 & 影子不长</title>
+  <meta charset="UTF-8">
+  <title>影子不长 | 燕归来兮</title>
+    <#include "base/key.ftl">
   <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
   <link rel="stylesheet" type="text/css" href="/css/style1.css"/>
   <script src="/js/modernizr-custom.js"></script>
-
 </head>
-
+<#include "base/header.ftl">
+<div style="height: 40px;width: 100%"></div>
 <body class="demo-1">
 <div class="container">
   <div class="content">
     <div class="grid">
-        <#list  1..100 as index>
-        <div class="grid__item " data-size="1280x853"><a
-              href="https://pic.zhoutao123.com/dy-2018//WechatIMG171.jpeg" class="img-wrap">
-            <img
-                class="pic pic0"
-                src="https://pic.zhoutao123.com/dy-2018//WechatIMG171.jpeg?imageView2/3/w/200/h/100/q/60">
-            <div class="description description--grid"> Quixotic</div>
-          </a></div>
+        <#list  pictureList as picture>
+          <div class="grid__item " data-size="1280x853"><a href="${picture.url}" class="img-wrap">
+              <img
+                  class="pic pic0"
+                  src="${picture.url}?imageView2/3/w/200/h/100/q/80">
+              <div class="description description--grid"> Quixotic</div>
+            </a></div>
         </#list>
     </div>
     <div class="preview">

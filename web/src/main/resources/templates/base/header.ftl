@@ -3,68 +3,52 @@
     <div id="navbarBasicExample" class="navbar-menu">
       <a class="navbar-item" href="/">
         <img src="/logo-white.png" width="112"
-             height="28">
+             height="28" alt="123">
       </a>
 
       <div class="navbar-start">
         <a class="navbar-item" href="${path}/">
-          主页
+          网站首页
+        </a>
+        <a class="navbar-item " href="${path}/page/ying.html">
+          影子不长
         </a>
         <a class="navbar-item hide" href="${path}/page/doc/123">
-          文档
+          技术文档
         </a>
         <a class="navbar-item" href="https://www.yuque.com/zhoutao123" target="_blank">
-          语雀
+          语雀文章
         </a>
         <a class="navbar-item" href="${path}/page/blog">
-          博客
+          博客文章
         </a>
         <a class="navbar-item hide" href="${path}/page/code/123">
-          代码
+          代码片段
         </a>
         <a class="navbar-item hide" href="${path}/page/link.html">
           链接
         </a>
         <a class="navbar-item" href="${path}/page/about.html">
-          关于
+          关于我
         </a>
-        <div class="navbar-item has-dropdown is-hoverable">
-          <a class="navbar-link">
-            工具
-          </a>
-          <div class="navbar-dropdown">
-            <a class="navbar-item" href="${path}/page/tools/no.html">
-              进制转换
-            </a>
-            <a class="navbar-item" href="${path}/page/tools/no.html">
-              时间戳
-            </a>
-            <a class="navbar-item" href="${path}/page/tools/no.html">
-              其他资源
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <div class="navbar-item">
-        <div class="buttons">
-          <a class="button is-link is-small" href="https://github.com/taoes">
-            <i class="fa fa-github-alt"></i>
-            <strong>&nbsp;&nbsp;Github</strong>
-          </a>
-        </div>
       </div>
     </div>
 
+    <div class="navbar-item">
+      <div class="buttons">
+        <a class="button is-link is-small" href="https://github.com/taoes">
+          <i class="fa fa-github-alt"></i>
+          <strong>&nbsp;&nbsp;Github</strong>
+        </a>
+      </div>
+    </div>
   </nav>
-  <div style="height: 50px"></div>
 </div>
 
 <div id="mobileMenu">
   <div id="mobileMenuDiv">
     <a class="navbar-item" href="/">
-      <img src="/logo-white.png" width="112"
-           height="28" alt="图片加载中..">
+      <img src="/logo-white.png" width="112"  height="28" alt="图片加载中..">
     </a>
 
     <div style="display:flex; margin-left: auto;margin-right:20px;align-items: center">
@@ -78,25 +62,33 @@
 
 <div id="popMenu" style="display: none">
   <a class="navbar-item" href="${path}/">
-    主页
+    网站首页
   </a>
+
+  <a class="navbar-item " href="${path}/page/ying.html">
+    影子不长
+  </a>
+
   <a class="navbar-item hide" href="${path}/page/doc/123">
-    文档
+    技术文档
   </a>
   <a class="navbar-item" href="https://www.yuque.com/zhoutao123" target="_blank">
-    语雀
+    语雀文章
   </a>
   <a class="navbar-item" href="${path}/page/blog">
-    博客
+    博客文章
   </a>
   <a class="navbar-item hide" href="${path}/page/code/123">
-    代码
+    代码片段
   </a>
   <a class="navbar-item hide" href="${path}/page/link.html">
     链接
   </a>
+  <a class="navbar-item hide" href="${path}/page/link.html">
+    影子不长
+  </a>
   <a class="navbar-item" href="${path}/page/about.html">
-    关于
+    关于我
   </a>
 </div>
 
@@ -111,14 +103,9 @@
     background-color: black;
   }
 
-  @font-face {
-    font-family: 'CustomerFont';
-    src: url("https://pic.zhoutao123.com/font/SourceHanSerifSC-Bold.woff2");
-
-  }
 
   <#--  手机界面配置-->
-  @media screen and (max-width: 1200px) {
+  @media screen and (max-width: 1000px) {
 
     #pcMenu {
       display: none;
@@ -132,6 +119,7 @@
     #mobileMenuDiv {
       display: flex;
       display: -webkit-flex;
+      height: 50px;
     }
 
     #popMenu {
@@ -148,11 +136,12 @@
   }
 
 
-  @media screen and (min-width: 1200px) {
+  @media screen and (min-width: 1000px) {
 
 
     #pcMenu {
       display: block;
+      padding-bottom: 40px;
     }
 
     #mobileMenu {

@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="description" content="${desc}"/>
   <title>${book.title} | 燕归来兮</title>
-
     <#include "base/key.ftl">
 
 </head>
@@ -12,7 +11,7 @@
 <#include "./base/header.ftl">
 
 <div class="contentDiv">
-  <h1 style="margin-top: 40px" class="bookTitle title is-2">${book.title}</h1>
+  <h1 style="margin-top: 0" class="bookTitle title is-2">${book.title}</h1>
   <span style="margin-left: 150px" class="title is-6">${book.subTitle}</span>
   <div id="categoryDiv">
       <#list categoryList.data as category>
@@ -36,7 +35,7 @@
           <#else>
             <a
                 class="categoryItem"
-                style="margin-left: ${category.depth * 20}px;font-family: CustomerFont,Serif,serif;font-weight: bold"
+                style="margin-left: ${category.depth * 20}px;"
                     <#if category.slug != '#'>
                       href="/page/book/${book.linkUrl}/category/${category.slug}"
                     </#if>
@@ -60,9 +59,10 @@
     display: -webkit-flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 40px;
   }
 
-  @media screen and (min-width: 1200px) {
+  @media screen and (min-width: 1000px) {
     #categoryDiv {
       width: 80%;
       margin-top: 20px;
@@ -75,7 +75,7 @@
     }
   }
 
-  @media screen and (max-width: 1200px) {
+  @media screen and (max-width: 1000px) {
     #categoryDiv {
       width: 95%;
       margin-top: 20px;
@@ -105,7 +105,6 @@
     font-width: 900;
     width: fit-content;
     line-height: 1.5;
-    font-family: CustomerFont, Serif, serif;
     color: black;
   }
 
@@ -118,9 +117,7 @@
     cursor: pointer;
     width: fit-content;
     line-height: 1.5;
-    font-family: CustomerFont, Serif, serif;
     color: black;
-    font-weight: 700;
   }
 
 
@@ -129,8 +126,8 @@
     margin-top: 20px;
     line-height: 1.5;
     font-weight: 900;
-    font-family: CustomerFont, Serif, serif;
     color: black;
+    text-align: center;
   }
 
   a {

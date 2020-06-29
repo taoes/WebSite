@@ -26,7 +26,6 @@
   .errorCode {
     font-size: 300px;
     color: #0088EE;
-    font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif;
   }
 </style>
 </html>

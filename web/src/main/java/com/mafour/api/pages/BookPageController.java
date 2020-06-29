@@ -51,15 +51,12 @@ public class BookPageController {
 
   private final CommentService commentService;
 
-  private final BookUpdateRecordTunnel recordTunnel;
-
   private final SeoService seoService;
 
   private static final String PIC_PREFIX = "https://cdn.nlark.com/";
 
   @GetMapping("/{bookId}")
   public String toBlogPage(@PathVariable("bookId") Long bookId, Model model) throws IOException {
-    // 查询书籍信息
     Optional<Book> bookOptional = bookService.find(bookId);
     if (!bookOptional.isPresent()) {
       model.addAttribute("msg", "图书信息不存在");
@@ -108,35 +105,30 @@ public class BookPageController {
     String contentStr;
 
     if (StringUtils.hasText(host)) {
-      contentStr =
-          data.getBody_html().replaceAll(PIC_PREFIX, "https://" + host + "/picture?param=");
+      contentStr = data.getBody_html().replaceAll(PIC_PREFIX, "http://" + host + "/picture?param=");
     } else {
       contentStr = Optional.ofNullable(yuqueDoc.getData().getBody_html()).orElse("暂无内容");
     }
 
-    // 查询系统配置
+    YuqueDoc.Book book = data.getBook();
+    String bookNameOfCN = book.getName();
+
     Map<String, String> configMap = systemService.getByKeys(SystemConfigKey.indexKey());
     Long bookId = bookService.findByName(bookName).map(Book::getId).orElse(0L);
-    List<Book> allBook = bookService.findAllBook();
-
-    // 获取评论信息
     List<Comment> comments = commentService.all(bookName, slug);
-
-    // 获取最近的变动信息
-    List<BookUpdateRecordDO> changeList = recordTunnel.getLatestChangeList(10);
+    seoService.push(bookName, slug);
 
     model.addAttribute("content", contentStr);
     model.addAttribute("config", configMap);
     model.addAttribute("slug", slug);
     model.addAttribute("title", data.getTitle());
+    model.addAttribute("count", yuqueDoc.getCount());
     model.addAttribute("desc", data.getDescription());
     model.addAttribute("bookName", bookName);
     model.addAttribute("bookId", bookId);
-    model.addAttribute("bookList", allBook);
+    model.addAttribute("bookNameOfCN", bookNameOfCN);
     model.addAttribute("comments", comments);
-    model.addAttribute("updateRecord", changeList);
 
-    seoService.push(bookName, slug);
     return "book/content";
   }
 }

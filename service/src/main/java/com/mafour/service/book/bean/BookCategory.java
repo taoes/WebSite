@@ -7,11 +7,23 @@ public class BookCategory {
 
   private Long id;
 
+  private String bookName;
+
+  private int bookId;
+
   private String title;
+
+  private String type;
+
+  private int level;
+
+  private String url;
+
+  private String uuid;
 
   private int depth;
 
-  private int ordinal;
+  private String slug;
 
-  private boolean existContent;
+  private int sequence;
 }

@@ -20,6 +20,11 @@ public class ToolsPageController {
     return "tools/no";
   }
 
+  @GetMapping("/converter.html")
+  public String toConverter() {
+    return "tools/converter";
+  }
+
   @GetMapping("/jsonFormat.html")
   public String toJsonFormatPage() {
     return "tools/json";

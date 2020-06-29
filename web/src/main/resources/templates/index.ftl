@@ -73,7 +73,7 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
-    background-color: #EFEFEF;
+    background-color: #FFFFFF;
   }
 
 
@@ -226,7 +226,6 @@
   .title {
     color: black;
     font-weight: 900;
-    font-family: Serif, serif;
   }
 
 

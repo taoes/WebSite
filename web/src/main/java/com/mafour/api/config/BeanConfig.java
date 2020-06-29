@@ -13,10 +13,12 @@ public class BeanConfig {
 
   @Bean
   public RedissonClient getRedisson() {
+    String address = "redis://redis-service:6379";
+    log.info("Redis 地址:{}", address);
     Config config = new Config();
-    config.useSingleServer().setAddress("redis://127.0.0.1:6379");
+    config.useSingleServer().setAddress(address).setTimeout(100000).setConnectionMinimumIdleSize(10);
     RedissonClient redissonClient = Redisson.create(config);
-    log.info("redis client is ok.....");
+    log.info("Redis 客户端配置成功.....");
     return redissonClient;
   }
 }

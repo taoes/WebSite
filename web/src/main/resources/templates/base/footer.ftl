@@ -33,7 +33,7 @@
   let openBaiduPush = '${config["BAIDU_PUSH"]}';
   let host = window.location.hostname;
 
-  if (openBaiduPush === 'true' && host.indexOf("localhost") !== -1) {
+  if (openBaiduPush === 'true' && host.indexOf("localhost") === -1) {
     var _hmt = _hmt || [];
     (function () {
       var hm = document.createElement("script");

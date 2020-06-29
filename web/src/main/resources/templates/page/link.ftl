@@ -61,6 +61,7 @@
 
   .title {
     margin-top: 40px;
+    font-family: "Kaiti TC", serif
   }
 
   #div {

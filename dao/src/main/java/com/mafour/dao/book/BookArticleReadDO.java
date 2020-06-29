@@ -6,15 +6,16 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 @Data
-@TableName("book_content")
-public class BookContentDO {
+@TableName("book_article_read")
+public class BookArticleReadDO {
 
   @TableId(type = IdType.AUTO)
   private Long id;
 
-  private Long categoryId;
+  private String bookName;
 
-  private Long bookId;
+  private String slug;
 
-  private String content;
+  private Integer count;
+
 }

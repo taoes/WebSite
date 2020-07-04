@@ -14,7 +14,7 @@
           影子不长
         </a>
         <a class="navbar-item hide" href="${path}/page/doc/123">
-          技术文档
+          文档
         </a>
         <a class="navbar-item" href="https://www.yuque.com/zhoutao123" target="_blank">
           语雀文章
@@ -62,7 +62,7 @@
 
 <div id="popMenu" style="display: none">
   <a class="navbar-item" href="${path}/">
-    网站首页
+    首页
   </a>
 
   <a class="navbar-item " href="${path}/page/ying.html">
@@ -70,16 +70,16 @@
   </a>
 
   <a class="navbar-item hide" href="${path}/page/doc/123">
-    技术文档
+    文档
   </a>
   <a class="navbar-item" href="https://www.yuque.com/zhoutao123" target="_blank">
-    语雀文章
+    语雀
   </a>
   <a class="navbar-item" href="${path}/page/blog">
-    博客文章
+    博客
   </a>
   <a class="navbar-item hide" href="${path}/page/code/123">
-    代码片段
+    代码
   </a>
   <a class="navbar-item hide" href="${path}/page/link.html">
     链接

@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="description" content="${desc}"/>
   <title>${book.title} | 燕归来兮</title>
+  <link rel="stylesheet" href="/css/category.css">
     <#include "base/key.ftl">
 
 </head>
@@ -12,7 +13,7 @@
 
 <div class="contentDiv">
   <h1 style="margin-top: 0" class="bookTitle title is-2">${book.title}</h1>
-  <span style="margin-left: 150px" class="title is-6">${book.subTitle}</span>
+  <span class="title is-6">${book.subTitle}</span>
   <div id="categoryDiv">
       <#list categoryList.data as category>
           <#if category.depth == 1>
@@ -49,90 +50,6 @@
 <#include "base/footer.ftl">
 
 </body>
-<style>
-  .contentDiv {
-    width: 100%;
-    background-color: #FFFFFF;
-    min-height: 1000px;
-    height: fit-content;
-    display: flex;
-    display: -webkit-flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 40px;
-  }
-
-  @media screen and (min-width: 1000px) {
-    #categoryDiv {
-      width: 80%;
-      margin-top: 20px;
-      margin-left: 10%;
-      margin-right: 10%;
-      border-radius: 10px;
-      background-color: #FFFFFF;
-      padding: 20px;
-      box-shadow: 1px 1px 10px 1px #515a6e;
-    }
-  }
-
-  @media screen and (max-width: 1000px) {
-    #categoryDiv {
-      width: 95%;
-      margin-top: 20px;
-      margin-left: 10%;
-      margin-right: 10%;
-      border-radius: 10px;
-      background-color: #FFFFFF;
-      padding: 20px;
-    }
-  }
-
-  .categoryItem {
-    display: block;
-    margin-top: 10px;
-    color: black;
-    cursor: pointer;
-  }
-
-
-  .title1 {
-    font-size: 25px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    margin-left: 10px;
-    font-weight: 900;
-    cursor: pointer;
-    font-width: 900;
-    width: fit-content;
-    line-height: 1.5;
-    color: black;
-  }
-
-
-  .title2 {
-    font-size: 18px;
-    margin-left: 40px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    cursor: pointer;
-    width: fit-content;
-    line-height: 1.5;
-    color: black;
-  }
-
-
-  /*  标题样式*/
-  .bookTitle {
-    margin-top: 20px;
-    line-height: 1.5;
-    font-weight: 900;
-    color: black;
-    text-align: center;
-  }
-
-  a {
-    display: block;
-  }
-
-</style>
 </html>
+>>>>>>> feat: 更新样式:web/src/main/resources/templates/book/category.ftl
+>>>>>>> Stashed changes:src/main/resources/static/css/category.css

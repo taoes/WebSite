@@ -4,237 +4,20 @@
   <meta charset="UTF-8">
   <title>${title} | ${bookNameOfCN} | 燕归来兮</title>
   <meta name="description" content="${desc}"/>
-  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
+  <link rel="stylesheet" href="/css/content.css">
+  <style>
+    #indexBackDiv {
+      height: 340px;
+      background: url(${config['CONTENT_IMG']}) no-repeat 0 63%;
+      background-size: cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  </style>
     <#include "./base/key.ftl">
 </head>
-<style>
 
-  body {
-    background-color: rgba(0, 0, 0, 0.75)
-  }
-
-
-  #indexBackDiv {
-    height: 340px;
-    background: url(${config['CONTENT_IMG']}) no-repeat 0 63%;
-    background-size: cover;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .title {
-    font-weight: 900;
-    font-width: 900;
-    font-size: 50px;
-    color: #fff;
-    text-align: center;
-  }
-
-  .lake-codeblock-content {
-    max-width: 100% !important;
-  }
-
-  .lake-table {
-    width: 100% !important;
-  }
-
-
-  /*  调整图片 变形的问题*/
-  .lake-drag-image {
-    max-width: 95% !important;
-    height: auto !important;
-    margin: auto;
-  }
-
-  .contentDiv {
-    width: 100%;
-    min-height: 1024px;
-    background-color: #FFFFFF;
-    padding-bottom: 20px;
-    height: fit-content;
-    display: flex;
-    display: -webkit-flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  #content {
-    width: 80%;
-    margin-top: 20px;
-    padding: 20px;
-    flex-grow: 1;
-    border-radius: 10px;
-    background-color: #FFFFFF;
-  }
-
-  .divider {
-    height: 1px;
-    margin: 0;
-    background-color: lightgray;
-  }
-
-
-  .title {
-    font-weight: 900;
-    font-width: 900;
-    line-height: 1.5;
-    margin-top: 40px;
-    font-size: 30px;
-  }
-
-  .detailDiv {
-    display: flex;
-    display: -webkit-flex;
-    width: 90%;
-    min-height: 300px;
-  }
-
-  /*设置卡片的间距*/
-  .card {
-    margin-bottom: 10px;
-    border-radius: 10px;
-  }
-
-  @media screen and (max-width: 800px) {
-
-    #content {
-      width: 100%;
-      margin-top: 20px;
-      padding: 10px;
-      flex-grow: 1;
-      border-radius: 10px;
-      background-color: #FFFFFF;
-    }
-
-    #side {
-      display: none;
-    }
-
-    .detailDiv {
-      display: flex;
-      display: -webkit-flex;
-      flex-direction: column;
-      width: 100%;
-      min-height: 300px;
-    }
-
-  }
-
-  @media screen  and (max-width: 1200px) {
-
-
-    #content {
-      width: 100%;
-      margin-top: 20px;
-      padding: 10px;
-      flex-grow: 1;
-      border-radius: 10px;
-      background-color: #FFFFFF;
-    }
-
-
-    #side {
-      display: none;
-    }
-
-    .detailDiv {
-      display: flex;
-      flex-direction: column;
-      display: -webkit-flex;
-      width: 95%;
-      min-height: 300px;
-    }
-  }
-
-  @media screen  and (min-width: 1200px) {
-
-    #content {
-      width: 70%;
-      margin-top: 20px;
-      padding: 20px;
-      flex-grow: 1;
-      border-radius: 10px;
-      background-color: #FFFFFF;
-    }
-
-
-    #side {
-      width: 300px;
-      height: 100px;
-      display: flex;
-      display: -webkit-flex;
-      flex-direction: column;
-      flex-grow: 0;
-      margin: 20px 20px 20px 30px;
-      background-color: #FFFFFF;
-      border-radius: 10px;
-    }
-
-    .detailDiv {
-      display: flex;
-      display: -webkit-flex;
-      width: 90%;
-      min-height: 300px;
-    }
-  }
-
-
-  /*  按钮样式*/
-  .button {
-    margin-top: 19px;
-    margin-bottom: 20px;
-  }
-
-  /*  评论区样式*/
-
-  #commentArea {
-    width: 100%;
-    min-height: 180px;
-    margin-right: 50px;
-  }
-
-  #commentInfo {
-    display: flex;
-    display: -webkit-flex;
-    width: 100%;
-  }
-
-  .field {
-    flex-grow: 1;
-  }
-
-  /*  按钮组*/
-
-  .buttons {
-    display: flex;
-    display: -webkit-flex;
-    align-content: space-around;
-  }
-
-
-  #tagList {
-    display: flex;
-    flex-direction: row;
-  }
-
-
-  .tag {
-    margin-left: 30px;
-  }
-
-
-  .tags:last-child {
-    margin-bottom: 1rem;
-  }
-
-  .listTag {
-    cursor: pointer;
-    font-size: 13px;
-    text-decoration: none !important;
-    color: lightslategray !important;
-  }
-</style>
 <body>
 <#include "./base/header.ftl">
 
@@ -363,10 +146,7 @@
               <hr class="split-pane-divider">
             </div>
           </#list>
-
       </div>
-
-
     </div>
   </div>
 </div>
@@ -376,7 +156,9 @@
 </body>
 <script>
 
-  <#--  查询文章标题-->
+  /**
+   * 查询文章标题
+   */
   $(document).ready(function (e) {
     $("div[data-lake-element='root']").children().each(function (index, element) {
       let thisObj = $(this);
@@ -389,7 +171,7 @@
           return
         }
         let data = "<a  class='listTag' href='#" + markId
-            + "''> 🎉  " + contentH
+            + "''> 👉🏻  " + contentH
             + "</a> </br>";
         $("#menuContent").append(data);
 
@@ -424,8 +206,9 @@
     });
   }
 
-  //  新增评论
-
+  /**
+   * 新增评论
+   */
   function submitComment() {
     let name = $("#nickname").val();
     let email = $("#email").val();
@@ -455,6 +238,10 @@
     });
 
   }
-</script>
 
+  // 添加样式
+  $(document).ready(function () {
+    $("div[data-lake-card='codeblock']").addClass("lake-card-margin");
+  })
+</script>
 </html>

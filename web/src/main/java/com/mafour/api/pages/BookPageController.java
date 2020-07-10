@@ -1,7 +1,6 @@
 package com.mafour.api.pages;
 
 import com.mafour.common.SystemConfigKey;
-import com.mafour.dao.BookUpdateRecordDO;
 import com.mafour.service.SeoService;
 import com.mafour.service.book.BookCategoryService;
 import com.mafour.service.book.BookContentService;
@@ -13,7 +12,6 @@ import com.mafour.service.book.yuque.YuqueDoc;
 import com.mafour.service.comment.Comment;
 import com.mafour.service.comment.CommentService;
 import com.mafour.service.system.SystemService;
-import com.mafour.tunnel.BookUpdateRecordTunnel;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
@@ -22,10 +20,6 @@ import java.util.stream.Collectors;
 import javax.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import okhttp3.MediaType;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -104,10 +98,10 @@ public class BookPageController {
     String host = request.getHeader("Host");
     String contentStr;
 
-    if (StringUtils.hasText(host)) {
+    if (StringUtils.hasText(data.getBody_html())) {
       contentStr = data.getBody_html().replaceAll(PIC_PREFIX, "http://" + host + "/picture?param=");
     } else {
-      contentStr = Optional.ofNullable(yuqueDoc.getData().getBody_html()).orElse("暂无内容");
+      contentStr = Optional.ofNullable(yuqueDoc.getData().getBody_html()).orElse("<h1 style='font-size:28px'>暂无内容,正在准备中，敬请期待...</h1>");
     }
 
     YuqueDoc.Book book = data.getBook();

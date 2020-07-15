@@ -8,7 +8,7 @@
 
       <div class="navbar-start">
         <a class="navbar-item" href="${path}/">
-          网站首页
+          首页
         </a>
         <a class="navbar-item " href="${path}/page/ying.html">
           影子不长
@@ -17,19 +17,19 @@
           文档
         </a>
         <a class="navbar-item" href="https://www.yuque.com/zhoutao123" target="_blank">
-          语雀文章
+          语雀
         </a>
         <a class="navbar-item" href="${path}/page/blog">
-          博客文章
+          推荐
         </a>
         <a class="navbar-item hide" href="${path}/page/code/123">
-          代码片段
+          代码
         </a>
         <a class="navbar-item hide" href="${path}/page/link.html">
           链接
         </a>
         <a class="navbar-item" href="${path}/page/about.html">
-          关于我
+          关于
         </a>
       </div>
     </div>

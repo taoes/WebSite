@@ -1,15 +1,13 @@
 package com.mafour.service.book;
 
 import com.alibaba.fastjson.JSON;
-import com.mafour.dao.book.BookArticleDO;
-import com.mafour.exception.NotFoundException;
 import com.mafour.service.book.bean.BookArticle;
 import com.mafour.service.book.converter.BookContentConverter;
 import com.mafour.service.book.yuque.YuqueDoc;
+import com.mafour.service.book.yuque.YuqueDoc.Book;
 import com.mafour.service.book.yuque.YuqueDoc.Data;
 import com.mafour.tunnel.BookArticleReadTunnel;
 import com.mafour.tunnel.BookContentTunnel;
-import java.io.IOException;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 import lombok.AllArgsConstructor;
@@ -68,6 +66,11 @@ public class BookArticleServiceImpl implements BookContentService {
     }
   }
 
+  @Override
+  public String findSearchKey(String slug) {
+    return contentTunnel.getSearchBySlug(slug);
+  }
+
   @SneakyThrows
   private YuqueDoc findFromYuqueApi(String bookName, String slug) {
     Request request =
@@ -82,7 +85,7 @@ public class BookArticleServiceImpl implements BookContentService {
       if (execute.isSuccessful()) {
         String string = Optional.ofNullable(execute.body().string()).orElse("{}");
         YuqueDoc yuqueDoc = JSON.parseObject(string, YuqueDoc.class);
-        save(bookName, yuqueDoc);
+        save(yuqueDoc);
         return yuqueDoc;
       } else {
         log.info("获取文章数据【book={} slug={}】 失败", bookName, slug);
@@ -93,13 +96,14 @@ public class BookArticleServiceImpl implements BookContentService {
     }
   }
 
-  private void save(String bookName, YuqueDoc doc) {
+  private void save(YuqueDoc doc) {
     BookArticle content = new BookArticle();
     Data data = doc.getData();
+    Book book = doc.getData().getBook();
     content
         .setId(doc.getData().getId())
-        .setBookName(bookName)
-        .setBody(doc.getData().getBody_lake())
+        .setBookName(book.getName())
+        .setSlugName(data.getTitle())
         .setCover(data.getCover())
         .setSlug(data.getSlug())
         .setUpdatedAt(data.getUpdated_at())

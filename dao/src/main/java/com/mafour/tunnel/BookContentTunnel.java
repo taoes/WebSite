@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.mafour.dao.book.BookArticleDO;
 import com.mafour.mapper.BookContentMapper;
+import java.util.Optional;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -27,5 +28,17 @@ public class BookContentTunnel extends ServiceImpl<BookContentMapper, BookArticl
             .orderByDesc(BookArticleDO::getId)
             .last("LIMIT 1");
     return this.getOne(wrapper);
+  }
+
+  public String getSearchBySlug(String slug) {
+    Wrapper<BookArticleDO> wrapper =
+        new LambdaQueryWrapper<BookArticleDO>()
+            .select(BookArticleDO::getSearchKey)
+            .eq(BookArticleDO::getSlug, slug)
+            .orderByDesc(BookArticleDO::getId)
+            .last("LIMIT 1");
+    return Optional.ofNullable(this.getOne(wrapper))
+        .map(BookArticleDO::getSearchKey)
+        .orElse("代码,技术,Java,Java,Docker,Spring,html,开发");
   }
 }

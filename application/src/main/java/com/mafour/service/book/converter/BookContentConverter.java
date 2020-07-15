@@ -12,11 +12,12 @@ public class BookContentConverter extends AbstractConverter<BookArticle, BookArt
   public BookArticle converterFrom(BookArticleDO doc) {
     return new BookArticle()
         .setId(doc.getId())
-        .setBody(doc.getBody())
+        .setSearchKey(doc.getSearchKey())
         .setCover(doc.getCover())
         .setSlug(doc.getSlug())
+        .setSlugName(doc.getSlugName())
+        .setBookName(doc.getBookName())
         .setUpdatedAt(doc.getUpdatedAt())
-        .setBodyHtml(doc.getBodyHtml())
         .setCreatedAt(doc.getCreatedAt())
         .setWordCount(doc.getWordCount())
         .setDescription(doc.getDescription());
@@ -26,11 +27,12 @@ public class BookContentConverter extends AbstractConverter<BookArticle, BookArt
   public BookArticleDO converterTo(BookArticle content) {
     return new BookArticleDO()
         .setId(content.getId())
-        .setBody(content.getBody())
+        .setSearchKey(content.getSearchKey())
         .setCover(content.getCover())
         .setSlug(content.getSlug())
+        .setBookName(content.getBookName())
+        .setSlugName(content.getSlugName())
         .setUpdatedAt(content.getUpdatedAt())
-        .setBodyHtml(content.getBodyHtml())
         .setCreatedAt(content.getCreatedAt())
         .setWordCount(content.getWordCount())
         .setDescription(content.getDescription());

@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>${title} | ${bookNameOfCN} | 燕归来兮</title>
-  <meta name="description" content="${desc}"/>
+  <title>${data.title} | ${bookNameOfCN} | 燕归来兮</title>
+  <meta name="keywords" content="${baseSearchKey},${searchKey}">
+  <meta name="description" content="${data.description}"/>
   <link rel="stylesheet" href="/css/content.css">
   <style>
     #indexBackDiv {
@@ -22,7 +23,7 @@
 <#include "./base/header.ftl">
 
 <div id="indexBackDiv">
-  <h1 class="title">${title}</h1>
+  <h1 class="title">${data.title}</h1>
 </div>
 
 <div class="contentDiv">

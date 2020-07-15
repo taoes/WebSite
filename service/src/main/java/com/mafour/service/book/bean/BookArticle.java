@@ -12,7 +12,9 @@ public class BookArticle {
 
   private String slug;
 
-  private String body;
+  private String slugName;
+
+  private String searchKey;
 
   private String bodyHtml;
 

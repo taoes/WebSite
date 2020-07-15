@@ -94,30 +94,41 @@ public class BookPageController {
 
     // 尝试获取文章信息
     YuqueDoc yuqueDoc = contentService.findByCategoryId(bookName, slug);
+
+    // 处理文章信息
     YuqueDoc.Data data = yuqueDoc.getData();
     String host = request.getHeader("Host");
     String contentStr;
-
     if (StringUtils.hasText(data.getBody_html())) {
       contentStr = data.getBody_html().replaceAll(PIC_PREFIX, "http://" + host + "/picture?param=");
     } else {
-      contentStr = Optional.ofNullable(yuqueDoc.getData().getBody_html()).orElse("<h1 style='font-size:28px'>暂无内容,正在准备中，敬请期待...</h1>");
+      contentStr =
+          Optional.ofNullable(yuqueDoc.getData().getBody_html())
+              .orElse("<h1 style='font-size:28px'>暂无内容,正在准备中，敬请期待...</h1>");
     }
 
     YuqueDoc.Book book = data.getBook();
     String bookNameOfCN = book.getName();
 
+    // 读取系统配置
     Map<String, String> configMap = systemService.getByKeys(SystemConfigKey.indexKey());
     Long bookId = bookService.findByName(bookName).map(Book::getId).orElse(0L);
+
+    // 获取评论
     List<Comment> comments = commentService.all(bookName, slug);
+
+    // 异步推送SEO
     seoService.push(bookName, slug);
+
+    // 获取SEO关键词
+    String searchKey = contentService.findSearchKey(slug);
 
     model.addAttribute("content", contentStr);
     model.addAttribute("config", configMap);
     model.addAttribute("slug", slug);
-    model.addAttribute("title", data.getTitle());
+    model.addAttribute("data", data);
     model.addAttribute("count", yuqueDoc.getCount());
-    model.addAttribute("desc", data.getDescription());
+    model.addAttribute("searchKey", searchKey);
     model.addAttribute("bookName", bookName);
     model.addAttribute("bookId", bookId);
     model.addAttribute("bookNameOfCN", bookNameOfCN);

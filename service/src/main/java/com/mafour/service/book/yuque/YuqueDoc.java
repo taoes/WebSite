@@ -123,8 +123,7 @@ public class YuqueDoc implements Serializable {
 
     private int book_id;
 
-    @Getter
-    private Book book;
+    @Getter private Book book;
 
     private int user_id;
 

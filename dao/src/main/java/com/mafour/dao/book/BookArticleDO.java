@@ -15,11 +15,11 @@ public class BookArticleDO {
 
   private String bookName;
 
+  private String slugName;
+
   private String slug;
 
-  private String body;
-
-  private String bodyHtml;
+  private String searchKey;
 
   private Integer wordCount;
 

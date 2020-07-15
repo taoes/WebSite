@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="description" content="${desc}"/>
   <title>${book.title} | 燕归来兮</title>
+  <meta name="keywords" content="${baseSearchKey},${book.title},${book.subTitle}">
   <link rel="stylesheet" href="/css/category.css">
     <#include "base/key.ftl">
 
@@ -51,5 +52,3 @@
 
 </body>
 </html>
->>>>>>> feat: 更新样式:web/src/main/resources/templates/book/category.ftl
->>>>>>> Stashed changes:src/main/resources/static/css/category.css

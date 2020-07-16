@@ -1,5 +1,9 @@
 package com.mafour.service.recommend;
 
-public class RecommendService {
+import java.util.List;
 
+public interface RecommendService {
+
+  /** 获取全部的推荐内容 */
+  List<Recommend> listAll();
 }

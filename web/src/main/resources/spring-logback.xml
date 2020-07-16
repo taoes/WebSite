@@ -3,10 +3,6 @@
   <!--  导入基本的默认配置-->
   <include resource="org/springframework/boot/logging/logback/base.xml"/>
 
-
-
-
-
   <!--配置日志的环境变量-->
   <property name="APP_NAME" value="TEST"/>
   <property name="PATH" value="log"/>

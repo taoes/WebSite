@@ -41,7 +41,7 @@ mybatis-plus:
     worker-id: 1
 
 ding:
-  token: f17be4f2c55fc4e89f2a6a77ae7640e5110b0cc804b66c1ef5d009f518742762
+  token: 5ff21b43ef762a1e60ff10a2f3b391078d1f2f2e3f0512eb6b263ff1f1a38a2a
 
 
 logging:

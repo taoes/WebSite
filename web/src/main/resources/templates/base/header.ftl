@@ -11,7 +11,7 @@
           首页
         </a>
         <a class="navbar-item " href="${path}/page/ying.html">
-          影子不长
+          影子
         </a>
         <a class="navbar-item hide" href="${path}/page/doc/123">
           文档
@@ -19,7 +19,7 @@
         <a class="navbar-item" href="https://www.yuque.com/zhoutao123" target="_blank">
           语雀
         </a>
-        <a class="navbar-item" href="${path}/page/blog">
+        <a class="navbar-item" href="${path}/page/recommend">
           推荐
         </a>
         <a class="navbar-item hide" href="${path}/page/code/123">
@@ -66,7 +66,7 @@
   </a>
 
   <a class="navbar-item " href="${path}/page/ying.html">
-    影子不长
+    影子
   </a>
 
   <a class="navbar-item hide" href="${path}/page/doc/123">
@@ -75,8 +75,8 @@
   <a class="navbar-item" href="https://www.yuque.com/zhoutao123" target="_blank">
     语雀
   </a>
-  <a class="navbar-item" href="${path}/page/blog">
-    博客
+  <a class="navbar-item" href="${path}/page/recommend">
+    推荐
   </a>
   <a class="navbar-item hide" href="${path}/page/code/123">
     代码

@@ -21,7 +21,7 @@ public class BookArticleDO {
 
   private String book;
 
-  private boolean recommend = false;
+  private boolean recommend;
 
   private String searchKey;
 

@@ -20,7 +20,6 @@ public class DingTalkService {
   private final LocalDate birther = LocalDateTime.of(2020, 10, 28, 0, 0).toLocalDate();
 
   public void sendPushMsg() {
-
     String textTemp =
         "<font  style='font-weight:900;font-size:14px' color=#0088EE> 纪念日提醒 </font>\n---\n";
     textTemp += "+ 和邓影影在一起: <font  style='font-weight:bold'> %s </font> 天\n";
@@ -38,8 +37,7 @@ public class DingTalkService {
     cardContent.setText(text);
     cardContent.setTitle("今DingTalkMessage天纪念日提醒");
 
-
-    BtnLink btnLink = new BtnLink("查看相册","https://www.zhoutao123.com/page/ying.html");
+    BtnLink btnLink = new BtnLink("查看相册", "https://www.zhoutao123.com/page/ying.html");
     cardContent.setBtns(Collections.singleton(btnLink));
 
     DingTalkMessage message = new DingTalkMessage(cardContent);
@@ -47,8 +45,30 @@ public class DingTalkService {
     NetUtils.sendDingMsg(token, content);
   }
 
+  public void sendCommentMsf(String name, String content, String book, String slug) {
+    String textTemp =
+        "<font  style='font-weight:900;font-size:14px' color=#0088EE> 新的评论提醒 </font>\n---\n";
+    textTemp += "+ 评论人: <font  style='font-weight:bold'> %s </font>  \n";
+    textTemp += "+ 评论内容: <font  style='font-weight:bold'> %s </font> \n";
+
+    String text = String.format(textTemp, name, content);
+
+    ActionCardContent cardContent = new ActionCardContent();
+
+    // 设置标题和内容
+    cardContent.setText(text);
+    cardContent.setTitle("新的评论提醒");
+
+    BtnLink btnLink =
+        new BtnLink("查看文章", "https://www.zhoutao123.com/page/book/" + book + "/category/" + slug);
+    cardContent.setBtns(Collections.singleton(btnLink));
+
+    DingTalkMessage message = new DingTalkMessage(cardContent);
+    String msgContent = JSON.toJSONString(message);
+    NetUtils.sendDingMsg(token, msgContent);
+  }
+
   public static long differentDays(LocalDate firstDate, LocalDate lastDay) {
     return lastDay.until(firstDate, ChronoUnit.DAYS);
   }
-
 }

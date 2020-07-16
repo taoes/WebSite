@@ -9,11 +9,23 @@ public class RecommendConverter extends AbstractConverter<Recommend, RecommendDO
 
   @Override
   public Recommend converterFrom(RecommendDO d) {
-    return null;
+    return new Recommend()
+        .setId(d.getId())
+        .setName(d.getName())
+        .setCover(d.getCover())
+        .setLink(d.getLink())
+        .setRemark(d.getRemark())
+        .setType(d.getType());
   }
 
   @Override
   public RecommendDO converterTo(Recommend recommend) {
-    return null;
+    return new RecommendDO()
+        .setId(recommend.getId())
+        .setName(recommend.getName())
+        .setCover(recommend.getCover())
+        .setLink(recommend.getLink())
+        .setRemark(recommend.getRemark())
+        .setType(recommend.getType());
   }
 }

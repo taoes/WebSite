@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>${data.title} | ${bookNameOfCN} | 燕归来兮</title>
+  <title>${data.title} | ${data.book.name} | 燕归来兮</title>
   <meta name="keywords" content="${baseSearchKey},${searchKey}">
   <meta name="description" content="${data.description}"/>
   <link rel="stylesheet" href="/css/content.css">
@@ -26,7 +26,28 @@
   <h1 class="title">${data.title}</h1>
 </div>
 
+
 <div class="contentDiv">
+
+  <div id="categoryDiv">
+      <#list  categoryList as category>
+          <#if category.slug != '#'>
+            <a class="categoryLink"
+               style="margin-left: ${(category.depth - 1 )  * 10}px"
+               href="/page/book/${bookName}/category/${category.slug}">
+                ${category.title}
+            </a>
+          <#else >
+
+            <span class="categoryLink"
+                  style="margin-left: ${(category.depth - 1 )  * 10}px;font-weight: bolder">
+                ${category.title}
+            </span>
+
+          </#if>
+      </#list>
+
+  </div>
 
   <div class="detailDiv">
     <div id="content">
@@ -150,9 +171,9 @@
       </div>
     </div>
   </div>
+
+
 </div>
-
-
 <#include "base/footer.ftl">
 </body>
 <script>

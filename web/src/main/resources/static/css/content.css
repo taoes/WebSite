@@ -4,8 +4,6 @@ body {
 }
 
 
-
-
 .title {
   font-weight: 900 !important;
   font-width: 900;
@@ -38,8 +36,8 @@ body {
   height: fit-content;
   display: flex;
   display: -webkit-flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: row;
+  align-content: center;
 }
 
 #content {
@@ -71,6 +69,7 @@ body {
   display: -webkit-flex;
   width: 90%;
   min-height: 300px;
+  border-left: 1px solid lightgrey;
 }
 
 /*设置卡片的间距*/
@@ -102,6 +101,11 @@ body {
     min-height: 300px;
   }
 
+  #categoryDiv {
+    width: 0;
+    display: none;
+  }
+
 }
 
 @media screen  and (max-width: 1200px) {
@@ -128,9 +132,26 @@ body {
     width: 95%;
     min-height: 300px;
   }
+
+  #categoryDiv {
+    width: fit-content;
+    min-width: 300px;
+    min-height: fit-content;
+    padding: 20px;
+    align-items: flex-start;
+  }
 }
 
 @media screen  and (min-width: 1200px) {
+
+  #categoryDiv {
+    width: fit-content;
+    min-width: 400px;
+    min-height: fit-content;
+    padding: 30px;
+    align-items: flex-start;
+    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1)
+  }
 
   #content {
     width: 70%;
@@ -219,7 +240,6 @@ body {
 }
 
 
-
 /* 覆盖样式*/
 .lake-card-margin {
   background: url(https://imgkr.cn-bj.ufileos.com/97e4eed2-a992-4976-acf0-ccb6fb34d308.png);
@@ -239,12 +259,16 @@ body {
 }
 
 
-.tags:last-child{
-  margin-bottom:  1rem !important;
+.tags:last-child {
+  margin-bottom: 1rem !important;
 }
 
 
-.cm-s-default{
-  font-family: Monaco, STFangsong,serif;
-  font-size: 13px;
+/*侧边目录*/
+
+.categoryLink {
+  display: block;
+  color: rgb(36, 41, 46);
+  font-size: 14px;
+  margin-top: 2px;
 }

@@ -107,9 +107,6 @@ public class BookPageController {
               .orElse("<h1 style='font-size:28px'>暂无内容,正在准备中，敬请期待...</h1>");
     }
 
-    YuqueDoc.Book book = data.getBook();
-    String bookNameOfCN = book.getName();
-
     // 读取系统配置
     Map<String, String> configMap = systemService.getByKeys(SystemConfigKey.indexKey());
     Long bookId = bookService.findByName(bookName).map(Book::getId).orElse(0L);
@@ -123,15 +120,18 @@ public class BookPageController {
     // 获取SEO关键词
     String searchKey = contentService.findSearchKey(slug);
 
+    // 获取目录
+    List<YuqueCategory> categoryList = categoryService.findByBook(bookName).getData();
+
     model.addAttribute("content", contentStr);
     model.addAttribute("config", configMap);
+    model.addAttribute("categoryList", categoryList);
     model.addAttribute("slug", slug);
     model.addAttribute("data", data);
     model.addAttribute("count", yuqueDoc.getCount());
     model.addAttribute("searchKey", searchKey);
     model.addAttribute("bookName", bookName);
     model.addAttribute("bookId", bookId);
-    model.addAttribute("bookNameOfCN", bookNameOfCN);
     model.addAttribute("comments", comments);
 
     return "book/content";

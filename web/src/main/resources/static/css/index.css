@@ -158,6 +158,5 @@
 
 .title {
   color: #303133;
-  font-weight: 900 !important;
-  font-family: "Songti SC", "Songti TC", STFangsong, serif;
+  font-weight: normal !important;
 }

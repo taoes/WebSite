@@ -56,18 +56,15 @@
   margin-top: 20px;
   margin-bottom: 10px;
   margin-left: 10px;
-  font-weight: 900;
   cursor: pointer;
   font-width: 900;
   width: fit-content;
   line-height: 1.5;
   color: #303133;
-  font-family: "Songti SC", "Songti TC", STFangsong, serif;
 }
 
 
 .title2 {
-  font-weight: 900;
   font-size: 20px;
   margin-left: 40px;
   margin-top: 10px;
@@ -76,7 +73,6 @@
   width: fit-content;
   line-height: 1.5;
   color: #000000;
-  font-family: "Songti SC", "Songti TC", STFangsong, serif;
 }
 
 
@@ -84,10 +80,8 @@
 .bookTitle {
   margin-top: 20px;
   line-height: 1.5;
-  font-weight: 900 !important;
   color: #303133;
   text-align: center;
-  font-family: "Songti SC", "Songti TC", STFangsong, serif;
 }
 
 a {

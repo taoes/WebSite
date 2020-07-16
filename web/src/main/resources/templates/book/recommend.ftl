@@ -28,7 +28,8 @@
   <a class="title1">Ⅰ、博文推荐</a>
   <div class="categoryDiv">
       <#list articles as article>
-        <a class="title2"
+        <a class="remarkSpan"
+           style="margin-bottom: 10px"
            href="/page/book/${article.book}/category/${article.slug}">${article.slugName}</a>
       </#list>
   </div>

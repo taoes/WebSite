@@ -12,6 +12,8 @@ public class BookArticle {
 
   private String slug;
 
+  private String book;
+
   private String slugName;
 
   private String searchKey;
@@ -25,6 +27,8 @@ public class BookArticle {
   private String cover;
 
   private String description;
+
+  private boolean recommend;
 
   private LocalDateTime createdAt;
 

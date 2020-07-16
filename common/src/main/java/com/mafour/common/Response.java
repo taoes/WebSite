@@ -14,4 +14,8 @@ public class Response<T> {
   public static <T> Response<T> ok(T t) {
     return new Response<T>().setCode("SUCCESS").setData(t);
   }
+
+  public static <T> Response<T> ok() {
+    return new Response<T>().setCode("SUCCESS");
+  }
 }

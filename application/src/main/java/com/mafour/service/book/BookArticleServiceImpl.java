@@ -1,6 +1,7 @@
 package com.mafour.service.book;
 
 import com.alibaba.fastjson.JSON;
+import com.mafour.dao.book.BookArticleDO;
 import com.mafour.service.book.bean.BookArticle;
 import com.mafour.service.book.converter.BookContentConverter;
 import com.mafour.service.book.yuque.YuqueDoc;
@@ -8,8 +9,10 @@ import com.mafour.service.book.yuque.YuqueDoc.Book;
 import com.mafour.service.book.yuque.YuqueDoc.Data;
 import com.mafour.tunnel.BookArticleReadTunnel;
 import com.mafour.tunnel.BookContentTunnel;
+import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -24,7 +27,7 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @Service
 @AllArgsConstructor
-public class BookArticleServiceImpl implements BookContentService {
+public class BookArticleServiceImpl implements BookArticleService {
 
   private final BookContentTunnel contentTunnel;
 
@@ -71,6 +74,17 @@ public class BookArticleServiceImpl implements BookContentService {
     return contentTunnel.getSearchBySlug(slug);
   }
 
+  @Override
+  public void recommend(boolean set, String slug) {
+    contentTunnel.updateRecommend(set, slug);
+  }
+
+  @Override
+  public List<BookArticle> recommendList() {
+    List<BookArticleDO> bookArticleDOS = contentTunnel.getRecommend();
+    return bookArticleDOS.stream().map(converter::converterFrom).collect(Collectors.toList());
+  }
+
   @SneakyThrows
   private YuqueDoc findFromYuqueApi(String bookName, String slug) {
     Request request =
@@ -102,6 +116,7 @@ public class BookArticleServiceImpl implements BookContentService {
     Book book = doc.getData().getBook();
     content
         .setId(doc.getData().getId())
+        .setBook(book.getSlug())
         .setBookName(book.getName())
         .setSlugName(data.getTitle())
         .setCover(data.getCover())

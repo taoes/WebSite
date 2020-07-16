@@ -3,7 +3,7 @@ package com.mafour.api.pages;
 import com.mafour.common.SystemConfigKey;
 import com.mafour.service.SeoService;
 import com.mafour.service.book.BookCategoryService;
-import com.mafour.service.book.BookContentService;
+import com.mafour.service.book.BookArticleService;
 import com.mafour.service.book.BookService;
 import com.mafour.service.book.bean.Book;
 import com.mafour.service.book.yuque.YuqueCategory;
@@ -39,7 +39,7 @@ public class BookPageController {
 
   private final BookCategoryService categoryService;
 
-  private final BookContentService contentService;
+  private final BookArticleService contentService;
 
   private final SystemService systemService;
 

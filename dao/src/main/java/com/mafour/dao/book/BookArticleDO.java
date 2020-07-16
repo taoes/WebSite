@@ -19,6 +19,10 @@ public class BookArticleDO {
 
   private String slug;
 
+  private String book;
+
+  private boolean recommend = false;
+
   private String searchKey;
 
   private Integer wordCount;

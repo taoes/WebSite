@@ -29,7 +29,6 @@
 
 </style>
 
-<script>
-  let openBaiduPush = '${config["BAIDU_PUSH"]}';
-  let host = window.location.hostname;
-</script>
+
+
+

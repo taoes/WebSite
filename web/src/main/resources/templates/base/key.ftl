@@ -5,8 +5,10 @@
 <link rel="stylesheet"
       href="https://pic.zhoutao123.com/lib/font-awesome-4.7.0/css/font-awesome.min.css"/>
 <script>
+  let openBaiduPush = '${config["BAIDU_PUSH"]}';
+  let host = window.location.hostname;
   if (openBaiduPush === 'true' && host.indexOf("localhost") === -1) {
-    let _hmt = _hmt || [];
+    var _hmt = _hmt || [];
     (function () {
       let hm = document.createElement("script");
       hm.src = "https://hm.baidu.com/hm.js?3065f50daa4f77563d21f9e02c330c78";

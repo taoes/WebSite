@@ -17,6 +17,8 @@ dependencies {
     compile project(":dao")
     compile project(":common")
 
+    compile 'com.qiniu:qiniu-java-sdk:7.2.27'
+
     compile group: 'com.alibaba', name: 'fastjson', version: '1.2.68'
     compile 'com.squareup.okhttp3:okhttp:3.8.1'
     compile group: 'org.redisson', name: 'redisson-spring-boot-starter', version: '3.12.5'

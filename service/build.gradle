@@ -13,7 +13,6 @@ repositories {
 }
 
 dependencies {
-
     compile group: 'com.alibaba', name: 'fastjson', version: '1.2.68'
     compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.12'
     implementation project(":common")

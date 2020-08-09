@@ -8,6 +8,7 @@ import java.net.URL;
 import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.logging.log4j.util.Strings;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,19 +33,21 @@ public class PictureController {
       InputStream inStream = conn.getInputStream(); // 通过输入流获取图片数据
 
       List<String> contentType = conn.getHeaderFields().get("Content-Type");
-      String contentTypeStr = "";
+      String contentTypeStr = Strings.EMPTY;
       if (!CollectionUtils.isEmpty(contentType)) {
         contentTypeStr = contentType.get(0);
       }
 
       byte[] data = readInputStream(inStream);
-      int read = inStream.read(data);
+      inStream.read(data);
       inStream.close();
       response.setContentType(contentTypeStr); // 设置返回的文件类型
       OutputStream os = response.getOutputStream();
       os.write(data);
       os.flush();
       os.close();
+      // 异步上传到七牛云
+
     } catch (Exception e) {
       log.info("获取图片文件信息失败:{}", e.getMessage());
     }

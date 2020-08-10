@@ -6,8 +6,6 @@
   <meta name="keywords" content="代码,技术,Java,Java,Docker,Spring,html,开发,${searchKey}">
   <link rel="stylesheet" href="/css/index.css">
     <#include "base/key.ftl">
-  <style>
-  </style>
 </head>
 <body>
 

@@ -4,6 +4,10 @@ body {
 }
 
 
+.notification {
+  background-color: #F3F2EE;
+}
+
 .title {
   font-weight: 900 !important;
   font-width: 900;
@@ -31,7 +35,7 @@ body {
 .contentDiv {
   width: 100%;
   min-height: 1024px;
-  background-color: #FFFFFF;
+  background-color: #F3F2EE;
   padding-bottom: 20px;
   height: fit-content;
   display: flex;
@@ -46,7 +50,7 @@ body {
   padding: 20px;
   flex-grow: 1;
   border-radius: 10px;
-  background-color: #FFFFFF;
+  background-color: #F3F2EE;
 }
 
 .divider {
@@ -86,7 +90,7 @@ body {
     padding: 10px;
     flex-grow: 1;
     border-radius: 10px;
-    background-color: #FFFFFF;
+    background-color: #F3F2EE;
   }
 
   #side {
@@ -117,7 +121,7 @@ body {
     padding: 10px;
     flex-grow: 1;
     border-radius: 10px;
-    background-color: #FFFFFF;
+    background-color: #F3F2EE;
   }
 
 
@@ -159,7 +163,7 @@ body {
     padding: 20px;
     flex-grow: 1;
     border-radius: 10px;
-    background-color: #FFFFFF;
+    background-color: #F3F2EE;
   }
 
 
@@ -171,7 +175,7 @@ body {
     flex-direction: column;
     flex-grow: 0;
     margin: 20px 20px 20px 30px;
-    background-color: #FFFFFF;
+    background-color: #F3F2EE;
     border-radius: 10px;
   }
 
@@ -194,7 +198,6 @@ body {
 
 #commentArea {
   width: 100%;
-  min-height: 180px;
   margin-right: 50px;
 }
 
@@ -234,7 +237,8 @@ body {
 
 .listTag {
   cursor: pointer;
-  font-size: 13px;
+  font-size: 15px;
+  margin-top: 4px;
   text-decoration: none !important;
   color: #303133 !important;
 }
@@ -242,7 +246,7 @@ body {
 
 /* 覆盖样式*/
 .lake-card-margin {
-  background: url(https://imgkr.cn-bj.ufileos.com/97e4eed2-a992-4976-acf0-ccb6fb34d308.png);
+  background: url(https://pic.zhoutao123.com/blog/img/point.png);
   width: 100%;
   background-size: 40px;
   background-repeat: no-repeat;

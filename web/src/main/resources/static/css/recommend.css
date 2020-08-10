@@ -1,6 +1,6 @@
 .contentDiv {
   width: 100%;
-  background-color: #FFFFFF;
+  background-color: #F3F2EE;
   min-height: 1000px;
   height: fit-content;
   display: flex;
@@ -25,7 +25,7 @@
     margin-top: 20px;
     margin-left: 10%;
     margin-right: 10%;
-    background-color: #FFFFFF;
+    background-color: #F3F2EE;
     padding: 20px;
     box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1)
   }
@@ -37,7 +37,7 @@
     margin-top: 20px;
     margin-left: 10%;
     margin-right: 10%;
-    background-color: #FFFFFF;
+    background-color: #F3F2EE;
     padding: 20px;
     box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1)
   }

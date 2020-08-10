@@ -155,6 +155,10 @@
     }
   }
 
+
+  a.navbar-item{
+    font-family: "Microsoft Sans Serif",SansSerif;
+  }
   a.navbar-item:hover {
     background-color: rgba(0, 0, 0, 0) !important;
   }

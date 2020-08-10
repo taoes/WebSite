@@ -1,0 +1,34 @@
+
+@font-face {
+  font-family: 'PT Serif';
+  font-style: normal;
+  font-weight: normal;
+  src: local('PT Serif'), local('PTSerif-Regular'), url('https://pic.zhoutao123.com/blog/css/pt-serif-v9-latin-regular.woff') format('woff');
+}
+@font-face {
+  font-family: 'PT Serif';
+  font-style: italic;
+  font-weight: normal;
+  src: local('PT Serif'), local('PTSerif-Italic'), url('https://pic.zhoutao123.com/blog/css/pt-serif-v9-latin-italic.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'PT Serif';
+  font-style: normal;
+  font-weight: bold;
+  src: local('PT Serif'), local('PTSerif-Bold'), url('https://pic.zhoutao123.com/blog/css/pt-serif-v9-latin-700.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'PT Serif';
+  font-style: italic;
+  font-weight: bold;
+  src: local('PT Serif'), local('PTSerif-BoldItalic'), url('https://pic.zhoutao123.com/blog/css/pt-serif-v9-latin-700italic.woff') format('woff');
+}
+
+
+
+body {
+  font-family: "PT Serif", 'Times New Roman', Times, serif;
+  background-color: #F3F2EE;
+}

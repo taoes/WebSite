@@ -73,7 +73,7 @@
         </div>
 
         <hr class="divider">
-        <div class="notification is-link is-light">
+        <div class="notification" style="background: none">
           <div class="content" id="menuContent"></div>
         </div>
         <hr class="divider">
@@ -181,22 +181,28 @@
   /**
    * 查询文章标题
    */
+
+  String.prototype['format'] = function () {
+    const e = arguments;
+    return !!this && this.replace(/\{(\d+)\}/g, function (t, r) {
+      return e[r] ? e[r] : t;
+    });
+  };
+
   $(document).ready(function (e) {
     $("div[data-lake-element='root']").children().each(function (index, element) {
       let thisObj = $(this);
       let tagName = thisObj.get(0).tagName;
       if (tagName.substr(0, 1).toUpperCase() === "H") {
         let contentH = thisObj.html();
+        let titleSize = parseInt(tagName.substr(1));
         let markId = "mark-" + tagName + "-" + index.toString();
         thisObj.attr("id", markId);
         if (contentH == null || contentH.trim().length === 0 || contentH.startsWith('<br>')) {
           return
         }
-        let data = "<a  class='listTag' href='#" + markId
-            + "''> 👉🏻  " + contentH
-            + "</a> </br>";
-        $("#menuContent").append(data);
-
+        var dataTemp = "<a  class=\'listTag\' href={0} style='margin-left: {1}px' '> {2} </a></br>";
+        $("#menuContent").append('＊' + dataTemp.format(markId,titleSize * 10, contentH));
       }
     });
   });

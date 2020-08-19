@@ -10,20 +10,7 @@
     background-color: #F3F2EE;
   }
 </style>
-<script>
-  let openBaiduPush = '${config["BAIDU_PUSH"]}';
-  let host = window.location.hostname;
-  if (openBaiduPush === 'true' && host.indexOf("localhost") === -1) {
-    var _hmt = _hmt || [];
-    (function () {
-      let hm = document.createElement("script");
-      hm.src = "https://hm.baidu.com/hm.js?3065f50daa4f77563d21f9e02c330c78";
-      let s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(hm, s);
-    })();
-    console.log("百度统计统计完成PUSH OK..")
-  }
-</script>
+
 
 
 

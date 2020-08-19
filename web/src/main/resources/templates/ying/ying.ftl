@@ -31,7 +31,7 @@
   </div>
 </div>
 
-
+<#include "base/footer.ftl">
 <script src="/js/imagesloaded.pkgd.min.js"></script>
 <script src="/js/masonry.pkgd.min.js"></script>
 <script src="/js/classie.js"></script>

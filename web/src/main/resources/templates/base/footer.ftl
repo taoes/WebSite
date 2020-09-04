@@ -19,10 +19,12 @@
     justify-content: center;
     align-items: center;
     margin-top: 40px;
+    width: 100%;
   }
 
   .footerFont {
     color: white;
+
   }
 
   @media screen and (max-width: 1200px) {

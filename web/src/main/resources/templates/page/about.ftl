@@ -27,15 +27,11 @@
         <#list  personInfoList as info>
           <i class="${info.icon} iconfont"></i>
         </#list>
-
-
     </div>
     <span class="whiteSpan subTitle">
                 Talk is cheap, show me your code
             </span>
   </div>
-
-
 
 </div>
 <#include "base/footer.ftl">

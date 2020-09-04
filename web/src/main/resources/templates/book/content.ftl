@@ -33,8 +33,8 @@
       <div>
         <div id="tagList" class="field is-grouped is-grouped-multiline">
           <button class="layui-btn layui-btn-normal layui-btn-sm" onclick="toYuquePage()">访问语雀文档</button>
-          <button class="layui-btn layui-btn-primary layui-btn-sm"  onclick="toCategoryPage()">返回目录</button>
-          <button class="layui-btn layui-btn-disabled  layui-btn-sm" href="#">访问次数:${count}</button>
+          <button class="layui-btn layui-btn-normal layui-btn-sm"  onclick="toCategoryPage()">返回目录</button>
+          <button class="layui-btn layui-btn-normal  layui-btn-sm" href="#">访问次数:${count}</button>
         </div>
       </div>
 

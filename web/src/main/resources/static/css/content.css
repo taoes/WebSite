@@ -32,19 +32,8 @@ body {
   margin: auto;
 }
 
-.contentDiv {
-  width: 100%;
-  min-height: 1024px;
-  background-color: #FFF;
-  padding-bottom: 20px;
-  height: fit-content;
-  display: flex;
-  display: -webkit-flex;
-  flex-direction: row;
-  align-content: center;
-}
 
-#content {
+#documentInfo {
   width: 80%;
   margin-top: 20px;
   padding: 20px;
@@ -55,8 +44,8 @@ body {
 
 .divider {
   height: 1px;
-  margin: 0;
   background-color: lightgray;
+  margin: 10px 0 0;
 }
 
 
@@ -71,6 +60,7 @@ body {
 .detailDiv {
   display: flex;
   display: -webkit-flex;
+  flex-direction: column;
   width: 90%;
   min-height: 300px;
   border-left: 1px solid lightgrey;
@@ -82,9 +72,22 @@ body {
   border-radius: 10px;
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (min-width: 800px) {
 
-  #content {
+  .contentDiv {
+    width: 67%;
+    min-height: 1024px;
+    background-color: #FFF;
+    padding-bottom: 20px;
+    height: fit-content;
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: column;
+    justify-items: center;
+    justify-content: center;
+  }
+
+  #documentInfo {
     width: 100%;
     margin-top: 20px;
     padding: 10px;
@@ -112,10 +115,22 @@ body {
 
 }
 
-@media screen  and (max-width: 1200px) {
+@media screen  and (max-width: 800px) {
+
+  .contentDiv {
+    width: 90%;
+    min-height: 1024px;
+    background-color: #FFF;
+    padding-bottom: 20px;
+    height: fit-content;
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: column;
+    align-content: center;
+  }
 
 
-  #content {
+  #documentInfo {
     width: 100%;
     margin-top: 20px;
     padding: 10px;
@@ -157,7 +172,7 @@ body {
     box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1)
   }
 
-  #content {
+  #documentInfo {
     width: 70%;
     margin-top: 20px;
     padding: 20px;
@@ -275,4 +290,37 @@ body {
   color: rgb(36, 41, 46);
   font-size: 14px;
   margin-top: 2px;
+}
+
+/*评论列表*/
+.commentDiv{
+  display: flex;
+}
+
+.media-content{
+  margin-left: 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+.commentTime{
+  color: lightgrey;
+  margin-left: 10px;
+}
+.commentUrl{
+  color: #007DDB;
+}
+
+.commentContent{
+  margin-top: 20px;
+}
+
+/*评论表单样式*/
+.layui-form-label {
+  padding: 9px 10px !important;
+  width: fit-content !important;
+}
+
+.layui-input-block{
+  margin-left: 50px !important;
 }

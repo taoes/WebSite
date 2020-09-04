@@ -1,10 +1,10 @@
-
 @font-face {
   font-family: 'PT Serif';
   font-style: normal;
   font-weight: normal;
   src: local('PT Serif'), local('PTSerif-Regular'), url('https://pic.zhoutao123.com/blog/css/pt-serif-v9-latin-regular.woff') format('woff');
 }
+
 @font-face {
   font-family: 'PT Serif';
   font-style: italic;
@@ -25,7 +25,6 @@
   font-weight: bold;
   src: local('PT Serif'), local('PTSerif-BoldItalic'), url('https://pic.zhoutao123.com/blog/css/pt-serif-v9-latin-700italic.woff') format('woff');
 }
-
 
 
 body {

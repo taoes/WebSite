@@ -27,160 +27,106 @@
 </div>
 
 
-<div class="contentDiv">
-
-  <div id="categoryDiv">
-      <#list  categoryList as category>
-          <#if category.slug != '#'>
-            <a class="categoryLink"
-               style="margin-left: ${(category.depth - 1 )  * 10}px"
-               href="/page/book/${bookName}/category/${category.slug}">
-                ${category.title}
-            </a>
-          <#else >
-
-            <span class="categoryLink"
-                  style="margin-left: ${(category.depth - 1 )  * 10}px;font-weight: bolder">
-                ${category.title}
-            </span>
-
-          </#if>
-      </#list>
-
-  </div>
-
-  <div class="detailDiv">
-    <div id="content">
+<div style="width: 100%;display: flex;justify-content: center;background-color: white">
+  <div class="contentDiv">
+    <div id="documentInfo">
       <div>
         <div id="tagList" class="field is-grouped is-grouped-multiline">
-          <div class="tags has-addons">
-            <span class="tag">语雀文档</span>
-            <a class="tag is-link"
-               href="https://www.yuque.com/zhoutao123/${bookName}/${slug}">访问</a>
-          </div>
-
-
-          <div class="tags has-addons">
-            <span class="tag">返回目录</span>
-            <a class="tag is-link" <#if bookId != 0>href="/page/book/${bookId}"
-               <#else>href="/page/blog"</#if> >访问</a>
-          </div>
-
-
-          <div class="tags has-addons">
-            <span class="tag">访问次数</span>
-            <a class="tag is-success" href="#">${count}</a>
-          </div>
+          <button class="layui-btn layui-btn-normal layui-btn-sm" onclick="toYuquePage()">访问语雀文档</button>
+          <button class="layui-btn layui-btn-primary layui-btn-sm"  onclick="toCategoryPage()">返回目录</button>
+          <button class="layui-btn layui-btn-disabled  layui-btn-sm" href="#">访问次数:${count}</button>
         </div>
-
-        <hr class="divider">
-        <div class="notification" style="background: none">
-          <div class="content" id="menuContent"></div>
-        </div>
-        <hr class="divider">
       </div>
 
-      <div id="detail">
-          ${content}
+      <hr class="divider">
+      <div class="notification" style="background: none">
+        <div class="content" id="menuContent"></div>
       </div>
-      <div style="height: 50px"></div>
-
+    </div>
+    <div id="detail">
+        ${content}
+    </div>
+    <div style="height: 50px"></div>
+    <div id="comment">
       <hr class="split-pane-divider">
-
-        <#--      评论表单-->
-      <div id="comment">
-        <div id="commentInfo">
-          <div class="layui-form-item">
-            <label class="layui-form-label">称呼</label>
-            <div class="layui-input-block">
-              <input type="text" id="nickname" required lay-verify="required" placeholder="您的称呼"
-                     autocomplete="off" class="layui-input">
-            </div>
+      <div id="commentInfo">
+        <div class="layui-form-item">
+          <label class="layui-form-label">称呼</label>
+          <div class="layui-input-block">
+            <input type="text" id="nickname" required lay-verify="required" placeholder="您的称呼"
+                   autocomplete="off" class="layui-input">
           </div>
-
-
-          <div class="layui-form-item">
-            <label class="layui-form-label">邮箱</label>
-            <div class="layui-input-block">
-              <input type="text" id="email" required lay-verify="required" placeholder="您的邮箱"
-                     autocomplete="off" class="layui-input">
-            </div>
-          </div>
-
-          <div class="layui-form-item">
-            <label class="layui-form-label">主页</label>
-            <div class="layui-input-block">
-              <input type="text" id="website" required lay-verify="required" placeholder="您的网站主页"
-                     autocomplete="off" class="layui-input">
-            </div>
-          </div>
-
         </div>
 
-        <div class="layui-form-item layui-form-text">
-          <label class="layui-form-label">评论内容</label>
+
+        <div class="layui-form-item">
+          <label class="layui-form-label">邮箱</label>
           <div class="layui-input-block">
-            <textarea name="desc" placeholder="请输入您的评论内容" class="layui-textarea"
-                      id="commentArea"></textarea>
+            <input type="text" id="email" required lay-verify="required" placeholder="您的邮箱"
+                   autocomplete="off" class="layui-input">
           </div>
         </div>
 
         <div class="layui-form-item">
+          <label class="layui-form-label">主页</label>
           <div class="layui-input-block">
-            <button class="layui-btn layui-btn-sm layui-btn-normal" onclick="submitComment()">提交
-            </button>
-            <button class="layui-btn layui-btn-sm layui-btn-danger" onclick="reset()">重置</button>
+            <input type="text" id="website" required lay-verify="required" placeholder="您的网站主页"
+                   autocomplete="off" class="layui-input">
           </div>
+        </div>
+
+      </div>
+
+      <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">内容</label>
+        <div class="layui-input-block">
+            <textarea name="desc" placeholder="请输入您的评论内容" class="layui-textarea"
+                      id="commentArea"></textarea>
         </div>
       </div>
 
-      <div style="height: 50px"></div>
-
-      <hr class="split-pane-divider">
-
-        <#--      评论列表-->
-      <div id="commentList">
-          <#list  comments as comment>
-            <div>
-              <article class="media">
-                <figure class="media-left">
-                  <p class="image is-64x64">
-                    <img src="https://pic.zhoutao123.com/picture/index/header.jpeg" alt="头像加载失败">
-                  </p>
-                </figure>
-                <div class="media-content">
-                  <div class="content">
-                    <p>
-                      <strong>
-                        <a href="${comment.url}">
-                            ${comment.name}
-                        </a>
-                      </strong><small>${comment.createTime?string('yyyy-MM-dd HH:mm:ss')}</small>
-                      <br>
-                        ${comment.content}
-                    </p>
-                  </div>
-                  <nav class="level is-mobile">
-                    <div class="level-left">
-                      <a class="level-item">
-                        <span class="icon is-small"><i class="fa fa-reply"></i></span>
-                      </a>
-                      <a class="level-item">
-                        <span class="icon is-small"><i class="fa fa-retweet"></i></span>
-                      </a>
-                      <a class="level-item">
-                        <span class="icon is-small"><i class="fa fa-heart"></i></span>
-                      </a>
-                    </div>
-                  </nav>
-                </div>
-              </article>
-              <hr class="split-pane-divider">
-            </div>
-          </#list>
+      <div class="layui-form-item">
+        <div class="layui-input-block">
+          <button class="layui-btn layui-btn-sm layui-btn-normal" onclick="submitComment()">提交
+          </button>
+          <button class="layui-btn layui-btn-sm layui-btn-danger" onclick="reset()">重置</button>
+        </div>
       </div>
     </div>
+    <div style="height: 30px"></div>
+    <div id="commentList">
+        <#list  comments as comment>
+          <div class="commentDiv">
+            <img src="https://pic.zhoutao123.com/picture/index/header.jpeg" alt="头像加载失败"
+                 width="64px">
+
+            <div class="media-content">
+              <div class="content">
+                <p>
+                  <strong>
+                    <a href="${comment.url}" class="commentUrl">
+                        ${comment.name}
+                    </a>
+                  </strong>
+                  <small
+                      class="commentTime">${comment.createTime?string('yyyy-MM-dd HH:mm:ss')}</small>
+                <p class="commentContent">
+
+                    ${comment.content}
+                </p>
+                </p>
+              </div>
+
+
+            </div>
+
+            <hr class="split-pane-divider">
+          </div>
+        </#list>
+    </div>
   </div>
+</div>
+</div>
 
 
 </div>
@@ -223,15 +169,14 @@
 
   /**
    * 跳转到新的图书页面
-   * @param bookId
+
    */
-  function openNewBookPage(bookId) {
-    window.open("/page/book/" + bookId)
+  function toCategoryPage() {
+    window.location.href = "/page/book/${bookId}";
   }
 
-  /** 打开Github登录页面*/
-  function openGithubLoginPage() {
-    window.location.href = "https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=${githubCallback}"
+  function toYuquePage() {
+    window.location.href = 'https://www.yuque.com/zhoutao123/${bookName}/${slug}';
   }
 
   /**

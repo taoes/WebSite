@@ -5,7 +5,7 @@ body {
 
 
 .notification {
-  background-color: #F3F2EE;
+  background-color: #FFF;
 }
 
 .title {
@@ -35,7 +35,7 @@ body {
 .contentDiv {
   width: 100%;
   min-height: 1024px;
-  background-color: #F3F2EE;
+  background-color: #FFF;
   padding-bottom: 20px;
   height: fit-content;
   display: flex;
@@ -50,7 +50,7 @@ body {
   padding: 20px;
   flex-grow: 1;
   border-radius: 10px;
-  background-color: #F3F2EE;
+  background-color: #FFF;
 }
 
 .divider {
@@ -90,7 +90,7 @@ body {
     padding: 10px;
     flex-grow: 1;
     border-radius: 10px;
-    background-color: #F3F2EE;
+    background-color: #FFF;
   }
 
   #side {
@@ -121,7 +121,7 @@ body {
     padding: 10px;
     flex-grow: 1;
     border-radius: 10px;
-    background-color: #F3F2EE;
+    background-color: #FFF;
   }
 
 
@@ -163,7 +163,7 @@ body {
     padding: 20px;
     flex-grow: 1;
     border-radius: 10px;
-    background-color: #F3F2EE;
+    background-color: #FFF;
   }
 
 
@@ -175,7 +175,7 @@ body {
     flex-direction: column;
     flex-grow: 0;
     margin: 20px 20px 20px 30px;
-    background-color: #F3F2EE;
+    background-color: #FFF;
     border-radius: 10px;
   }
 

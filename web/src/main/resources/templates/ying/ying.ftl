@@ -8,7 +8,7 @@
   <link rel="stylesheet" type="text/css" href="/css/style1.css"/>
   <script src="/js/modernizr-custom.js"></script>
 </head>
-<#include "base/header.ftl">
+<#include "component/PcMenu.ftl">
 <div style="height: 40px;width: 100%"></div>
 <body class="demo-1">
 <div class="container">

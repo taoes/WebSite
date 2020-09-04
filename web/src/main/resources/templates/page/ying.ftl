@@ -7,7 +7,7 @@
 
 </head>
 <body>
-<#include "base/header.ftl">
+<#include "component/PcMenu.ftl">
 
 <div id="pictureDiv">
 

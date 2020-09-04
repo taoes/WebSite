@@ -30,5 +30,5 @@
 
 body {
   font-family: "PT Serif", 'Times New Roman', Times, serif;
-  background-color: #F3F2EE;
+  min-height: 1024px;
 }

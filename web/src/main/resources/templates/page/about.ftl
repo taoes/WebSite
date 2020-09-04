@@ -17,7 +17,7 @@
   </style>
 </head>
 <body>
-<#include "base/header.ftl">
+<#include "component/PcMenu.ftl">
 
 <div class="personInfo">
   <div class="bgContent">

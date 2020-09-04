@@ -6,7 +6,7 @@
     <#include "base/key.ftl">
 </head>
 <body>
-<#include "base/header.ftl">
+<#include "component/PcMenu.ftl">
 
 <div id="errorDiv">
   <p class="errorCode">${code}</p>

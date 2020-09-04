@@ -7,7 +7,7 @@
 
 </head>
 <body>
-<#include "base/header.ftl">
+<#include "component/PcMenu.ftl">
 
 <h1>我的沃恩当</h1>
 

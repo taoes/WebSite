@@ -19,7 +19,7 @@
 
 </head>
 <body>
-<#include "base/header.ftl">
+<#include "component/PcMenu.ftl">
 <div id="indexBackDiv">
   <h1 class="title">资源推荐</h1>
 </div>

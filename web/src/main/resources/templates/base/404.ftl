@@ -6,12 +6,12 @@
     <#include "base/key.ftl">
 </head>
 <body>
-<#include "base/header.ftl">
+<#include "component/PcMenu.ftl">
 
 <div id="errorDiv">
   <p class="errorCode">${code}</p>
   <p style="margin-bottom: 20px">${msg!}</p>
-  <button class="button is-link" onclick="window.location.href='/'">返回首页</button>
+  <button class="layui-btn layui-btn-danger" onclick="window.location.href='/'">返回首页</button>
 </div>
 </body>
 <style>

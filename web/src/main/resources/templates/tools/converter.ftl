@@ -7,7 +7,7 @@
     <#include "base/key.ftl">
 </head>
 <body>
-<#include "base/header.ftl">
+<#include "component/PcMenu.ftl">
 
 
 <div id="toolsDiv">

@@ -10,7 +10,7 @@
 
 </head>
 <body>
-<#include "./base/header.ftl">
+<#include "./component/PcMenu.ftl">
 
 <div class="contentDiv">
   <h1 style="margin-top: 0" class="bookTitle title is-2">${book.title}</h1>

@@ -1,9 +1,10 @@
 package com.mafour.api.pages;
 
 import com.mafour.common.SystemConfigKey;
+import com.mafour.exception.NotFoundException;
 import com.mafour.service.SeoService;
-import com.mafour.service.book.BookCategoryService;
 import com.mafour.service.book.BookArticleService;
+import com.mafour.service.book.BookCategoryService;
 import com.mafour.service.book.BookService;
 import com.mafour.service.book.bean.Book;
 import com.mafour.service.book.yuque.YuqueCategory;
@@ -11,6 +12,8 @@ import com.mafour.service.book.yuque.YuqueCategoryData;
 import com.mafour.service.book.yuque.YuqueDoc;
 import com.mafour.service.comment.Comment;
 import com.mafour.service.comment.CommentService;
+import com.mafour.service.github.Github;
+import com.mafour.service.github.GithubService;
 import com.mafour.service.system.SystemService;
 import java.io.IOException;
 import java.util.List;
@@ -46,6 +49,8 @@ public class BookPageController {
   private final CommentService commentService;
 
   private final SeoService seoService;
+
+  private final GithubService githubService;
 
   private static final String PIC_PREFIX = "https://cdn.nlark.com/";
 
@@ -135,5 +140,27 @@ public class BookPageController {
     model.addAttribute("comments", comments);
 
     return "book/content";
+  }
+
+  @GetMapping("/more/list")
+  public String indexPage(Model model, HttpServletRequest request) {
+    String queryString = request.getQueryString();
+    if (queryString != null && queryString.length() > 0) {
+      throw new NotFoundException("页面资源不存在，" + request.getRequestURL());
+    }
+
+    // 获取图书列表
+    List<Book> bookList = bookService.findAllBook();
+
+    // 获取Github列表
+    List<Github> githubList = githubService.findAll();
+
+    // 获取系统配置
+    Map<String, String> configMap = systemService.getByKeys(SystemConfigKey.indexKey());
+
+    model.addAttribute("config", configMap);
+    model.addAttribute("bookList", bookList);
+    model.addAttribute("githubList", githubList);
+    return "bookList";
   }
 }

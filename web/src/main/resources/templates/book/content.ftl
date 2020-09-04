@@ -20,7 +20,7 @@
 </head>
 
 <body>
-<#include "./base/header.ftl">
+<#include "./component/PcMenu.ftl">
 
 <div id="indexBackDiv">
   <h1 class="title">${data.title}</h1>
@@ -66,6 +66,7 @@
                <#else>href="/page/blog"</#if> >访问</a>
           </div>
 
+
           <div class="tags has-addons">
             <span class="tag">访问次数</span>
             <a class="tag is-success" href="#">${count}</a>
@@ -85,50 +86,59 @@
       <div style="height: 50px"></div>
 
       <hr class="split-pane-divider">
+
+        <#--      评论表单-->
       <div id="comment">
         <div id="commentInfo">
-          <div class="field">
-            <div class="control has-icons-left">
-              <span class="icon has-text-info">
-                <i class="fa fa-envira"></i>
-              </span>
-              <input class="input" id="nickname" type="email"
-                     placeholder="您的称呼">
-            </div>
-          </div>
-          <div style="width: 4%"></div>
-          <div class="field">
-            <div class="control has-icons-left">
-              <span class="icon has-text-info">
-                <i class="fa fa-envelope"></i>
-              </span>
-              <input class="input" id="email" type="email"
-                     placeholder="您的邮箱">
+          <div class="layui-form-item">
+            <label class="layui-form-label">称呼</label>
+            <div class="layui-input-block">
+              <input type="text" id="nickname" required lay-verify="required" placeholder="您的称呼"
+                     autocomplete="off" class="layui-input">
             </div>
           </div>
 
-          <div style="width: 4%"></div>
 
-          <div class="field">
-            <div class="control has-icons-left">
-              <span class="icon has-text-info">
-                <i class="fa fa-chrome"></i>
-              </span>
-              <input class="input" id="website" type="text" placeholder="(可选)您的网址">
-
+          <div class="layui-form-item">
+            <label class="layui-form-label">邮箱</label>
+            <div class="layui-input-block">
+              <input type="text" id="email" required lay-verify="required" placeholder="您的邮箱"
+                     autocomplete="off" class="layui-input">
             </div>
+          </div>
+
+          <div class="layui-form-item">
+            <label class="layui-form-label">主页</label>
+            <div class="layui-input-block">
+              <input type="text" id="website" required lay-verify="required" placeholder="您的网站主页"
+                     autocomplete="off" class="layui-input">
+            </div>
+          </div>
+
+        </div>
+
+        <div class="layui-form-item layui-form-text">
+          <label class="layui-form-label">评论内容</label>
+          <div class="layui-input-block">
+            <textarea name="desc" placeholder="请输入您的评论内容" class="layui-textarea"
+                      id="commentArea"></textarea>
           </div>
         </div>
-        <textarea class="textarea" placeholder="请输入您的评论内容" id="commentArea"></textarea>
-        <div class="buttons">
-          <button class="button is-link" onclick="submitComment()">提交</button>
-          <button class="button is-danger" onclick="reset()">重置</button>
+
+        <div class="layui-form-item">
+          <div class="layui-input-block">
+            <button class="layui-btn layui-btn-sm layui-btn-normal" onclick="submitComment()">提交
+            </button>
+            <button class="layui-btn layui-btn-sm layui-btn-danger" onclick="reset()">重置</button>
+          </div>
         </div>
       </div>
 
       <div style="height: 50px"></div>
 
       <hr class="split-pane-divider">
+
+        <#--      评论列表-->
       <div id="commentList">
           <#list  comments as comment>
             <div>
@@ -202,7 +212,7 @@
           return
         }
         var dataTemp = "<a  class=\'listTag\' href={0} style='margin-left: {1}px' '> {2} </a></br>";
-        $("#menuContent").append('＊' + dataTemp.format(markId,titleSize * 10, contentH));
+        $("#menuContent").append('＊' + dataTemp.format(markId, titleSize * 10, contentH));
       }
     });
   });

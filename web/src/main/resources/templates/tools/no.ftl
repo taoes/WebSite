@@ -6,7 +6,7 @@
     <#include "base/key.ftl">
 </head>
 <body>
-  <#include "base/header.ftl">
+  <#include "component/PcMenu.ftl">
   <h1 style="margin: 20px;align-items: center"> 本页面正在开发中，敬请期待</h1>
 </body>
 </html>

@@ -68,6 +68,30 @@ public class DingTalkService {
     NetUtils.sendDingMsg(token, msgContent);
   }
 
+  public void sendStatMsf(String bookName, String slug, Integer value) {
+    String textTemp =
+        "<font  style='font-weight:900;font-size:14px' color=#0088EE> 新的文章被评星 </font>\n---\n";
+    textTemp += "+ bookName: <font  style='font-weight:bold'> %s </font>  \n";
+    textTemp += "+ SlugName: <font  style='font-weight:bold'> %s </font> \n";
+    textTemp += "+ Value: <font  style='font-weight:bold'> %s </font> \n";
+
+    String text = String.format(textTemp, bookName, slug, value);
+
+    ActionCardContent cardContent = new ActionCardContent();
+
+    // 设置标题和内容
+    cardContent.setText(text);
+    cardContent.setTitle("新的评级提醒");
+
+    BtnLink btnLink =
+        new BtnLink("查看文章", "https://www.zhoutao123.com/page/book/" + bookName + "/category/" + slug);
+    cardContent.setBtns(Collections.singleton(btnLink));
+
+    DingTalkMessage message = new DingTalkMessage(cardContent);
+    String msgContent = JSON.toJSONString(message);
+    NetUtils.sendDingMsg(token, msgContent);
+  }
+
   public static long differentDays(LocalDate firstDate, LocalDate lastDay) {
     return lastDay.until(firstDate, ChronoUnit.DAYS);
   }

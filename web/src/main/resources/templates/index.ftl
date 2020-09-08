@@ -11,7 +11,7 @@
 
 <#include "component/PcMenu.ftl">
 
-<div style="background: url('${config["INDEX_IMG"]}') no-repeat;" class="indexImgDiv">
+<div style="background: url('${config["INDEX_IMG"]}');" class="indexImgDiv">
   <h1 class="indexTitle">求知若渴，虚怀若愚</h1>
   <h4 class="indexSubTitle">Stay Hungry &nbsp;&nbsp;&nbsp;Stay Foolish</h4>
 </div>

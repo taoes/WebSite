@@ -6,15 +6,15 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 @Data
-@TableName("book_article_read")
-public class BookArticleReadDO {
+@TableName("book_article_start")
+public class BookArticleStartDO {
 
   @TableId(type = IdType.AUTO)
   private Long id;
 
   private String bookName;
 
-  private String slug;
+  private String slugName;
 
-  private Integer count;
+  private Integer value;
 }

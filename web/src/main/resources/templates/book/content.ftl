@@ -32,9 +32,12 @@
     <div id="documentInfo">
       <div>
         <div id="tagList" class="field is-grouped is-grouped-multiline">
-          <button class="layui-btn layui-btn-normal layui-btn-sm" onclick="toYuquePage()">访问语雀文档</button>
-          <button class="layui-btn layui-btn-normal layui-btn-sm"  onclick="toCategoryPage()">返回目录</button>
+          <button class="layui-btn layui-btn-normal layui-btn-sm" onclick="toYuquePage()">访问语雀文档
+          </button>
+          <button class="layui-btn layui-btn-normal layui-btn-sm" onclick="toCategoryPage()">返回目录
+          </button>
           <button class="layui-btn layui-btn-normal  layui-btn-sm" href="#">访问次数:${count}</button>
+          <div id="rate" class="rate"></div>
         </div>
       </div>
 
@@ -158,7 +161,7 @@
           return
         }
         var dataTemp = "<a  class=\'listTag\' href={0} style='margin-left: {1}px' '> {2} </a></br>";
-        $("#menuContent").append('＊' + dataTemp.format(markId, titleSize * 10, contentH));
+        $("#menuContent").append('＊' + dataTemp.format("#"+markId, titleSize * 10, contentH));
       }
     });
   });
@@ -226,5 +229,40 @@
   $(document).ready(function () {
     $("div[data-lake-card='codeblock']").addClass("lake-card-margin");
   })
+
+  layui.use('rate', function () {
+    var rate = layui.rate;
+
+    //渲染
+    var ins1 = rate.render({
+      elem: '#rate',  //绑定元素
+      text: true,
+      value: ${start},
+      choose: function (value) {
+        // 发送POST请求
+        $.ajax({
+          contentType: 'application/json',
+          type: 'GET',
+          url: "/book_article/start?book=${bookName}&slug=${slug}&value=" + value,
+          success: function (message) {
+            layer.msg('提交完成，当前文章综合评分:'+message.data);
+            this.value = message.data;
+          }
+        });
+
+        // 本地缓存
+        localStorage.setItem("${bookName}/${slug}", value);
+      }, setText: function (value) {
+        var arrs = {
+          '1': '垃圾'
+          , '2': '一般'
+          , '3': '中等'
+          , '4': '良好',
+          '5': '优秀'
+        };
+        this.span.text(arrs[value] || (value + "文章"));
+      }
+    });
+  });
 </script>
 </html>

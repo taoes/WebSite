@@ -4,7 +4,6 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.mafour.dao.book.BookArticleReadDO;
 import com.mafour.mapper.BookArticleReadMapper;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -28,7 +27,7 @@ public class BookArticleReadTunnel extends ServiceImpl<BookArticleReadMapper, Bo
   }
 
 
-  private BookArticleReadDO findBySlugAndBookName(String bookName,String slug){
+  public BookArticleReadDO findBySlugAndBookName(String bookName,String slug){
     LambdaQueryWrapper<BookArticleReadDO> wrapper = new LambdaQueryWrapper<BookArticleReadDO>()
         .eq(BookArticleReadDO::getBookName, bookName)
         .eq(BookArticleReadDO::getSlug, slug)

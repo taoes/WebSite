@@ -4,6 +4,7 @@ import com.mafour.common.SystemConfigKey;
 import com.mafour.exception.NotFoundException;
 import com.mafour.service.SeoService;
 import com.mafour.service.book.BookArticleService;
+import com.mafour.service.book.BookArticleStartService;
 import com.mafour.service.book.BookCategoryService;
 import com.mafour.service.book.BookService;
 import com.mafour.service.book.bean.Book;
@@ -51,6 +52,8 @@ public class BookPageController {
   private final SeoService seoService;
 
   private final GithubService githubService;
+
+  private final BookArticleStartService startService;
 
   private static final String PIC_PREFIX = "https://cdn.nlark.com/";
 
@@ -128,6 +131,9 @@ public class BookPageController {
     // 获取目录
     List<YuqueCategory> categoryList = categoryService.findByBook(bookName).getData();
 
+    // 获取评级
+    Integer start = startService.getStart(bookName, slug);
+
     model.addAttribute("content", contentStr);
     model.addAttribute("config", configMap);
     model.addAttribute("categoryList", categoryList);
@@ -138,6 +144,7 @@ public class BookPageController {
     model.addAttribute("bookName", bookName);
     model.addAttribute("bookId", bookId);
     model.addAttribute("comments", comments);
+    model.addAttribute("start", start);
 
     return "book/content";
   }

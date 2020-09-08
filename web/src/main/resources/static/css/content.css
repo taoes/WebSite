@@ -293,25 +293,26 @@ body {
 }
 
 /*评论列表*/
-.commentDiv{
+.commentDiv {
   display: flex;
 }
 
-.media-content{
+.media-content {
   margin-left: 30px;
   display: flex;
   flex-direction: column;
 }
 
-.commentTime{
+.commentTime {
   color: lightgrey;
   margin-left: 10px;
 }
-.commentUrl{
+
+.commentUrl {
   color: #007DDB;
 }
 
-.commentContent{
+.commentContent {
   margin-top: 20px;
 }
 
@@ -321,6 +322,13 @@ body {
   width: fit-content !important;
 }
 
-.layui-input-block{
+.layui-input-block {
   margin-left: 50px !important;
+}
+
+
+/*评分组件*/
+.rate {
+  margin-left: 20px;
+  margin-top: -8px;
 }

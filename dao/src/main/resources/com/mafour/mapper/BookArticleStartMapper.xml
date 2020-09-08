@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mafour.mapper.BookArticleStartMapper">
+
+
+  <select id="avg" resultType="java.lang.Double">
+    SELECT AVG(value)
+    FROM book_article_start
+    WHERE book_name = #{bookName}
+      AND slug_name = #{slugName}
+  </select>
+</mapper>

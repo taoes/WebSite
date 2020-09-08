@@ -107,8 +107,15 @@ public class BookPageController {
     YuqueDoc.Data data = yuqueDoc.getData();
     String host = request.getHeader("Host");
     String contentStr;
+    String webProtocol;
+    if (StringUtils.hasText(host) && host.contains("zhoutao123")) {
+      webProtocol = "https://";
+    } else {
+      webProtocol = "http://";
+    }
     if (StringUtils.hasText(data.getBody_html())) {
-      contentStr = data.getBody_html().replaceAll(PIC_PREFIX, "http://" + host + "/picture?param=");
+      contentStr =
+          data.getBody_html().replaceAll(PIC_PREFIX, webProtocol + host + "/picture?param=");
     } else {
       contentStr =
           Optional.ofNullable(yuqueDoc.getData().getBody_html())

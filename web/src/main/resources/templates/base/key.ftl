@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="/css/key.css">
 <link rel="stylesheet" href="/layui/css/layui.css">
 <link rel="stylesheet" href="https://pic.zhoutao123.com/lib/font-awesome-4.7.0/css/font-awesome.min.css"/>
-<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script src="https://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
 <style>
   .fa {
     margin-right: 10px;

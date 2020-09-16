@@ -30,7 +30,7 @@ public class BookArticleController {
 
   @GetMapping("/start")
   public Response<Integer> stat(
-      @RequestParam String book, @RequestParam String slug, @RequestParam Integer value) {
+      @RequestParam String book, @RequestParam String slug, @RequestParam int value) {
     Integer stat = startService.createStart(book, slug, value);
     return Response.ok(stat);
   }

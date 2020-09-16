@@ -75,7 +75,7 @@ public class DingTalkService {
     textTemp += "+ SlugName: <font  style='font-weight:bold'> %s </font> \n";
     textTemp += "+ Value: <font  style='font-weight:bold'> %s </font> \n";
 
-    String text = String.format(textTemp, bookName, slug, value);
+    String text = String.format(textTemp, bookName, slug, String.valueOf(value));
 
     ActionCardContent cardContent = new ActionCardContent();
 

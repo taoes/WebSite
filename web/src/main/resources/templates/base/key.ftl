@@ -10,7 +10,6 @@
   }
 
   body {
-    font-family: "PT Serif", 'Times New Roman', Times, serif;
     font-weight: bold;
   }
 

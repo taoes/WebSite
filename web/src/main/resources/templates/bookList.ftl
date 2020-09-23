@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title>${title} | 不忘初心、方得始终</title>
   <meta name="keywords" content="代码,技术,Java,Java,Docker,Spring,html,开发,${searchKey}">
-  <link rel="stylesheet" href="/css/index.css">
+  <link rel="stylesheet" href="/css/bookList.css">
     <#include "base/key.ftl">
 </head>
 <body>

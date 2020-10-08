@@ -43,7 +43,7 @@
         <b>永远相信美好的事情即将发生！！！</b>
       </p>
     </div>
-    <img src="https://angular.cn/generated/images/marketing/home/speed-performance.svg"
+    <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1598618206951&di=cb8e8f13832e103c2dde7f7119238028&imgtype=0&src=http%3A%2F%2Fimg.pconline.com.cn%2Fimages%2Fupload%2Fupc%2Ftx%2Fitbbs%2F1310%2F03%2Fc8%2F26763845_1380759569574.jpg"
          width="317px"
          alt=""
          class="right">
@@ -52,7 +52,7 @@
   <hr class="layui-bg-gray" style="width: 100%">
 
   <div class="tab">
-    <img src="https://angular.cn/generated/images/marketing/home/joyful-development.svg"
+    <img src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=281152632,2078344269&fm=26&gp=0.jpg"
          width="317px"
          alt="">
     <div class="tabDesc right">

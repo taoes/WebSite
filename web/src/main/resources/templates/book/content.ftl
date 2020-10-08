@@ -32,11 +32,11 @@
     <div id="documentInfo">
       <div>
         <div id="tagList" class="field is-grouped is-grouped-multiline">
-          <button class="layui-btn layui-btn-normal layui-btn-sm" onclick="toYuquePage()">访问语雀文档
+          <button class="layui-btn layui-btn-primary  layui-btn-sm" onclick="toYuquePage()">语雀
           </button>
-          <button class="layui-btn layui-btn-normal layui-btn-sm" onclick="toCategoryPage()">返回目录
+          <button class="layui-btn layui-btn-primary layui-btn-sm" onclick="toCategoryPage()">目录
           </button>
-          <button class="layui-btn layui-btn-normal  layui-btn-sm" href="#">访问次数:${count}</button>
+          <button class="layui-btn layui-btn-primary  layui-btn-sm" href="#">阅读数 ${count}</button>
           <div id="rate" class="rate"></div>
         </div>
       </div>
@@ -56,8 +56,7 @@
         <div class="layui-form-item">
           <label class="layui-form-label">称呼</label>
           <div class="layui-input-block">
-            <input type="text" id="nickname" required lay-verify="required" placeholder="您的称呼"
-                   autocomplete="off" class="layui-input">
+            <input type="text" id="nickname" required lay-verify="required" autocomplete="off" class="layui-input">
           </div>
         </div>
 
@@ -65,16 +64,14 @@
         <div class="layui-form-item">
           <label class="layui-form-label">邮箱</label>
           <div class="layui-input-block">
-            <input type="text" id="email" required lay-verify="required" placeholder="您的邮箱"
-                   autocomplete="off" class="layui-input">
+            <input type="text" id="email" required lay-verify="required" autocomplete="off" class="layui-input">
           </div>
         </div>
 
         <div class="layui-form-item">
           <label class="layui-form-label">主页</label>
           <div class="layui-input-block">
-            <input type="text" id="website" required lay-verify="required" placeholder="您的网站主页"
-                   autocomplete="off" class="layui-input">
+            <input type="text" id="website" required lay-verify="required"  autocomplete="off" class="layui-input">
           </div>
         </div>
 
@@ -83,16 +80,15 @@
       <div class="layui-form-item layui-form-text">
         <label class="layui-form-label">内容</label>
         <div class="layui-input-block">
-            <textarea name="desc" placeholder="请输入您的评论内容" class="layui-textarea"
-                      id="commentArea"></textarea>
+            <textarea name="desc"  class="layui-textarea"  id="commentArea"></textarea>
         </div>
       </div>
 
       <div class="layui-form-item">
         <div class="layui-input-block">
-          <button class="layui-btn layui-btn-sm layui-btn-normal" onclick="submitComment()">提交
+          <button class="layui-btn layui-btn-sm layui-btn-primary" onclick="submitComment()">提交
           </button>
-          <button class="layui-btn layui-btn-sm layui-btn-danger" onclick="reset()">重置</button>
+          <button class="layui-btn layui-btn-sm layui-btn-primary" onclick="reset()">重置</button>
         </div>
       </div>
     </div>
@@ -160,10 +156,11 @@
         if (contentH == null || contentH.trim().length === 0 || contentH.startsWith('<br>')) {
           return
         }
-        var dataTemp = "<a  class=\'listTag\' href={0} style='margin-left: {1}px' '> {2} </a></br>";
-        $("#menuContent").append('＊' + dataTemp.format("#"+markId, titleSize * 10, contentH));
+        var dataTemp = "<a  class=\'listTag\' href={0} style='letter-spacing:2px;margin-left: {1}px' '> {2} </a></br>";
+        $("#menuContent").append(dataTemp.format("#"+markId, titleSize * 10, contentH));
       }
     });
+    $("#menuContent").append("<hr/>");
   });
 
   function toIndexPage() {
@@ -187,7 +184,6 @@
    */
   function cleanCache() {
     $.get("/book/cache?cacheKey=CATEGORY:${bookName}:CONTENT:${slug}", function (data, status) {
-      console.debug("文章刷新完成")
       location.reload();
     });
   }

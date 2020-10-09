@@ -2,9 +2,24 @@
   <li class="layui-nav-item"><a href="/"><i class="fa fa-globe"></i>主页</a></li>
   <li class="layui-nav-item"><a href="${path}/page/book/2"><i class="fa fa-rocket"></i>架构设计</a></li>
   <li class="layui-nav-item"><a href="${path}/page/book/11"><i class="fa fa-cogs"></i>并发编程</a></li>
-  <li class="layui-nav-item"><a href="${path}/page/book/12"><i class="fa fa-object-group"></i>分布式</a></li>
-  <li class="layui-nav-item"><a href="${path}/page/book/7"><i class="fa fa-cube"></i>DevOps</a></li>
-  <li class="layui-nav-item"><a href="${path}/page/book/more/list"><i class="fa fa-mortar-board"></i>学习笔记</a></li>
+  <li class="layui-nav-item"><a href="${path}/page/book/12"><i class="fa fa-object-group"></i>分布式计算</a></li>
+
+
+  <li class="layui-nav-item">
+    <a href="javascript:"> <i class="fa fa-bookmark"></i>学习笔记</a>
+    <dl class="layui-nav-child">
+      <dd><a href="${path}/page/book/7"><i class="fa fa-cube"></i>DevOps </a></dd>
+      <dd><a href="${path}/page/book/1"><i class="fa fa-coffee"></i>Java虚拟机</a></dd>
+      <dd><a href="${path}/page/book/6"><i class="fa fa-code"></i>设计模式</a></dd>
+      <dd><a href="${path}/page/book/9"><i class="fa fa-server"></i>MySQL 进阶</a></dd>
+      <dd><a href="${path}/page/book/10"><i class="fa fa-grav"></i>Spring 技术栈</a></dd>
+      <dd><hr class="layui-bg-gray"></dd>
+      <dd><a href="${path}/page/book/more/list"><i class="fa fa-mortar-board"></i>更多 ...</a></dd>
+    </dl>
+  </li>
+
+
+
 
 
   <li class="layui-nav-item">

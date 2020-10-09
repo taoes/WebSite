@@ -12,7 +12,6 @@
 <script src="/layui/layui.all.js?t=1598935358940"></script>
 <style>
   #footer {
-    display: flex;
     display: -webkit-flex;
     flex-direction: row;
     background-color: #000000;
@@ -20,11 +19,12 @@
     align-items: center;
     margin-top: 40px;
     width: 100%;
+    position: fixed;
+    bottom: 0;
   }
 
   .footerFont {
     color: white;
-
   }
 
   @media screen and (max-width: 1200px) {

@@ -21,6 +21,7 @@
   .tab {
     display: flex;
     width: 68%;
+    max-width: 1200px;
     margin-top: 20px;
   }
 

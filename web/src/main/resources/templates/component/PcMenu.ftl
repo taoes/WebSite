@@ -1,4 +1,4 @@
-<ul class="layui-nav PcMenu" style="width: 100%">
+<ul class="layui-nav  PcMenu" style="width: 100%">
   <li class="layui-nav-item"><a href="/"><i class="fa fa-globe"></i>主页</a></li>
   <li class="layui-nav-item"><a href="${path}/page/book/2"><i class="fa fa-rocket"></i>架构设计</a></li>
   <li class="layui-nav-item"><a href="${path}/page/book/11"><i class="fa fa-cogs"></i>并发编程</a></li>
@@ -19,9 +19,6 @@
   </li>
 
 
-
-
-
   <li class="layui-nav-item">
     <a href="javascript:"> <i class="fa fa-pencil"></i>文字记录</a>
     <dl class="layui-nav-child">
@@ -40,8 +37,6 @@
       <dd><a href="https://weibo.com/zhoutao1230"><i class="fa fa-weibo"></i>Sina Weibo</a></dd>
       <dd><a href="https://github.com/taoes"><i class="fa fa-github"></i>GitHub</a></dd>
       <dd><a href="https://meta.stackoverflow.com/users/9631277/tao"><i class="fa fa-stack-overflow"></i>StackoverFlow</a></dd>
-
-
     </dl>
   </li>
 </ul>

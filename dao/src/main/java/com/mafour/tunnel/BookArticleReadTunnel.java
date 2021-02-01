@@ -9,15 +9,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class BookArticleReadTunnel extends ServiceImpl<BookArticleReadMapper, BookArticleReadDO> {
 
-
-  public Integer createOrIncrement(String bookName,String slug){
-    // 查询
-    BookArticleReadDO readDO = findBySlugAndBookName(bookName, slug);
-    if (readDO == null){
-      readDO = new BookArticleReadDO()
-          .setCount(1)
-          .setBookName(bookName)
-          .setSlug(slug);
+  public Integer createOrIncrement(String book, String slug) {
+    BookArticleReadDO readDO = findBySlugAndBookName(book, slug);
+    if (readDO == null) {
+      readDO = new BookArticleReadDO().setCount(1).setBookName(book).setSlug(slug);
       this.save(readDO);
       return 1;
     }
@@ -26,13 +21,13 @@ public class BookArticleReadTunnel extends ServiceImpl<BookArticleReadMapper, Bo
     return count;
   }
 
-
-  public BookArticleReadDO findBySlugAndBookName(String bookName,String slug){
-    LambdaQueryWrapper<BookArticleReadDO> wrapper = new LambdaQueryWrapper<BookArticleReadDO>()
-        .eq(BookArticleReadDO::getBookName, bookName)
-        .eq(BookArticleReadDO::getSlug, slug)
-        .orderByDesc(BookArticleReadDO::getId)
-        .last("LIMIT 1");
+  public BookArticleReadDO findBySlugAndBookName(String book, String slug) {
+    LambdaQueryWrapper<BookArticleReadDO> wrapper =
+        new LambdaQueryWrapper<BookArticleReadDO>()
+            .eq(BookArticleReadDO::getBookName, book)
+            .eq(BookArticleReadDO::getSlug, slug)
+            .orderByDesc(BookArticleReadDO::getId)
+            .last("LIMIT 1");
     return this.getOne(wrapper);
   }
 }

@@ -30,6 +30,10 @@ public class BookArticle {
 
   private boolean recommend;
 
+  private String mkContent;
+
+  private String htmlContent;
+
   private LocalDateTime createdAt;
 
   private LocalDateTime updatedAt;

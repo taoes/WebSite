@@ -1,5 +1,6 @@
 package com.mafour.api.controller.api;
 
+import com.mafour.service.SeoService;
 import com.mafour.service.book.BookArticleService;
 import com.mafour.service.book.BookCategoryService;
 import com.mafour.service.book.BookService;
@@ -29,28 +30,35 @@ public class BookCategoryController {
 
   @Autowired private CommentService commentService;
 
+  @Autowired private SeoService seoService;
+
+  /** 获取书籍目录信息 */
   @GetMapping("/{bookId}/category")
   public List<YuqueCategory> getCategoryById(@PathVariable("bookId") Long bookId) {
     Optional<Book> book = bookService.find(bookId);
-    YuqueCategoryData byBook = bookCategoryService.findByBook(book.get().getLinkUrl());
+    String linkUrl = book.map(Book::getLinkUrl).orElse(null);
+    YuqueCategoryData byBook = bookCategoryService.findByBook(linkUrl);
     return byBook.getData();
   }
 
+  /** 获取书籍信息 */
   @GetMapping("/{bookId}")
   public Book getBook(@PathVariable("bookId") Long bookId) {
     Optional<Book> book = bookService.find(bookId);
-    return book.get();
+    return book.orElse(null);
   }
 
-  @GetMapping("/{bookLinkUrl}/category/{slug}")
-  public YuqueDoc getBook(
-      @PathVariable("bookLinkUrl") String bookLinkUrl, @PathVariable("slug") String slug) {
-    return articleService.findByCategoryId(bookLinkUrl, slug);
+  /** 查询文章信息 */
+  @GetMapping("/{book}/category/{slug}")
+  public YuqueDoc getBook(@PathVariable String book, @PathVariable String slug) {
+    YuqueDoc doc = articleService.findByCategoryId(book, slug);
+    seoService.push(book, slug);
+    return doc;
   }
 
-  @GetMapping("/{bookLinkUrl}/category/{slug}/comment")
-  public List<Comment> getComment(
-      @PathVariable("bookLinkUrl") String bookLinkUrl, @PathVariable("slug") String slug) {
-    return commentService.all(bookLinkUrl, slug);
+  /** 获取文章的评论信息 */
+  @GetMapping("/{book}/category/{slug}/comment")
+  public List<Comment> getComment(@PathVariable String book, @PathVariable String slug) {
+    return commentService.allCommentList(book, slug);
   }
 }

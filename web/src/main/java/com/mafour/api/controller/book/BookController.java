@@ -2,11 +2,10 @@ package com.mafour.api.controller.book;
 
 import com.mafour.api.controller.book.req.Book;
 import com.mafour.api.controller.book.req.BookUpdate;
-import com.mafour.dao.BookUpdateRecordDO;
 import com.mafour.service.SeoService;
-import com.mafour.tunnel.BookUpdateRecordTunnel;
+import com.mafour.service.book.BookRecordService;
+import com.mafour.service.book.bean.BookUpdateRecord;
 import java.io.IOException;
-import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -22,44 +21,46 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/book")
 public class BookController {
 
-  private final BookUpdateRecordTunnel tunnel;
+  private final BookRecordService bookRecordService;
 
   private final RedissonClient redissonClient;
 
   private final SeoService seoService;
 
   @PostMapping("/update")
-  public String updateRecord(@RequestBody BookRecord record) throws IOException {
-    log.info("save book record is start ....");
-    BookUpdate data = record.getData();
+  public String updateRecord(@RequestBody BookRecord recordCallbackData) throws IOException {
+    BookUpdate data = recordCallbackData.getData();
     String slug = data.getSlug();
-
     Book book = data.getBook();
-    String name = book.getName();
     String bookSlug = book.getSlug();
 
-    BookUpdateRecordDO recordDO =
-        new BookUpdateRecordDO()
-            .setSlug(slug)
-            .setSlugName(data.getTitle())
-            .setActiveType(data.getAction_type())
-            .setBookName(name)
-            .setBookSlug(bookSlug)
-            .setUpdatedAt(new Date());
-    tunnel.save(recordDO);
-    log.info("save book record is ok....");
+    log.info(
+        "接收到更新回调通知，bName={} bSlug={} aName={} aSlug={}",
+        book.getName(),
+        book.getSlug(),
+        data.getTitle(),
+        book.getSlug());
 
-    // 清除缓存
-    String categoryCache = String.format("CATEGORY:%s", bookSlug);
-    redissonClient.getBucket(categoryCache).delete();
+    // 保存记录
+    BookUpdateRecord record =
+        new BookUpdateRecord(
+            book.getName(), book.getSlug(), data.getAction_type(), data.getSlug(), data.getTitle());
+    bookRecordService.save(record);
 
-    String slugCache = String.format("CATEGORY:%s:CONTENT:%s", bookSlug, slug);
-    redissonClient.getBucket(slugCache).delete();
-    log.info("cache :{} & {} clean is ok ...", categoryCache, slugCache);
-
-    // 推送到SEO
+    // 清除缓存 & SEO
+    cleanCache(bookSlug, slug);
     seoService.push(bookSlug, slug);
     return "OK";
+  }
+
+  /** 清除缓存数据 */
+  private void cleanCache(String book, String slug) {
+    String categoryCache = String.format("WEB:CATEGORY:%s", book);
+    redissonClient.getBucket(categoryCache).delete();
+
+    String slugCache = String.format("WEB:CATEGORY:%s:CONTENT:%s", book, slug);
+    redissonClient.getBucket(slugCache).delete();
+    log.info("缓存 :{} & {} 清除完成", categoryCache, slugCache);
   }
 
   @Data

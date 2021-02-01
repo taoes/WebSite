@@ -39,6 +39,8 @@ public class BookContentConverter extends AbstractConverter<BookArticle, BookArt
         .setUpdatedAt(content.getUpdatedAt())
         .setCreatedAt(content.getCreatedAt())
         .setWordCount(content.getWordCount())
-        .setDescription(content.getDescription());
+        .setDescription(content.getDescription())
+        .setMkContent(content.getMkContent())
+        .setHtmlContent(content.getHtmlContent());
   }
 }

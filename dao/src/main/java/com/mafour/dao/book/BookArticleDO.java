@@ -33,6 +33,10 @@ public class BookArticleDO {
 
   private String description;
 
+  private String mkContent;
+
+  private String htmlContent;
+
   private LocalDateTime createdAt;
 
   private LocalDateTime updatedAt;

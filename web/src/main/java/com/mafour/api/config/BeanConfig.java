@@ -16,7 +16,11 @@ public class BeanConfig {
     String address = "redis://redis-service:6379";
     log.info("Redis 地址:{}", address);
     Config config = new Config();
-    config.useSingleServer().setAddress(address).setTimeout(100000).setConnectionMinimumIdleSize(10);
+    config
+        .useSingleServer()
+        .setAddress(address)
+        .setTimeout(100000)
+        .setConnectionMinimumIdleSize(10);
     RedissonClient redissonClient = Redisson.create(config);
     log.info("Redis 客户端配置成功.....");
     return redissonClient;

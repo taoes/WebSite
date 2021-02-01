@@ -21,9 +21,7 @@ public class BookArticleController {
   private final BookArticleService articleService;
 
   @GetMapping("/recommend")
-  public Response<Void> setSlugRecommend(
-      @RequestParam() String slug,
-      @RequestParam(required = false, defaultValue = "true") boolean set) {
+  public Response<Void> setSlugRecommend(@RequestParam() String slug) {
     articleService.recommend(true, slug);
     return Response.ok();
   }

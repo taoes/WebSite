@@ -7,21 +7,26 @@ import com.mafour.dao.book.BookArticleDO;
 import com.mafour.mapper.BookContentMapper;
 import java.util.List;
 import java.util.Optional;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
+@Slf4j
 @Component
 public class BookContentTunnel extends ServiceImpl<BookContentMapper, BookArticleDO> {
 
   public void saveOrUpdated(BookArticleDO articleDO) {
     BookArticleDO bookArticleDO = findBySlug(articleDO.getSlug());
-    if (bookArticleDO != null) {
-      articleDO.setId(bookArticleDO.getId());
-      this.updateById(articleDO);
+    if (bookArticleDO == null) {
+      log.info("文章:{} 不存在,即将保存文章内容", articleDO.getSlug());
+      save(articleDO);
       return;
     }
-    save(articleDO);
+    log.info("文章:{} 存在,即将更新文章内容", bookArticleDO.getSlug());
+    articleDO.setId(bookArticleDO.getId());
+    this.updateById(articleDO);
   }
 
+  /** 查询文章 */
   public BookArticleDO findBySlug(String slug) {
     Wrapper<BookArticleDO> wrapper =
         new LambdaQueryWrapper<BookArticleDO>()
@@ -31,6 +36,7 @@ public class BookContentTunnel extends ServiceImpl<BookContentMapper, BookArticl
     return this.getOne(wrapper);
   }
 
+  /** 搜索文章 */
   public String getSearchBySlug(String slug) {
     Wrapper<BookArticleDO> wrapper =
         new LambdaQueryWrapper<BookArticleDO>()

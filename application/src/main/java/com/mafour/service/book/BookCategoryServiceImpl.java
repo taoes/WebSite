@@ -39,22 +39,24 @@ public class BookCategoryServiceImpl implements BookCategoryService {
 
   @SneakyThrows
   @Override
-  public YuqueCategoryData findByBook(String yuqueName) {
-    String cacheKey = "CATEGORY:" + yuqueName;
+  public YuqueCategoryData findByBook(String book) {
+    // 从缓存中获取目录信息
+    String cacheKey = "WEB:CATEGORY:" + book;
     RBucket<YuqueCategoryData> bucket = redissonClient.getBucket(cacheKey);
     if (bucket.isExists()) {
       return bucket.get();
     }
 
-    String lockKey = "LOCK:" + cacheKey;
+    // 缓存不存在，从语雀API中查询
+    String lockKey = "WEB:LOCK:" + cacheKey;
     RLock lock = redissonClient.getLock(lockKey);
     try {
-      lock.lock();
+      lock.lock(10, TimeUnit.SECONDS);
       bucket = redissonClient.getBucket(cacheKey);
       if (bucket.isExists()) {
         return bucket.get();
       }
-      YuqueCategoryData data = findByYuqueApi(yuqueName);
+      YuqueCategoryData data = findByYuqueApi(book);
       bucket.set(data, data.getData() == null ? 1 : 30, TimeUnit.DAYS);
       return data;
     } finally {

@@ -23,7 +23,7 @@ public class CommentServiceImpl implements CommentService {
   }
 
   @Override
-  public List<Comment> all(String bookName, String slug) {
+  public List<Comment> allCommentList(String bookName, String slug) {
     return tunnel.findList(bookName, slug).stream()
         .map(converter::converterFrom)
         .collect(Collectors.toList());

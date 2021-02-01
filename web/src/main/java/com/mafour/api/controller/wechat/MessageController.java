@@ -15,7 +15,6 @@ public class MessageController {
     this.dingTalkService = dingTalkService;
   }
 
-
   @GetMapping
   public String sendMsg() {
     dingTalkService.sendPushMsg();

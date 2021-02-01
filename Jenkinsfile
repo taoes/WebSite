@@ -1,6 +1,11 @@
 pipeline {
     agent any
     stages {
+        stage{
+            steps{
+                git branch: 'test-jenkins', credentialsId: '9e30149f-45b0-4680-9c61-5fcd7493e955', url: 'https://gitlab.unionfab.com/ufc/ufc-be'}
+            }
+        }
         stage('环境检查') {
             steps {
                 sh 'java -version'

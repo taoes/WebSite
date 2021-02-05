@@ -1,7 +1,3 @@
 rootProject.name = 'MFour'
-include 'web'
-include 'common'
-include 'service'
-include 'application'
-include 'dao'
+
 

@@ -1,0 +1,58 @@
+spring:
+  redis:
+    host: 127.0.0.1
+    port: 26379
+    database: 0
+    timeout: 5000
+    sentinel:
+      master: mymaster
+      nodes: 127.0.0.1:26379
+  freemarker:
+    settings:
+      classic_compatible: true
+      default_encoding: UTF-8
+      template_update_delay: 0
+    charset: UTF-8
+    cache: false
+    allow-request-override: false
+    expose-request-attributes: false
+    allow-session-override: false
+    expose-session-attributes: false
+    prefer-file-system-access: true
+    suffix: .ftl
+    check-template-location: true
+    enabled: true
+    content-type: text/html
+    template-loader-path: classpath:/templates/
+    expose-spring-macro-helpers: true
+  application:
+    name: MaFour-Be
+  datasource:
+    password: Lyp82nlf
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://47.98.143.247:3306/web?allowMultiQueries=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8
+    username: root
+  devtools:
+    restart:
+      additional-paths: src/main/java
+server:
+  port: 9999
+  servlet:
+    session:
+      cookie:
+        max-age: 1800
+      timeout: 36000
+mybatis-plus:
+  global-config:
+    db-config:
+      id-type: uuid
+    worker-id: 1
+
+
+
+ding:
+  token: 5ff21b43ef762a1e60ff10a2f3b391078d1f2f2e3f0512eb6b263ff1f1a38a2a
+
+
+logging:
+  config: classpath:spring-logback.xml

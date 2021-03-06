@@ -3,36 +3,49 @@ package com.mafour.api.service.book;
 import static java.lang.String.format;
 
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.mafour.api.dao.dao.BookUpdateRecordDO;
 import com.mafour.api.dao.dao.book.BookArticleDO;
 import com.mafour.api.dao.tunnel.BookArticleReadTunnel;
 import com.mafour.api.dao.tunnel.BookContentTunnel;
+import com.mafour.api.dao.tunnel.BookUpdateRecordTunnel;
 import com.mafour.api.service.book.bean.BookArticle;
+import com.mafour.api.service.book.bean.BookUpdateRecord;
+import com.mafour.api.service.book.converter.BookContentConverter;
+import com.mafour.api.service.book.converter.BookUpdateRecordConverter;
 import com.mafour.api.service.book.yuque.YuqueDoc;
 import com.mafour.api.service.book.yuque.YuqueDoc.Book;
 import com.mafour.api.service.book.yuque.YuqueDoc.Data;
 import com.mafour.api.service.redis.RedisService;
 import com.mafour.api.service.utils.HttpUtils;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 @Slf4j
 @Service
 @AllArgsConstructor
 public class BookArticleServiceImpl implements BookArticleService {
 
-  private final RedisService redisService;
+  @Autowired private RedisService redisService;
 
-  private final BookContentTunnel contentTunnel;
+  @Autowired private BookContentTunnel contentTunnel;
 
-  private final com.mafour.api.service.book.converter.BookContentConverter converter;
+  @Autowired private BookUpdateRecordTunnel recordTunnel;
 
-  private final BookArticleReadTunnel readTunnel;
+  @Autowired private BookArticleReadTunnel readTunnel;
+
+  @Autowired private BookContentConverter converter;
+
+  @Autowired private BookUpdateRecordConverter publishConverter;
 
   @Override
   @SneakyThrows
@@ -84,6 +97,28 @@ public class BookArticleServiceImpl implements BookArticleService {
   public List<BookArticle> recommendList() {
     List<BookArticleDO> bookArticleDOS = contentTunnel.getRecommend();
     return bookArticleDOS.stream().map(converter::converterFrom).collect(Collectors.toList());
+  }
+
+  @Override
+  public List<BookUpdateRecord> findLatestPublish(int limit) {
+    List<BookUpdateRecordDO> publishRecord = recordTunnel.getLatestPublishRecord(limit);
+    if (CollectionUtils.isEmpty(publishRecord)) {
+      return Collections.emptyList();
+    }
+    // 封装文章的描述信息
+    Set<String> slugList =
+        publishRecord.stream().map(BookUpdateRecordDO::getSlug).collect(Collectors.toSet());
+    Map<String, String> descList = contentTunnel.findDescBySlug(slugList);
+
+    return publishRecord.stream()
+        .map(publishConverter::converterFrom)
+        .peek(
+            p -> {
+              String slug = p.getSlug();
+              String desc = descList.getOrDefault(slug, "暂无描述信息");
+              p.setDesc(desc);
+            })
+        .collect(Collectors.toList());
   }
 
   @SneakyThrows

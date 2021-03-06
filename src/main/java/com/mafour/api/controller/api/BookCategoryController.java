@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/** 图书目录相关 */
 @RestController
 @RequestMapping("/apis/book")
 public class BookCategoryController {

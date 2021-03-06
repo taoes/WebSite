@@ -11,9 +11,10 @@ import org.springframework.stereotype.Component;
 public class BookUpdateRecordTunnel
     extends ServiceImpl<BookUpdateRecordMapper, BookUpdateRecordDO> {
 
-  public List<BookUpdateRecordDO> getLatestChangeList(int count) {
+  public List<BookUpdateRecordDO> getLatestPublishRecord(int count) {
     LambdaQueryWrapper<BookUpdateRecordDO> wrapper =
         new LambdaQueryWrapper<BookUpdateRecordDO>()
+            .eq(BookUpdateRecordDO::getActiveType, "publish")
             .orderByDesc(BookUpdateRecordDO::getId)
             .last("LIMIT " + count);
     return list(wrapper);

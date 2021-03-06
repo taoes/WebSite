@@ -7,6 +7,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.List;
 import javax.servlet.http.HttpServletResponse;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.util.CollectionUtils;
@@ -19,41 +20,51 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/picture")
 public class PictureController {
 
-  //
-  // https://cdn.nlark.com/yuque0/2020/png/437981/1583756278116-3aab6997-6012-4a2a-bf38-c4f8652a1831.png
-
+  /**
+   * 重定向文件图片访问，代理到语雀的文件
+   *
+   * <p>https://cdn.nlark.com/yuque0/2020/png/437981/1583756278116-3aab6997-6012-4a2a-bf38-c4f8652a1831.png
+   */
   @GetMapping
+  @SneakyThrows
   public void getPic(String param, HttpServletResponse response) {
-
-    try {
-      URL url = new URL("https://cdn.nlark.com/" + param);
-      HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-      conn.setRequestMethod("GET");
-      conn.setConnectTimeout(5 * 1000);
-      InputStream inStream = conn.getInputStream(); // 通过输入流获取图片数据
-
-      List<String> contentType = conn.getHeaderFields().get("Content-Type");
-      String contentTypeStr = Strings.EMPTY;
-      if (!CollectionUtils.isEmpty(contentType)) {
-        contentTypeStr = contentType.get(0);
-      }
-
+    // TODO: 从数据库中查询图片是否已经缓存到七牛云中，是的话直接返回七牛云地址
+    // TODO: 否则从云端获取数据
+    try (InputStream inStream = findPictureDataFromRemote(param, response);
+        OutputStream os = response.getOutputStream()) {
       byte[] data = readInputStream(inStream);
       inStream.read(data);
-      inStream.close();
-      response.setContentType(contentTypeStr); // 设置返回的文件类型
-      OutputStream os = response.getOutputStream();
       os.write(data);
       os.flush();
-      os.close();
-      // 异步上传到七牛云
-
     } catch (Exception e) {
       log.info("获取图片文件信息失败:{}", e.getMessage());
     }
   }
 
-  public static byte[] readInputStream(InputStream inStream) throws Exception {
+  /**
+   * 从语雀接口中获取图片数据
+   *
+   * @return 返回文件流 & 设置相应的内容类型头
+   */
+  @SneakyThrows
+  private InputStream findPictureDataFromRemote(String param, HttpServletResponse response) {
+    URL url = new URL(String.format("https://cdn.nlark.com/%s", param));
+    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+    conn.setRequestMethod("GET");
+    conn.setConnectTimeout(10_000);
+    InputStream inputStream = conn.getInputStream(); // 通过输入流获取图片数据
+
+    // 获取文件响应头
+    List<String> contentType = conn.getHeaderFields().get("Content-Type");
+    String contentTypeStr = Strings.EMPTY;
+    if (!CollectionUtils.isEmpty(contentType)) {
+      contentTypeStr = contentType.get(0);
+    }
+    response.setContentType(contentTypeStr);
+    return inputStream;
+  }
+
+  private static byte[] readInputStream(InputStream inStream) throws Exception {
     ByteArrayOutputStream outStream = new ByteArrayOutputStream();
     byte[] buffer = new byte[2048];
     int len = 0;

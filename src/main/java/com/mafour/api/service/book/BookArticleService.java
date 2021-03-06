@@ -1,6 +1,7 @@
 package com.mafour.api.service.book;
 
 import com.mafour.api.service.book.bean.BookArticle;
+import com.mafour.api.service.book.bean.BookUpdateRecord;
 import com.mafour.api.service.book.yuque.YuqueDoc;
 import java.util.List;
 
@@ -17,4 +18,11 @@ public interface BookArticleService {
 
   /** 获取推荐文章 */
   List<BookArticle> recommendList();
+
+  /**
+   * 获取最新发布的记录
+   *
+   * @param limit 获取的条数
+   */
+  List<BookUpdateRecord> findLatestPublish(int limit);
 }

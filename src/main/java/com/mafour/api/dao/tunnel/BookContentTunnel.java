@@ -6,7 +6,10 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.mafour.api.dao.dao.book.BookArticleDO;
 import com.mafour.api.dao.mapper.BookContentMapper;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
@@ -57,5 +60,14 @@ public class BookContentTunnel extends ServiceImpl<BookContentMapper, BookArticl
             .eq(BookArticleDO::isRecommend, true)
             .orderByDesc(BookArticleDO::getId);
     return this.list(wrapper);
+  }
+
+  public Map<String, String> findDescBySlug(Set<String> slugList) {
+    LambdaQueryWrapper<BookArticleDO> wrapper =
+        new LambdaQueryWrapper<BookArticleDO>()
+            .select(BookArticleDO::getSlug, BookArticleDO::getDescription)
+            .in(BookArticleDO::getSlug, slugList);
+    return list(wrapper).stream()
+        .collect(Collectors.toMap(BookArticleDO::getSlug, BookArticleDO::getDescription));
   }
 }

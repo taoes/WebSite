@@ -12,4 +12,7 @@ public interface BookService {
   Optional<Book> find(Long bookId);
 
   Optional<Book> findByName(String blog);
+
+  /** 查询书籍ID */
+  Integer findIdByName(String bookSlug);
 }

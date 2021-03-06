@@ -33,4 +33,9 @@ public class BookServiceImpl implements BookService {
   public Optional<Book> findByName(String blog) {
     return Optional.ofNullable(bookTunnel.getByLinkUrl(blog)).map(bookConverter::converterFrom);
   }
+
+  @Override
+  public Integer findIdByName(String bookSlug) {
+    return findByName(bookSlug).map(Book::getId).map(Long::intValue).orElse(0);
+  }
 }

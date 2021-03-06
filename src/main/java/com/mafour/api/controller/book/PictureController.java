@@ -73,4 +73,6 @@ public class PictureController {
     }
     return outStream.toByteArray();
   }
+
+  private void uploadToCloud(){}
 }

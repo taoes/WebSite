@@ -3,12 +3,15 @@ package com.mafour.api.controller.book;
 import com.mafour.api.controller.book.req.Book;
 import com.mafour.api.controller.book.req.BookUpdate;
 import com.mafour.api.service.book.BookRecordService;
+import com.mafour.api.service.book.BookService;
 import com.mafour.api.service.book.bean.BookUpdateRecord;
 import com.mafour.api.service.redis.RedisService;
 import com.mafour.api.service.seo.SeoService;
 import lombok.Data;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,11 +25,16 @@ public class BookController {
 
   @Autowired private BookRecordService bookRecordService;
 
-  @Autowired private RedisService redisService;
+  private final BookService bookService;
+
+  private final RedisService redisService;
 
   @Autowired private SeoService seoService;
 
-  @Getter private static final RuntimeException notData = null;
+  @GetMapping("/{bookSlug}")
+  public Integer findBySlug(@PathVariable("bookSlug") String bookSlug) {
+    return bookService.findIdByName(bookSlug);
+  }
 
   @PostMapping("/update")
   public String updateRecord(@RequestBody BookRecord recordCallbackData) {

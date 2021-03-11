@@ -70,4 +70,9 @@ public class BookContentTunnel extends ServiceImpl<BookContentMapper, BookArticl
     return list(wrapper).stream()
         .collect(Collectors.toMap(BookArticleDO::getSlug, BookArticleDO::getDescription));
   }
+
+  /** 返回所有的文章数据 */
+  public Map<String, String> getData() {
+    return null;
+  }
 }

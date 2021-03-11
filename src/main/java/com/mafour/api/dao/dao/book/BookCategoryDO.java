@@ -9,8 +9,8 @@ import lombok.Data;
 @TableName("category")
 public class BookCategoryDO {
 
-  @TableId(type = IdType.UUID)
-  private long id;
+  @TableId(type = IdType.AUTO)
+  private Long id;
 
   private String title;
 
@@ -31,4 +31,8 @@ public class BookCategoryDO {
   private String slug;
 
   private int sequence;
+
+  public void cleanId() {
+    this.id = null;
+  }
 }

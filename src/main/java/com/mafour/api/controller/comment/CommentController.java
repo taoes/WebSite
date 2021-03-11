@@ -8,6 +8,7 @@ import com.mafour.api.service.redis.RedisService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,9 +23,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/book/comment")
 public class CommentController {
 
-  private final CommentService commentService;
+  @Autowired private CommentService commentService;
 
-  private final RedisService redisService;
+  @Autowired private RedisService redisService;
 
   @GetMapping
   public List<Comment> allCommentList(@RequestParam String bookName, @RequestParam String slug) {

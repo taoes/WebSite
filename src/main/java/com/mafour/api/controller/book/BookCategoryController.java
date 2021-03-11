@@ -1,6 +1,5 @@
-package com.mafour.api.controller.api;
+package com.mafour.api.controller.book;
 
-import com.mafour.api.service.seo.SeoService;
 import com.mafour.api.service.book.BookArticleService;
 import com.mafour.api.service.book.BookCategoryService;
 import com.mafour.api.service.book.BookService;
@@ -10,6 +9,7 @@ import com.mafour.api.service.book.yuque.YuqueCategoryData;
 import com.mafour.api.service.book.yuque.YuqueDoc;
 import com.mafour.api.service.comment.Comment;
 import com.mafour.api.service.comment.CommentService;
+import com.mafour.api.service.seo.SeoService;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +46,7 @@ public class BookCategoryController {
   @GetMapping("/{bookId}")
   public Book getBook(@PathVariable("bookId") Long bookId) {
     Optional<Book> book = bookService.find(bookId);
+    seoService.push(String.valueOf(bookId));
     return book.orElse(null);
   }
 

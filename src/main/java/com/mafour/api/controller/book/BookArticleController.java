@@ -1,6 +1,5 @@
 package com.mafour.api.controller.book;
 
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.mafour.api.common.Response;
 import com.mafour.api.service.book.BookArticleService;
 import com.mafour.api.service.book.BookArticleStartService;
@@ -47,13 +46,8 @@ public class BookArticleController {
   @GetMapping("/record")
   public List<BookUpdateRecord> findLatestArticle(@RequestParam(defaultValue = "10") int limit) {
     String cacheKey = String.format(LATEST_CACHE_KEY_TEMP, limit);
-    List<BookUpdateRecord> records;
-    if (redisService.hasKey(cacheKey)) {
-      return redisService.find(cacheKey, new TypeReference<List<BookUpdateRecord>>() {});
-    } else {
-      records = articleService.findLatestPublish(limit);
-      redisService.set(cacheKey, records);
-      return records;
-    }
+    List<BookUpdateRecord> records = articleService.findLatestPublish(limit);
+    redisService.set(cacheKey, records);
+    return records;
   }
 }

@@ -29,7 +29,6 @@ public class SeoServiceImpl implements SeoService {
   }
 
   @Async
-  @Override
   public void push(String bookId) {
     String url = WEB_PREFIX + bookId;
     pushToBaidu(url);

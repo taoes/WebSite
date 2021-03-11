@@ -12,6 +12,7 @@ public class BookCategoryTunnel extends ServiceImpl<BookCategoryMapper, BookCate
 
   public void cleanAndSaveBatch(String bookName, List<BookCategoryDO> data) {
     clean(bookName);
+    data.forEach(BookCategoryDO::cleanId);
     super.saveBatch(data);
   }
 

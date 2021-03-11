@@ -63,8 +63,6 @@ public class BookController {
     String slugCache = String.format("WEB:CATEGORY:%s:CONTENT:%s", book, slug);
     redisService.del(slugCache);
 
-    // 清除最新发布的文章缓存
-    redisService.del("WEB:PUBLISH:LATEST:10");
     log.info("缓存 :{} & {} 清除完成", categoryCache, slugCache);
   }
 

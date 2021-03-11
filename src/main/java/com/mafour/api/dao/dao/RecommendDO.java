@@ -13,8 +13,12 @@ public class RecommendDO {
   private Long id;
 
   private String name;
+
   private String remark;
+
   private String type;
+
   private String link;
+
   private String cover;
 }

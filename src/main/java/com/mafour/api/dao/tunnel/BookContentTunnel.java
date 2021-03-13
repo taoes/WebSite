@@ -5,13 +5,14 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.mafour.api.dao.dao.book.BookArticleDO;
 import com.mafour.api.dao.mapper.BookContentMapper;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
+
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Component;
 
 @Slf4j
 @Component
@@ -74,5 +75,14 @@ public class BookContentTunnel extends ServiceImpl<BookContentMapper, BookArticl
   /** 返回所有的文章数据 */
   public Map<String, String> getData() {
     return null;
+  }
+
+  /** 查找所有的文件信息 */
+  public Map<String, String> findBookContentLink() {
+    Wrapper<BookArticleDO> wrapper =
+        new LambdaQueryWrapper<BookArticleDO>()
+            .select(BookArticleDO::getBook, BookArticleDO::getSlug);
+    return this.list(wrapper).stream()
+        .collect(Collectors.toMap(BookArticleDO::getSlug, BookArticleDO::getBook));
   }
 }

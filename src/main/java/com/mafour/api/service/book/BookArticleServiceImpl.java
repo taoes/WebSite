@@ -1,7 +1,5 @@
 package com.mafour.api.service.book;
 
-import static java.lang.String.format;
-
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.mafour.api.dao.dao.BookUpdateRecordDO;
 import com.mafour.api.dao.dao.book.BookArticleDO;
@@ -17,12 +15,6 @@ import com.mafour.api.service.book.yuque.YuqueDoc.Book;
 import com.mafour.api.service.book.yuque.YuqueDoc.Data;
 import com.mafour.api.service.redis.RedisService;
 import com.mafour.api.service.utils.HttpUtils;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -30,22 +22,27 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
+import java.util.*;
+import java.util.stream.Collectors;
+
+import static java.lang.String.format;
+
 @Slf4j
 @Service
 @AllArgsConstructor
 public class BookArticleServiceImpl implements BookArticleService {
 
-  @Autowired private RedisService redisService;
+  @Autowired private final RedisService redisService;
 
-  @Autowired private BookContentTunnel contentTunnel;
+  @Autowired private final BookContentTunnel contentTunnel;
 
-  @Autowired private BookUpdateRecordTunnel recordTunnel;
+  @Autowired private final BookUpdateRecordTunnel recordTunnel;
 
-  @Autowired private BookArticleReadTunnel readTunnel;
+  @Autowired private final BookArticleReadTunnel readTunnel;
 
-  @Autowired private BookContentConverter converter;
+  @Autowired private final BookContentConverter converter;
 
-  @Autowired private BookUpdateRecordConverter publishConverter;
+  @Autowired private final BookUpdateRecordConverter publishConverter;
 
   @Override
   @SneakyThrows

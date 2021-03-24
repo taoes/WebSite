@@ -1,6 +1,5 @@
 package com.mafour.api.service.seo;
 
-import java.io.IOException;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
@@ -8,6 +7,8 @@ import okhttp3.Request;
 import okhttp3.Response;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+
+import java.io.IOException;
 
 @Slf4j
 @Service
